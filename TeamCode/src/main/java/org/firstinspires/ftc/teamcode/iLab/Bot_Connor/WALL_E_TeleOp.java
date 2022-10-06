@@ -35,6 +35,7 @@ public class WALL_E_TeleOp extends OpMode {
         speedControl();
         drivingStyle();
         drive();
+        telemetryOutput();
 
     }
 
@@ -71,6 +72,7 @@ public class WALL_E_TeleOp extends OpMode {
                     WALL_E.rotateLeft(speedMultiply * leftStickXVal);
                 } else {
                     WALL_E.stopMotors();
+
                 }
                 break;
 
@@ -136,6 +138,26 @@ public class WALL_E_TeleOp extends OpMode {
         { driverStyle = WALL_E_TeleOp.Style.TWOSTICK;}
 
 
+    }
+
+    public void telemetryOutput() {
+        telemetry.addLine("Wall-E Control Panel");
+        telemetry.addLine("LONG LIVE TACO");
+        telemetry.addData("Speed: ", speedMultiply);
+        telemetry.addData("Front Left Motor Power", WALL_E.frontLeftMotor.getPower());
+        telemetry.addData("Front Right Motor Power", WALL_E.frontRightMotor.getPower());
+        telemetry.addData("Rear Left Motor Power" , WALL_E.rearLeftMotor.getPower());
+        telemetry.addData("Rear Right Motor Power" , WALL_E.rearRightMotor.getPower());
+
+        if (driverStyle == WALL_E_TeleOp.Style.ONESTICK) {
+            telemetry.addLine("OneStick Drive");
+        }
+        else if (driverStyle == WALL_E_TeleOp.Style.TANK) {
+            telemetry.addLine("Tank Drive");
+        }
+        else if (driverStyle == WALL_E_TeleOp.Style.TWOSTICK) {
+            telemetry.addLine(" TwoStick Drive");
+        }
     }
 
 
