@@ -68,4 +68,21 @@ public class MecanumDrive_Connor {
 
     }
 
+    public void strafeLeft(double speed) {
+        frontLeftMotor.setPower(-speed);
+        frontRightMotor.setPower(speed);
+        rearLeftMotor.setPower(speed);
+        rearRightMotor.setPower(-speed);
+
+    }
+
+    public void strafeRight(double speed) {
+        frontLeftMotor.setPower(speed);
+        frontRightMotor.setPower(-speed);
+        rearLeftMotor.setPower(-speed);
+        rearRightMotor.setPower(speed);
+    }
+
+
+
 }
