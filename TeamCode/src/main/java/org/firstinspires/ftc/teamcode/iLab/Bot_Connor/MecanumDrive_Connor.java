@@ -84,5 +84,76 @@ public class MecanumDrive_Connor {
     }
 
 
+    public void driveForward(double speed, double rotations) {
+
+        double ticks = rotations * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while (frontLeftMotor.getCurrentPosition() < ticks) {
+            driveForward(speed);
+        }
+        stopMotors();
+    }
+
+    public void driveBack (double speed, double rotations) {
+        double ticks = rotations * (-1) * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while (frontLeftMotor.getCurrentPosition() < ticks) {
+            driveBack(speed);
+        }
+        stopMotors();
+
+    }
+
+    public void strafeLeft(double speed, double rotations) {
+        double ticks = rotations * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while (frontLeftMotor.getCurrentPosition() < ticks) {
+            strafeLeft(speed);
+        }
+        stopMotors();
+    }
+
+    public void strafeRight(double speed, double rotations) {
+        double ticks = rotations * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while (frontLeftMotor.getCurrentPosition() < ticks) {
+            strafeRight(speed);
+        }
+        stopMotors();
+
+    }
+
+    public void rotateRight(double speed, double rotations) {
+        double ticks = rotations * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while (frontRightMotor.getCurrentPosition() < ticks) {
+            rotateRight(speed);
+        }
+        stopMotors();
+    }
+
+    public void rotateLeft(double speed, double rotations) {
+        double ticks = rotations * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while (frontLeftMotor.getCurrentPosition() < ticks) {
+            rotateLeft(speed);
+        }
+        stopMotors();
+
+
+    }
+
 
 }
