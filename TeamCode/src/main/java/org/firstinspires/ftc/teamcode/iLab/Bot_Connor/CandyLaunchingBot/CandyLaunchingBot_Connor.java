@@ -100,7 +100,7 @@ public void initRobot(HardwareMap hwMap) {
 
 
     ledLights = hwBot.get(RevBlinkinLedDriver.class, "led_strip");
-    ledPattern = RevBlinkinLedDriver.BlinkinPattern.RAINBOW_PARTY_PALETTE;   //https://www.revrobotics.com/content/docs/REV-11-1105-UM.pdf
+    ledPattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_PARTY_PALETTE;   //https://www.revrobotics.com/content/docs/REV-11-1105-UM.pdf
     ledLights.setPattern(ledPattern);
 
     currentTime.reset();
