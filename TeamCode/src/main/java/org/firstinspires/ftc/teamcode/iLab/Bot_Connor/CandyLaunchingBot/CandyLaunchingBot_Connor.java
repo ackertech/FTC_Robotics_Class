@@ -23,6 +23,8 @@ public RevBlinkinLedDriver.BlinkinPattern patternArray [] = {
 
 };
 
+    public DcMotor lazy_Susan;
+
 public ElapsedTime currentTime = new ElapsedTime();
 public int ledTimer;
 public int ledTimerIncrementer = 4;
@@ -170,6 +172,20 @@ public void initRobot(HardwareMap hwMap) {
 
         camLift.setPower(0.0);
     }
+
+
+    public void lazySusanLeft (double power) {
+        lazy_Susan.setPower(Math.abs(power));
+    }
+
+    public void lazySusanRight (double power) {
+        lazy_Susan.setPower(-Math.abs(power));
+    }
+
+    public void lazySusanStop(){
+        lazy_Susan.setPower(0);
+    }
+
 
 
 }
