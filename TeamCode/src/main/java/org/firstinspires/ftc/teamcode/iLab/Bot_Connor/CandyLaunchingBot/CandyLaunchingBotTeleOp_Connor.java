@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
 
 import org.checkerframework.checker.units.qual.C;
 import org.firstinspires.ftc.teamcode.Base.Robot.AckerBot;
@@ -57,13 +58,143 @@ public class CandyLaunchingBotTeleOp_Connor extends OpMode{
     public void start() { }
 
     @Override
-    public void loop() {}
+    public void loop() {
+        driveMode();
+       controlLauncher();
+       handControl();
+       controlCamPivot();
+       telemetryOutput();
+
+    }
 
 
     @Override
     public void stop() {
+        Hand.closeHand();
+        Hand.lowerArm();
+    }
+
+    public void drive () {
+
+        if (reverseModeToggle) {
+
+            leftStickYVal = -gamepad1.left_stick_y;
+            leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+            leftStickXVal = gamepad1.left_stick_x;
+            leftStickXVal = Range.clip(leftStickXVal, -1, 1);
+            rightStickXVal = -gamepad1.right_stick_x;
+            rightStickXVal = Range.clip(rightStickXVal, -1, 1);
+
+            frontLeftSpeed = leftStickYVal + leftStickXVal + rightStickXVal;
+            frontLeftSpeed = Range.clip(frontLeftSpeed, -1, 1);
+
+            frontRightSpeed = leftStickYVal - leftStickXVal - rightStickXVal;
+            frontRightSpeed = Range.clip(frontRightSpeed, -1, 1);
+
+            rearLeftSpeed = leftStickYVal - leftStickXVal + rightStickXVal;
+            rearLeftSpeed = Range.clip(rearLeftSpeed, -1, 1);
+
+            rearRightSpeed = leftStickYVal + leftStickXVal - rightStickXVal;
+            rearRightSpeed = Range.clip(rearRightSpeed, -1, 1);
+
+            if (frontLeftSpeed <= powerThreshold && frontLeftSpeed >= -powerThreshold) {
+                frontLeftSpeed = 0;
+                CandyBot.frontLeftMotor.setPower(frontLeftSpeed);
+            } else {
+                CandyBot.frontLeftMotor.setPower(frontLeftSpeed * speedMultiply);
+            }
+
+            if (frontRightSpeed <= powerThreshold && frontRightSpeed >= -powerThreshold){
+                frontRightSpeed = 0;
+                CandyBot.frontRightMotor.setPower(frontRightSpeed);
+            } else {
+                CandyBot.frontRightMotor.setPower(frontRightSpeed * speedMultiply);
+            }
+
+            if (rearLeftSpeed <= powerThreshold && rearLeftSpeed >= -powerThreshold) {
+                rearLeftSpeed = 0;
+                CandyBot.rearLeftMotor.setPower(rearLeftSpeed);
+            } else {
+                CandyBot.rearLeftMotor.setPower(rearLeftSpeed * speedMultiply);
+            }
+
+            if (rearRightSpeed <= powerThreshold && rearRightSpeed >= -powerThreshold){
+                rearRightSpeed = 0;
+                CandyBot.rearRightMotor.setPower(rearRightSpeed);
+            } else {
+                CandyBot.rearRightMotor.setPower(rearRightSpeed * speedMultiply);
+            }
+        }
+
+        else {
+
+            leftStickYVal = gamepad1.left_stick_y;
+            leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+            leftStickXVal = gamepad1.left_stick_x;
+            leftStickXVal = Range.clip(leftStickXVal, -1, 1);
+            rightStickXVal = gamepad1.right_stick_x;
+            rightStickXVal = Range.clip(rightStickXVal, -1, 1);
+
+            frontLeftSpeed = leftStickYVal + leftStickXVal + rightStickXVal;
+            frontLeftSpeed = Range.clip(frontLeftSpeed, -1, 1);
+
+            frontRightSpeed = leftStickYVal - leftStickXVal - rightStickXVal;
+            frontRightSpeed = Range.clip(frontRightSpeed, -1, 1);
+
+            rearLeftSpeed = leftStickYVal - leftStickXVal + rightStickXVal;
+            rearLeftSpeed = Range.clip(rearLeftSpeed, -1, 1);
+
+            rearRightSpeed = leftStickYVal + leftStickXVal - rightStickXVal;
+            rearRightSpeed = Range.clip(rearRightSpeed, -1, 1);
+
+            if (frontLeftSpeed <= powerThreshold && frontLeftSpeed >= -powerThreshold) {
+                frontLeftSpeed = 0;
+                CandyBot.frontLeftMotor.setPower(frontLeftSpeed);
+            } else {
+                CandyBot.frontLeftMotor.setPower(frontLeftSpeed * speedMultiply);
+            }
+
+            if (frontRightSpeed <= powerThreshold && frontRightSpeed >= -powerThreshold){
+                frontRightSpeed = 0;
+                CandyBot.frontRightMotor.setPower(frontRightSpeed);
+            } else {
+                CandyBot.frontRightMotor.setPower(frontRightSpeed * speedMultiply);
+            }
+
+            if (rearLeftSpeed <= powerThreshold && rearLeftSpeed >= -powerThreshold) {
+                rearLeftSpeed = 0;
+                CandyBot.rearLeftMotor.setPower(rearLeftSpeed);
+            } else {
+                CandyBot.rearLeftMotor.setPower(rearLeftSpeed * speedMultiply);
+            }
+
+            if (rearRightSpeed <= powerThreshold && rearRightSpeed >= -powerThreshold){
+                rearRightSpeed = 0;
+                CandyBot.rearRightMotor.setPower(rearRightSpeed);
+            } else {
+                CandyBot.rearRightMotor.setPower(rearRightSpeed * speedMultiply);
+            }
+        }
+
+        if (leftStickYVal < -0.1) {
+            CandyBot.driveForward(speedMultiply * leftStickYVal);
+        } else if (leftStickYVal > 0.1) {
+            CandyBot.driveBack(speedMultiply * leftStickYVal);
+        } else if (leftStickXVal > 0.1) {
+            CandyBot.rotateRight(speedMultiply * leftStickXVal);
+        } else if (leftStickXVal < -0.1) {
+            CandyBot.rotateLeft(speedMultiply * leftStickXVal);
+        } else if (rightStickXVal < -0.1) {
+            CandyBot.strafeLeft(speedMultiply * rightStickXVal);
+        }else if (rightStickXVal > 0.1) {
+            CandyBot.strafeRight(speedMultiply * rightStickXVal);
+        } else {
+            CandyBot.stopMotors();
+        }
 
     }
+
+
 
     public void telemetryOutput() {
         telemetry.addLine("Rick Astley is never gonna give you up");
@@ -97,7 +228,28 @@ public class CandyLaunchingBotTeleOp_Connor extends OpMode{
         }
     }
 
-    public void driveMode(){}
+    public void driveMode(){
+
+        if (gamepad1.y) {
+            speedMultiply = 0.5;
+        }
+
+        else if (gamepad1.a) {
+            speedMultiply = 1.0;
+        }
+
+        if (gamepad1.b) {
+           if (reverseModeToggle == false) {
+                reverseModeToggle = true;
+            }
+
+           else {
+               reverseModeToggle = false;
+           }
+
+        }
+
+    }
 
     public void controlCamPivot() {
 
@@ -114,6 +266,8 @@ public class CandyLaunchingBotTeleOp_Connor extends OpMode{
 
 
     public void handControl() {
+        lazySusanControl();
+
         if (gamepad1.dpad_up) {
             Hand.raiseArm();
         }
@@ -129,16 +283,6 @@ public class CandyLaunchingBotTeleOp_Connor extends OpMode{
        else if (gamepad1.start) {
            Hand.closeHand();
         }
-
-       else if (gamepad1.y) {
-           speedMultiply = 0.5;
-        }
-
-       else if (gamepad1.a) {
-           speedMultiply = 1.0;
-        }
-
-
     }
 
 
