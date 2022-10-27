@@ -97,6 +97,7 @@ public class CandyLaunchingBotTeleOp_Connor extends OpMode{
         }
     }
 
+    public void driveMode(){}
 
     public void controlCamPivot() {
 
@@ -115,6 +116,26 @@ public class CandyLaunchingBotTeleOp_Connor extends OpMode{
     public void handControl() {
         if (gamepad1.dpad_up) {
             Hand.raiseArm();
+        }
+
+       else if (gamepad1.dpad_down) {
+            Hand.lowerArm();
+        }
+
+       else if (gamepad1.back) {
+            Hand.openHand();
+        }
+
+       else if (gamepad1.start) {
+           Hand.closeHand();
+        }
+
+       else if (gamepad1.y) {
+           speedMultiply = 0.5;
+        }
+
+       else if (gamepad1.a) {
+           speedMultiply = 1.0;
         }
 
 
@@ -147,13 +168,13 @@ public class CandyLaunchingBotTeleOp_Connor extends OpMode{
         }
 
         else if (lazySusanControl == lazySusanControl.AUTO) {
-            if (gamepad2.left_bumper) {
+            if (gamepad1.dpad_left) {
                 lazySusanEncoder = lazySusanEncoder.FORWARD;
                 CandyBot.lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 CandyBot.lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             }
 
-            if (gamepad2.right_bumper) {
+            if (gamepad1.dpad_right) {
                 lazySusanEncoder = lazySusanEncoder.REVERSE;
                 CandyBot.lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 CandyBot.lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -179,6 +200,9 @@ public class CandyLaunchingBotTeleOp_Connor extends OpMode{
 
         }
     }
+
+
+
 
 
 }
