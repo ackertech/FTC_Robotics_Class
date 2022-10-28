@@ -176,21 +176,7 @@ public class CandyLaunchingBotTeleOp_Connor extends OpMode{
             }
         }
 
-        if (leftStickYVal < -0.1) {
-            CandyBot.driveForward(speedMultiply * leftStickYVal);
-        } else if (leftStickYVal > 0.1) {
-            CandyBot.driveBack(speedMultiply * leftStickYVal);
-        } else if (leftStickXVal > 0.1) {
-            CandyBot.rotateRight(speedMultiply * leftStickXVal);
-        } else if (leftStickXVal < -0.1) {
-            CandyBot.rotateLeft(speedMultiply * leftStickXVal);
-        } else if (rightStickXVal < -0.1) {
-            CandyBot.strafeLeft(speedMultiply * rightStickXVal);
-        }else if (rightStickXVal > 0.1) {
-            CandyBot.strafeRight(speedMultiply * rightStickXVal);
-        } else {
-            CandyBot.stopMotors();
-        }
+
 
     }
 
