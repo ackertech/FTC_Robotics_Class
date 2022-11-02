@@ -81,13 +81,13 @@ public class Tank_TeleOp_Connor extends OpMode{
         telemetryOutput();
 
     }
-
+//hi
     @Override
     public void stop() {
         Hand.closeHand();
         Hand.lowerArm();
     }
-
+//how are you
      public void speedControl () {
         if (gamepad1.dpad_right == true) {
             speedMultiply = 0.50;}
