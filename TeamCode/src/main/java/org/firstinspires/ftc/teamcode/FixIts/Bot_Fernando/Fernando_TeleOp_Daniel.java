@@ -52,7 +52,7 @@ public class Fernando_TeleOp_Daniel extends OpMode {
             Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
         }
         else {
-            Bot.stopmotors();
+            Bot.stopMotors();
         }
     }
 

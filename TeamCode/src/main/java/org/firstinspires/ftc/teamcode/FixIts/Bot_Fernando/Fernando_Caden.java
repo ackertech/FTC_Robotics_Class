@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Fernando;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -7,7 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Fernando_Caden extends FourMotorDrive_Caden {
     //Declare Robot Variables
     public Servo flag= null;
-    public HardwareMapeMap hwBot = null;
+    public HardwareMap hwBot = null;
     //Default Constructor for the Robot
     public Fernando_Caden() {}
     //Method to Initialize the Robot Hardware when User presses Init Button

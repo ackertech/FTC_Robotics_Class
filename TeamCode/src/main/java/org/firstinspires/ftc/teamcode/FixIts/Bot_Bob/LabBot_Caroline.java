@@ -49,25 +49,11 @@ public class LabBot_Caroline extends FourMotorDrive_Caroline{
         flag.setPosition(0);
     }
 
-    public void raiseFlag() {
-      flag.setPosition(0.475);
+    public void raiseFlag() {flag.setPosition(0.475);}
 
-    public void waveFlagLeft();  {
-    flag.setPosition(0.38);
+    public void waveFlagLeft() {flag.setPosition(0.38);}
 
-    public void waveFlagRight(){
-        flag.setPosition(.8);
-            }
-
-
-
-
+    public void waveFlagRight(){flag.setPosition(.8);}
 
 }
 
-
-
-
-
-
-}

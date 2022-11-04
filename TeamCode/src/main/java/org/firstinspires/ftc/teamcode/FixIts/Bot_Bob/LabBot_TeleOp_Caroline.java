@@ -17,17 +17,13 @@ public class LabBot_TeleOp_Caroline extends OpMode {
 
     @Override
     public void loop() {
-    drive();
-    speedControl();
-
+        drive();
+        speedControl();
 
     }
 
-    private void speedControl() {
+    private void speedControl() {}
 
-        if (gamepad1.dpad_right == true)
-    }
-
-    private void drive()
+    private void drive() {}}
 
 //comment
