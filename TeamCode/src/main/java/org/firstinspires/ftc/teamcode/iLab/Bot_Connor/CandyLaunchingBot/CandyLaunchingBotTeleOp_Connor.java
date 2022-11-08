@@ -195,6 +195,22 @@ public class CandyLaunchingBotTeleOp_Connor extends OpMode{
         telemetry.addData("pwr", "RR mtr: " + rearRightSpeed);
         telemetry.addData("Left joystick Y (gp2): ", gamepad2.left_stick_y);
         telemetry.addData("Right joystick Y (gp2): ", gamepad2.right_stick_y);
+        if (lazySusanEncoder == lazySusanEncoder.FORWARD) {
+            telemetry.addLine("Lazy Susan Encoder is FORWARD");
+        }
+
+        else if (lazySusanEncoder == lazySusanEncoder.REVERSE) {
+            telemetry.addLine("Lazy Susan Encoder is REVERSE");
+        }
+
+        if (lazySusanControl == lazySusanControl.MANUAL) {
+            telemetry.addLine("Lazy Susan Control MANUAL");
+        }
+
+        else if (lazySusanControl == lazySusanControl.AUTO) {
+            telemetry.addLine("Lazy Susan Control AUTOMATIC");
+        }
+
         telemetry.update();
 
     }
