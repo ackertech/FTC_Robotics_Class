@@ -223,10 +223,10 @@ public class CandyLaunchingBotTeleOp_Connor extends OpMode{
             CandyBot.stopLauncher();
         }
         if (gamepad1.left_bumper) {
-            CandyBot.openCandyDoor();
+            CandyBot.closeCandyDoor();
         }
         if(gamepad1.right_bumper) {
-            CandyBot.closeCandyDoor();
+            CandyBot.openCandyDoor();
         }
     }
 
