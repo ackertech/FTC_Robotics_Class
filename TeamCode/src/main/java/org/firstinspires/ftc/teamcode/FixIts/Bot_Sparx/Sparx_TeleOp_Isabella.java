@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_Sparx;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
 @TeleOp(name = "Sparx: Isabella")
 public class Sparx_TeleOp_Isabella extends OpMode {
 
@@ -36,7 +37,7 @@ public class Sparx_TeleOp_Isabella extends OpMode {
 
     public void drive() {
         if (gamepad1.left_stick_y > 0.1) {
-            Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
+            Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
         }
         else if (gamepad1.left_stick_y < -0.1) {
             Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
@@ -44,7 +45,7 @@ public class Sparx_TeleOp_Isabella extends OpMode {
         else if (gamepad1.left_stick_x > 0.1) {
             Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
         }
-        else if (gamepad1.left_stick_x < 0.1) {
+        else if (gamepad1.left_stick_x < -0.1) {
             Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
         }
         else
