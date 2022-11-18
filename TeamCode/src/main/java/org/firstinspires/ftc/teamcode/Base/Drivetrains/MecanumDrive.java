@@ -163,6 +163,31 @@ public class MecanumDrive {
         }
     }
 
+    public void accelerate(double speed, double rotations) {
+
+        double ticks = rotations * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        double currentPower = 0;
+        double tolerance = 0.95;
+
+        while ( (Math.abs(frontLeftMotor.getCurrentPosition() ) < ticks) && linearOp.opModeIsActive() ){
+            if (currentPower < (speed * tolerance) ) {
+                driveForward(currentPower);
+                currentPower += .001;
+                linearOp.telemetry.addData("Front Lef Motor: ", frontLeftMotor.getPower());
+                linearOp.telemetry.addData("Current Power Var: ", currentPower);
+                linearOp.telemetry.addData("Encoder Counts: ", frontLeftMotor.getCurrentPosition());
+                linearOp.telemetry.update();
+            }
+            else {
+                driveForward(speed);
+            }
+        }
+        stopMotors();
+
+    }
+
     public void drivePID(double rotations, double Kp, double Ki, double Kd) {
 
         //Set Motor Run Modes
