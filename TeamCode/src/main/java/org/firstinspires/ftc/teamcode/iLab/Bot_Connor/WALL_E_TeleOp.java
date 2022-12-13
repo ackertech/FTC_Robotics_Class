@@ -24,7 +24,7 @@ public class WALL_E_TeleOp extends OpMode {
     double rightStickYVal;
     double rightStickXVal;
 
-    public TankBot_Connor WALL_E = new TankBot_Connor();
+    public WalleBot WALL_E = new WalleBot();
 
     @Override
     public void init () {
