@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Sparx;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -19,6 +20,8 @@ public class Sparx_TeleOp_Isabella extends OpMode {
     public void loop () {
         drive();
         speedControl();
+        servo();
+        ledControl();
     }
     public void speedControl() {
         if (gamepad1.dpad_right == true) {
@@ -50,6 +53,31 @@ public class Sparx_TeleOp_Isabella extends OpMode {
         }
         else
             Bot.stopMotors();
+    }
+    public void servo() {
+        if (gamepad1.a == true ) {
+            Bot.lowerFlag();
+        }
+        else if (gamepad1.y == true) {
+            Bot.raiseFlag();
+        }
+        else if (gamepad1.x == true) {
+            Bot.waveFlagLeft();
+        }
+        else if (gamepad1.b == true) {
+            Bot.waveFlagRight();
+        }
+        else if (gamepad1.right_stick_button == true) {
+            Bot.initFlag();
+        }
+    }
+    public void ledControl() {
+        if (gamepad1.left_trigger > 0.1) {
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.STROBE_RED);
+        }
+        else if (gamepad1.right_trigger > 0.1) {
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.STROBE_WHITE);
+        }
     }
 
 }
