@@ -1,8 +1,9 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Micro;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
+@Disabled
 @TeleOp(name = "Drive Micro - Berkley")
 
 public class MicroBot_TeleOp_Berkley extends OpMode {

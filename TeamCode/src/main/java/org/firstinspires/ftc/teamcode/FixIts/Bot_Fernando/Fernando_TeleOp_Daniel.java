@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @TeleOp(name= "Fernando:Daniel")
 public class Fernando_TeleOp_Daniel extends OpMode {
 
-    public double speedMultiply = 8.58;
+    public double speedMultiply = 0.50;
 
     public Fernando_Daniel Bot = new Fernando_Daniel();
 
@@ -39,10 +39,10 @@ public class Fernando_TeleOp_Daniel extends OpMode {
     }
 
     public void drive(){
-        if (gamepad1.left_stick_y >0.1) {
+        if (gamepad1.left_stick_y < -0.1) {
             Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
         }
-        else if(gamepad1.left_stick_y < -0.1) {
+        else if(gamepad1.left_stick_y > 0.1) {
             Bot.driveBackward(speedMultiply *gamepad1.left_stick_y);
         }
         else if (gamepad1.left_stick_x > 0.1) {
