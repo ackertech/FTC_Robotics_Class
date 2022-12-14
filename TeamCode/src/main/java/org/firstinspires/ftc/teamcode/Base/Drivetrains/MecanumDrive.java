@@ -163,16 +163,16 @@ public class MecanumDrive {
         }
     }
 
-    public void accelerate(double speed, double rotations) {
+    public void accelerate(double minspeed, double maxspeed, double rotations) {
 
         double ticks = rotations * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        double currentPower = 0;
-        double tolerance = 0.95;
+        double currentPower = minspeed;
+        double tolerance = 0.97;
 
         while ( (Math.abs(frontLeftMotor.getCurrentPosition() ) < ticks) && linearOp.opModeIsActive() ){
-            if (currentPower < (speed * tolerance) ) {
+            if (currentPower < (maxspeed * tolerance) ) {
                 driveForward(currentPower);
                 currentPower += .001;
                 linearOp.telemetry.addData("Front Lef Motor: ", frontLeftMotor.getPower());
@@ -181,12 +181,13 @@ public class MecanumDrive {
                 linearOp.telemetry.update();
             }
             else {
-                driveForward(speed);
+                driveForward(maxspeed);
             }
         }
         stopMotors();
 
     }
+
 
     public void drivePID(double rotations, double Kp, double Ki, double Kd) {
 
