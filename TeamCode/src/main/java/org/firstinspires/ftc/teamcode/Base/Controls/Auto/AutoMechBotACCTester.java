@@ -27,7 +27,7 @@ public class AutoMechBotACCTester extends LinearOpMode {
 
             updateTelemetry("Driving Forward with Acceleration");
             sleep(1000);
-            Bot.accelerate(1.0, 5);
+            Bot.accelerate(.1, 1, 5);
             Bot.driveDirection(1.0, 5, "FWD");
             //updateTelemetry("Finished");
             sleep(3000);
