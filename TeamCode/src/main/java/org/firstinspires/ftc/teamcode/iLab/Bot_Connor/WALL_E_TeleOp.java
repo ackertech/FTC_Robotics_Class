@@ -18,7 +18,7 @@ public class WALL_E_TeleOp extends OpMode {
     public double leftSidePower;
     public double rightSidePower;
 
-
+//hi 2
     double leftStickYVal;
     double leftStickXVal;
     double rightStickYVal;
