@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Sparx;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -10,6 +11,12 @@ public class Sparx_Isabella extends FourMotorDrive_Isabella{
     //Dedlare Robot Variables//
     public Servo flag = null;
     public HardwareMap hwBot = null;
+    //Led Variables//
+    public RevBlinkinLedDriver ledLights;
+    public RevBlinkinLedDriver.BlinkinPattern ledPattern;
+    public void setLedPattern (RevBlinkinLedDriver.BlinkinPattern patternName) {
+        ledLights.setPattern(patternName);
+    }
     //default constructor for the robot//
     public Sparx_Isabella () {}
     //Method to initialize the robot hardware when user init button//
@@ -41,22 +48,26 @@ public class Sparx_Isabella extends FourMotorDrive_Isabella{
         //initializing servos that is used for any robot mechanisms//
         flag = hwBot.get(Servo.class, "flag");
         flag.setDirection((Servo.Direction.FORWARD));
+
+        //Define and initialize LEDTester lights//
+        ledLights = hwBot.get(RevBlinkinLedDriver.class, "LedLights");
+        ledPattern = RevBlinkinLedDriver.BlinkinPattern.STROBE_RED;
+        ledLights.setPattern(ledPattern);
     }
     //Robot methods for raising, lowering, and waving the flag//
     public void lowerFlag () {
         flag.setPosition(0);
     }
     public void raiseFlag() {
-        flag.setPosition(0.475);
-    }
+        flag.setPosition(0.675);
+    }   // was 0.475
     public void waveFlagLeft() {
         flag.setPosition(0.38);
     }
-    public void waveFlagRight() {
-        flag.setPosition(0.55);
-    }
+    public void waveFlagRight() {flag.setPosition(0.55);}
     public void initFlag () {
         flag.setPosition(.8);
     }
+
 
 }

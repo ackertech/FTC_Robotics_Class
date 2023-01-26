@@ -33,6 +33,7 @@ public class Fernando_Daniel extends FourMotorDrive_Daniel {
             frontRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
             rearLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
             rearRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+
             //Using Method from Drivetrain Class to set the motor run modes
             setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -42,6 +43,7 @@ public class Fernando_Daniel extends FourMotorDrive_Daniel {
             frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
             //Initializing Servos that is used for any robot mechanisms
             flag = hwBot.get(Servo.class, "flag");
             flag.setDirection(Servo.Direction.FORWARD);

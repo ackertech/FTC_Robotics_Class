@@ -1,4 +1,5 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Bob;
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -40,6 +41,7 @@ public void  setMotorRunModes (DcMotor.RunMode mode) {
 
   //Drives Forward
     public void driveForward (double power) {
+        power = Math.abs(power);
         frontLeftMotor.setPower(power);
         frontRightMotor.setPower(power);
         rearLeftMotor.setPower(power);
@@ -49,6 +51,7 @@ public void  setMotorRunModes (DcMotor.RunMode mode) {
 
     //Drives Backwards
     public void driveBackward (double power) {
+        power = Math.abs(power);
         frontLeftMotor.setPower(-power);
         frontRightMotor.setPower(-power);
         rearLeftMotor.setPower(-power);
@@ -58,19 +61,22 @@ public void  setMotorRunModes (DcMotor.RunMode mode) {
 
     //Rotates Left
     public void rotateLeft (double power) {
-        frontLeftMotor.setPower(-power);
+        power = Math.abs(power);
+        frontLeftMotor.setPower(power);
         frontRightMotor.setPower(-power);
-        rearLeftMotor.setPower(-power);
+        rearLeftMotor.setPower(power);
         rearRightMotor.setPower(-power);
     }
 
 
     //Rotates Right
     public void rotateRight (double power) {
-        frontLeftMotor.setPower(power);
+        power = Math.abs(power);
+        frontLeftMotor.setPower(-power);
         frontRightMotor.setPower(power);
-        rearLeftMotor.setPower(power);
+        rearLeftMotor.setPower(-power);
         rearRightMotor.setPower(power);
+
     }
 }
 

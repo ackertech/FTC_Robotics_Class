@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -11,7 +12,7 @@ import org.firstinspires.ftc.teamcode.Base.Mechanisms.ArmHand;
 import org.firstinspires.ftc.teamcode.Base.Mechanisms.LinearMobility;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
-//@Disabled
+@Disabled
 @TeleOp(name = "TankBot Arm-Linear")
 
 public class TankTeleOpWithArmLinear extends OpMode {
