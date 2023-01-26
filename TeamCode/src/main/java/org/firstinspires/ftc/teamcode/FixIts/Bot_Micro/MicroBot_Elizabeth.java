@@ -49,7 +49,7 @@ public class MicroBot_Elizabeth extends FourMotorDrive_Elizabeth {
         //Initializing Servos that is used for any robot mechanisms
         flag = hwBot.get(Servo.class, "flag");
         flag.setDirection(Servo.Direction.FORWARD);
-
+//
         //Intialize LED
         ledLights = hwBot.get(RevBlinkinLedDriver.class, "led_strip");
         ledPattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_OCEAN_PALETTE;
