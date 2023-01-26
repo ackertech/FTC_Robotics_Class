@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Micro;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -22,6 +23,15 @@ public void loop () {
     drive();
     speedControl();
     controlFlag();
+    ledControl();
+}
+
+public void ledControl(){
+    if (gamepad1.left_trigger > 0.1) {
+        Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_OCEAN_PALETTE);
+    } else if (gamepad1.right_trigger > 0.1) {
+        Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_OCEAN_PALETTE);
+    }
 
 }
 
@@ -41,19 +51,19 @@ else if (gamepad1.dpad_up == true) {
 }
 
 public void drive () {
-    if (gamepad1.left_stick_y > 0.1) {
+    if (gamepad1.left_stick_y < -0.1) {
         Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
     }
-    else if (gamepad1.left_stick_y < -0.1) {
+    else if (gamepad1.left_stick_y > 0.1) {
         Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
     }
     else if (gamepad1.left_stick_x > 0.1) {
         Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
     }
-        else if (gamepad1.left_stick_x < -0.1) {
+    else if (gamepad1.left_stick_x < -0.1) {
             Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
         }
-        else{
+    else{
             Bot.stopMotors();
         }
     }

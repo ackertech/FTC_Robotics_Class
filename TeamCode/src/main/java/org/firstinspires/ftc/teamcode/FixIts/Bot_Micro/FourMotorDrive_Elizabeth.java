@@ -10,7 +10,7 @@ public class FourMotorDrive_Elizabeth {
     public DcMotor rearLeftMotor;
     public DcMotor rearRightMotor;
 
-    //This is just required as part of the FIRST SDK. Memorize it!!!
+    //This is just required as part of the FIRST SDK. Memorize it!!
     public LinearOpMode linearOp = null;
     public void setLinearOp (LinearOpMode linearOpModeOp) {
         this.linearOp = linearOp;
@@ -34,6 +34,7 @@ public class FourMotorDrive_Elizabeth {
 
     //Drives Forward
     public void driveForward (double power) {
+        power = Math.abs(power);
         frontLeftMotor.setPower(power);
         frontRightMotor.setPower(power);
         rearLeftMotor.setPower(power);
@@ -42,6 +43,7 @@ public class FourMotorDrive_Elizabeth {
 
     //Drives Backwards
     public void driveBackward (double power) {
+        power = Math.abs(power);
         frontLeftMotor.setPower(-power);
         frontRightMotor.setPower(-power);
         rearLeftMotor.setPower(-power);
@@ -50,17 +52,19 @@ public class FourMotorDrive_Elizabeth {
 
     //Rotates Left
     public void rotateLeft (double power) {
+        power = Math.abs(power);
         frontLeftMotor.setPower(-power);
-        frontRightMotor.setPower(-power);
+        frontRightMotor.setPower(power);
         rearLeftMotor.setPower(-power);
-        rearRightMotor.setPower(-power);
+        rearRightMotor.setPower(power);
     }
 
     //Rotates Right
     public void rotateRight (double power) {
+        power = Math.abs(power);
         frontLeftMotor.setPower(power);
-        frontLeftMotor.setPower(power);
+        frontRightMotor.setPower(-power);
         rearLeftMotor.setPower(power);
-        rearRightMotor.setPower(power);
+        rearRightMotor.setPower(-power);
     }
 }

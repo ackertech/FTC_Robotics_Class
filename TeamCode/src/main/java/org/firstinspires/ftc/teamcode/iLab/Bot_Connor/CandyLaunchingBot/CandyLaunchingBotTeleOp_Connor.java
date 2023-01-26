@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CandyLaunchingBot;
 
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -12,6 +13,7 @@ import org.firstinspires.ftc.teamcode.Base.Robot.AckerBot;
 import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Tank_TeleOp_Connor;
 import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.The_Mighty_and_All_Powerful_Hand;
 
+@Disabled
 @TeleOp(name = "CandyLaunchingBotJohnCena_Connor")
 
 public class CandyLaunchingBotTeleOp_Connor extends OpMode{
@@ -195,6 +197,22 @@ public class CandyLaunchingBotTeleOp_Connor extends OpMode{
         telemetry.addData("pwr", "RR mtr: " + rearRightSpeed);
         telemetry.addData("Left joystick Y (gp2): ", gamepad2.left_stick_y);
         telemetry.addData("Right joystick Y (gp2): ", gamepad2.right_stick_y);
+        if (lazySusanEncoder == lazySusanEncoder.FORWARD) {
+            telemetry.addLine("Lazy Susan Encoder is FORWARD");
+        }
+
+        else if (lazySusanEncoder == lazySusanEncoder.REVERSE) {
+            telemetry.addLine("Lazy Susan Encoder is REVERSE");
+        }
+
+        if (lazySusanControl == lazySusanControl.MANUAL) {
+            telemetry.addLine("Lazy Susan Control MANUAL");
+        }
+
+        else if (lazySusanControl == lazySusanControl.AUTO) {
+            telemetry.addLine("Lazy Susan Control AUTOMATIC");
+        }
+
         telemetry.update();
 
     }
@@ -207,10 +225,10 @@ public class CandyLaunchingBotTeleOp_Connor extends OpMode{
             CandyBot.stopLauncher();
         }
         if (gamepad1.left_bumper) {
-            CandyBot.openCandyDoor();
+            CandyBot.closeCandyDoor();
         }
         if(gamepad1.right_bumper) {
-            CandyBot.closeCandyDoor();
+            CandyBot.openCandyDoor();
         }
     }
 

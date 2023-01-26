@@ -31,6 +31,7 @@ public class FourMotorDrive_Isabella {
     }
     //Drives forward//
     public void driveForward (double power) {
+        power = Math.abs(power);
         frontLeftMotor.setPower (power);
         frontRightMotor.setPower (power);
         rearLeftMotor.setPower (power);
@@ -38,6 +39,7 @@ public class FourMotorDrive_Isabella {
     }
     //Drives backward//
     public void driveBackward (double power) {
+        power = Math.abs(power);
         frontLeftMotor.setPower (-power);
         frontRightMotor.setPower (-power);
         rearLeftMotor.setPower (-power);
@@ -45,16 +47,18 @@ public class FourMotorDrive_Isabella {
     }
     //rotates left//
     public void rotateLeft (double power) {
-        frontLeftMotor.setPower (-power);
-        frontRightMotor.setPower (power);
-        rearLeftMotor.setPower (-power);
-        rearRightMotor.setPower (power);
-    }
-    //rotates right//
-    public void rotateRight (double power) {
+        power = Math.abs(power);
         frontLeftMotor.setPower (power);
         frontRightMotor.setPower (-power);
         rearLeftMotor.setPower (power);
         rearRightMotor.setPower (-power);
+    }
+    //rotates right//
+    public void rotateRight (double power) {
+        power = Math.abs(power);
+        frontLeftMotor.setPower (-power);
+        frontRightMotor.setPower (power);
+        rearLeftMotor.setPower (-power);
+        rearRightMotor.setPower (power);
     }
 }
