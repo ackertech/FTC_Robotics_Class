@@ -12,6 +12,7 @@ public class MicroBot_Elizabeth extends FourMotorDrive_Elizabeth {
     //Declare Robot Variables
     public Servo flag = null;
     public HardwareMap hwBot = null;
+    public DcMotor launchMotor = null;
 
     //LED variables and stuff
     public RevBlinkinLedDriver ledLights;
@@ -54,6 +55,13 @@ public class MicroBot_Elizabeth extends FourMotorDrive_Elizabeth {
         ledLights = hwBot.get(RevBlinkinLedDriver.class, "led_strip");
         ledPattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_OCEAN_PALETTE;
         ledLights.setPattern(ledPattern);
+
+        //Initialize Launcher Motor
+        launchMotor = hwBot.dcMotor.get("launch_motor");
+        launchMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        launchMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        launchMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        launchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
     }
 
