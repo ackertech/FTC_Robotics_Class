@@ -34,6 +34,7 @@ public class FourMotorDrive_Elizabeth {
 
     //Drives Forward
     public void driveForward (double power) {
+        power = Math.abs(power);
         frontLeftMotor.setPower(power);
         frontRightMotor.setPower(power);
         rearLeftMotor.setPower(power);
@@ -42,6 +43,7 @@ public class FourMotorDrive_Elizabeth {
 
     //Drives Backwards
     public void driveBackward (double power) {
+        power = Math.abs(power);
         frontLeftMotor.setPower(-power);
         frontRightMotor.setPower(-power);
         rearLeftMotor.setPower(-power);
@@ -50,6 +52,7 @@ public class FourMotorDrive_Elizabeth {
 
     //Rotates Left
     public void rotateLeft (double power) {
+        power = Math.abs(power);
         frontLeftMotor.setPower(-power);
         frontRightMotor.setPower(power);
         rearLeftMotor.setPower(-power);
@@ -58,6 +61,7 @@ public class FourMotorDrive_Elizabeth {
 
     //Rotates Right
     public void rotateRight (double power) {
+        power = Math.abs(power);
         frontLeftMotor.setPower(power);
         frontRightMotor.setPower(-power);
         rearLeftMotor.setPower(power);
