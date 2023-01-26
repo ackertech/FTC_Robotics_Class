@@ -23,6 +23,7 @@ public BobBot_Abernethy Bot = new BobBot_Abernethy();
 
         drive();
         speedControl();
+        launchControl();
 
     }
 
@@ -55,4 +56,16 @@ public BobBot_Abernethy Bot = new BobBot_Abernethy();
             Bot.stopMotors();
         }
     }
+
+    public void launchControl() {
+                if (gamepad2.left_bumper) {
+                    Bot.launchMotor.setPower(0.0);
+                }
+                if (gamepad2.right_bumper) {
+                    Bot.launchMotor.setPower(0.0);
+                }
+    }
+
+
+
 }

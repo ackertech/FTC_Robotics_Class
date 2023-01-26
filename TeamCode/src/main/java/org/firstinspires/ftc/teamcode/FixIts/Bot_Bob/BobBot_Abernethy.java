@@ -14,7 +14,7 @@ public class BobBot_Abernethy extends FourMotorDrive_Lainaaa {
     //Declare Robot Variables
     public Servo flag = null;
     public HardwareMap hwBot = null;
-
+    public DcMotor launchMotor = null;
 
     // LED Variables
     public RevBlinkinLedDriver ledLights;
@@ -27,6 +27,13 @@ public class BobBot_Abernethy extends FourMotorDrive_Lainaaa {
 
     //Method to Initialize the Robot Hardware when User presses the Init button
     public void initRobot(HardwareMap hwMap) {
+
+        //initialize Launcher motor
+        launchMotor = hwBot.dcMotor.get("launch_motor");
+        launchMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        launchMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        launchMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        launchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         hwBot = hwMap;
         //Hardware Mapping Between Name on robot and Variable name in Code
