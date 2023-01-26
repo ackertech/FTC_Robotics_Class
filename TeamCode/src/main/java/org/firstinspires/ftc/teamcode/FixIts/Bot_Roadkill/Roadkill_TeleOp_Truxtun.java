@@ -44,7 +44,7 @@ public void speedControl() {
         }
         else if (gamepad1.left_stick_x > 0.1) {
 
-                    Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
+            Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
 
         }
         else if (gamepad1.left_stick_x < -0.1) {
