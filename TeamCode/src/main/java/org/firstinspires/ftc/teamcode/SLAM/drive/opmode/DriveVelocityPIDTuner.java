@@ -47,8 +47,8 @@ import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.kV;
  * user to reset the position of the bot in the event that it drifts off the path.
  * Pressing B/O (Xbox/PS4) will cede control back to the tuning process.
  */
-@Config
-@Autonomous(group = "drive")
+//@Config
+@Autonomous(name="SLAM:Drive Velocity PID Tuner", group = "SLAM")
 public class DriveVelocityPIDTuner extends LinearOpMode {
     public static double DISTANCE = 72; // in
 

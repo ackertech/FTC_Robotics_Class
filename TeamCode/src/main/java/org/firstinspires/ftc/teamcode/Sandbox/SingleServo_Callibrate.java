@@ -4,22 +4,18 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
-@TeleOp(name = "servo calibration", group = "LAB")
 //@Disabled
+@TeleOp(name = "Test:Servo Calibration", group = "Lab")
+
 public class SingleServo_Callibrate extends OpMode {
 
     private Servo myServo = null;
-
-    //change back to 0.5 for any other servo, but should be 0.2 for ring_mag
     private double servoPos = 0.5;
-
     private double incVal = 0.001;
 
     @Override
     public void init () {
-        //"servo_ring_pusher" = ring pusher
-        //"ring_mag" = mag servo
-        myServo = hardwareMap.servo.get("box_holder");
+        myServo = hardwareMap.servo.get("servo");
         myServo.setPosition(servoPos);
     }
 

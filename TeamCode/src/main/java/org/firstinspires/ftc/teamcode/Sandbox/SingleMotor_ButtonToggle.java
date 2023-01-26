@@ -1,16 +1,16 @@
 package org.firstinspires.ftc.teamcode.Sandbox;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 //Class is used for testing a single motor, using trigger for variable power.
-//WITHOUT
-@TeleOp(name = "motor launcher test - NO ENCODERS", group="twowheel")
-@Disabled
-public class Motor_ButtonToggle extends OpMode {
+
+//@Disabled
+@TeleOp(name = "Test:One Motor:No Encoders", group="Lab")
+
+public class SingleMotor_ButtonToggle extends OpMode {
     private DcMotor motor = null;
     double r_trigger;
     double l_trigger;
@@ -23,7 +23,7 @@ public class Motor_ButtonToggle extends OpMode {
 
     @Override
     public void init() {
-        motor = hardwareMap.dcMotor.get("launcher_motor");
+        motor = hardwareMap.dcMotor.get("motor");
         motor.setDirection(DcMotorSimple.Direction.REVERSE);
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -46,8 +46,7 @@ public class Motor_ButtonToggle extends OpMode {
         if (toggleLaunch && forward == true) {
             motor.setPower(speed);
         }
-// 1)
-//        Make motor go reverse? Valid values of motors are [-1, +1]
+
         if(toggleLaunch && forward == false){
             motor.setPower(-speed);
         }
@@ -59,14 +58,6 @@ public class Motor_ButtonToggle extends OpMode {
         if(gamepad1.b == true){
             motor.setPower(0);
         }
-
-
-        //2) Stop motor if press b
-
-
-
-
-
 
         if (gamepad1.dpad_up == true) {
             forward = true;

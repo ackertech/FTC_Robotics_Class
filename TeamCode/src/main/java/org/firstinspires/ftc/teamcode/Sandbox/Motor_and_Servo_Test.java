@@ -7,8 +7,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "one motor and servo test", group="DUVAL")
 @Disabled
+@TeleOp(name = "Test:One Motor+Servo", group="Lab")
+
 public class Motor_and_Servo_Test extends OpMode {
     private DcMotor motor = null;
     public Servo servoA = null;

@@ -10,8 +10,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous (name = "Motor + Color sensor example", group = "lab")
 @Disabled
+@Autonomous (name = "Test:Motor + Color Sensor", group = "Lab")
+
 
 public class SingleMotor_ColorSensor_Autonomous extends LinearOpMode
 {
@@ -51,7 +52,7 @@ public class SingleMotor_ColorSensor_Autonomous extends LinearOpMode
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance_1");
+        sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
 
         timer = new ElapsedTime();
 

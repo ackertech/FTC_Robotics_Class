@@ -31,6 +31,7 @@ package org.firstinspires.ftc.teamcode.Sandbox;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -45,16 +46,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
 import java.util.Locale;
 
-/**
- * {@link GyroBuiltInExample} gives a short demo on how to use the BNO055 Inertial Motion Unit (IMU) from AdaFruit.
- *
- * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
- *
- * @see <a href="http://www.adafruit.com/products/2472">Adafruit IMU</a>
- */
-@TeleOp(name = "IMU BUILT IN EXAMPLE CODE b reset", group = "LAB")
-//@Disabled
+
+@Disabled
+@TeleOp(name = "Test:IMU BUILT IN", group = "Lab")
+
 public class GyroBuiltInExample extends LinearOpMode
 {
     //----------------------------------------------------------------------------------------------
