@@ -56,7 +56,7 @@ public class FourMotorDrive_Daniel {
         frontLeftMotor.setPower (-power);
         frontRightMotor.setPower (power);
         rearLeftMotor.setPower (-power);
-        rearRightMotor.setPower (-power);
+        rearRightMotor.setPower (power);
     }
     //rotates right//
     public void rotateRight (double power) {

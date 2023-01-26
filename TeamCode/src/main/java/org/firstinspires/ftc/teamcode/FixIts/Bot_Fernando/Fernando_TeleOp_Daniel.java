@@ -1,8 +1,10 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Fernando;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+//@Disabled
 @TeleOp(name= "Fernando:Daniel")
 public class Fernando_TeleOp_Daniel extends OpMode {
 
@@ -40,16 +42,16 @@ public class Fernando_TeleOp_Daniel extends OpMode {
 
     public void drive(){
         if (gamepad1.left_stick_y < -0.1) {
-            Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
+            Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
         }
         else if(gamepad1.left_stick_y > 0.1) {
-            Bot.driveBackward(speedMultiply *gamepad1.left_stick_y);
+            Bot.driveForward(speedMultiply *gamepad1.left_stick_y);
         }
         else if (gamepad1.left_stick_x > 0.1) {
-            Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
+            Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
         }
         else if (gamepad1.left_stick_x < -0.1) {
-            Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
+            Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
         }
         else {
             Bot.stopMotors();

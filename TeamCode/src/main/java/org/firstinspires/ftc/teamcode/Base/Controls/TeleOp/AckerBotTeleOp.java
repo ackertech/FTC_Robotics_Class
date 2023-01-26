@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.teamcode.Base.Mechanisms.RoboticHand;
 import org.firstinspires.ftc.teamcode.Base.Robot.AckerBot;
 
 
@@ -26,11 +28,19 @@ public class AckerBotTeleOp extends OpMode {
 
     double powerThreshold = 0;
     double speedMultiply = 1;
+    public double lazySusanPower = 0.90;
     boolean reverseModeToggle = false;
+
+    //Arm & Elbow Variables
+    public enum ArmState {ARM_START, ARM_RAISE, ARM_REST, ARM_RETRACT}
+    ArmState armState = ArmState.ARM_START;
+    public enum ArmControl {AUTO, MANUAL}
+    public ArmControl armControl = ArmControl.AUTO;
 
     // Object Construction
     public ElapsedTime TeleOpTime = new ElapsedTime();
     public AckerBot Bot = new AckerBot();
+    public RoboticHand Handy = new RoboticHand();
 
 
     // Runs ONCE when driver presses INIT
@@ -40,8 +50,9 @@ public class AckerBotTeleOp extends OpMode {
         //Hardware Initialization from Robot Class
 
         Bot.initRobot(hardwareMap);
-        //  Bot.initHand(hardwareMap);
-        //  Bot.closeHand();
+        Handy.initRoboticHand(hardwareMap);
+        Handy.closePartial();
+
 
     }
 
@@ -62,9 +73,9 @@ public class AckerBotTeleOp extends OpMode {
         drive();
         driveMode();
         controlLauncher();
-        controlCamLift();
-        controlCamPivot();
-       // controlHand();
+        controlHand();
+        controlElbow();
+        controlLazySusan();
         telemetryOutput();
     }
 
@@ -72,7 +83,7 @@ public class AckerBotTeleOp extends OpMode {
     @Override
     public void stop() {
 
-     //   Bot.openHand();
+     // Bot.openHand();
 
     }
 
@@ -84,6 +95,7 @@ public class AckerBotTeleOp extends OpMode {
         telemetry.addData("LED", "LED Counter: " + Bot.ledCounter);
         telemetry.addData("LED", "LED Pattern: " + Bot.ledPattern);
         telemetry.addData("LED", "LED Pattern: " + Bot.ledLights);
+        telemetry.addData("Elbow", "Elbow: " + Handy.elbowCurrPos);
         telemetry.addData("pwr", "FL mtr: " + frontLeftSpeed);
         telemetry.addData("pwr", "FR mtr: " + frontRightSpeed);
         telemetry.addData("pwr", "RL mtr: " + rearLeftSpeed);
@@ -216,19 +228,6 @@ public class AckerBotTeleOp extends OpMode {
 
     }
 
-    public void christmas () {
-        if (gamepad1.left_trigger > 0.1) {
-            Bot.ledLights.setPattern(Bot.patternArray[0]);
-        }
-        else if (gamepad1.right_trigger > 0.1) {
-            Bot.ledLights.setPattern(Bot.patternArray[1]);
-        }
-        else {
-            Bot.ledLights.setPattern(Bot.patternArray[7]);
-        }
-
-    }
-
     public void controlLauncher() {
         if(gamepad1.y) {
             Bot.runLauncher(1.0);
@@ -245,46 +244,93 @@ public class AckerBotTeleOp extends OpMode {
     }
 
 
-    public void controlCamLift() {
-        if (gamepad1.left_trigger > 0.1) {
-            Bot.camLiftUp();
-        }
-        else if (gamepad1.right_trigger > 0.1) {
-            Bot.camLiftDown();
-        }
-        else {
-            Bot.camLiftStop();
-        }
-    }
-
-    public void controlCamPivot() {
-
-        if(gamepad1.left_bumper) {
-            Bot.camLeft();
-        }
-        else if(gamepad1.right_bumper) {
-            Bot.camRight();
-        }
-        else  {
-            Bot.camCenter();
-        }
-    }
 
     public void controlHand() {
 
         if (gamepad2.a) {
-            Bot.openHand();
-        } else if (gamepad2.b) {
-            Bot.closeHand();
-        } else if (gamepad2.x) {
-            Bot.makePeaceHand();
-        } else if (gamepad2.y) {
-            Bot.makeHangHand();
-        }  else {
-            Bot.closeHand();
+            Handy.wristLeft();
+        }
+        else if (gamepad2.b) {
+            Handy.wristMiddle();
+        }
+        else if (gamepad2.x) {
+            Handy.wristRight();
         }
 
     }
 
+    public void controlElbow() {
+
+        if (gamepad2.dpad_left) {
+            armControl = ArmControl.AUTO;
+        }
+        if (gamepad2.dpad_right) {
+            armControl = ArmControl.MANUAL;
+        }
+
+        if (armControl == ArmControl.AUTO) {
+
+            switch (armState) {
+                case ARM_START:
+                    if (gamepad2.dpad_up) {
+                        Handy.elbow.setPosition(Handy.elbowMaxPos);
+                        armState = ArmState.ARM_RAISE;
+                    }
+                    break;
+                case ARM_RAISE:
+                    Handy.closePartial();
+                    armState = ArmState.ARM_REST;
+
+                    break;
+                case ARM_REST:
+                    if (gamepad2.dpad_down) {
+                        Handy.closePartial();;
+                        Handy.elbow.setPosition(Handy.elbowMinPos);
+                        armState = ArmState.ARM_RETRACT;
+                    }
+                    break;
+                case ARM_RETRACT:
+                    Handy.closePartial();
+                    armState = ArmState.ARM_START;
+
+                    break;
+                default:
+                    armState = ArmState.ARM_START;
+            }
+
+        }
+        else if (armControl == ArmControl.MANUAL) {
+
+            if (gamepad2.dpad_up  && Handy.elbowCurrPos < Handy.elbowMaxPos) {
+                Handy.elbowCurrPos += Handy.elbowIncrements;
+                Handy.elbow.setPosition(Handy.elbowCurrPos);
+            }
+            else {
+                Handy.elbow.setPosition(Handy.elbowCurrPos);
+            }
+
+            if (gamepad2.dpad_down  && Handy.elbowCurrPos > Handy.elbowMinPos) {
+                Handy.elbowCurrPos -= Handy.elbowIncrements;
+                Handy.elbow.setPosition(Handy.elbowCurrPos);
+
+            }
+            else {
+                Handy.elbow.setPosition(Handy.elbowCurrPos);
+            }
+
+        }
+
+
+    }
+
+    public void controlLazySusan() {
+        if (gamepad2.right_stick_x > 0.1) {
+            Handy.lazySusanLeft(lazySusanPower);
+        } else if (gamepad2.right_stick_x < -0.1) {
+            Handy.lazySusanRight(lazySusanPower);
+        } else {
+            Handy.lazySusanStop();
+        }
+    }
 
 }

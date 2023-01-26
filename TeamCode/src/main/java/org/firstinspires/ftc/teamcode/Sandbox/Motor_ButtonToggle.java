@@ -7,9 +7,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 //Class is used for testing a single motor, using trigger for variable power.
-//WITHOUT
-@TeleOp(name = "motor launcher test - NO ENCODERS", group="twowheel")
-@Disabled
+
+//@Disabled
+@TeleOp(name = "Test:One Motor:No Encoders", group="Lab")
+
 public class Motor_ButtonToggle extends OpMode {
     private DcMotor motor = null;
     double r_trigger;
@@ -23,7 +24,7 @@ public class Motor_ButtonToggle extends OpMode {
 
     @Override
     public void init() {
-        motor = hardwareMap.dcMotor.get("launcher_motor");
+        motor = hardwareMap.dcMotor.get("motor");
         motor.setDirection(DcMotorSimple.Direction.REVERSE);
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

@@ -7,9 +7,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 //Class is used for testing a single motor, using trigger for variable power.
-//WITHOUT
-@TeleOp(name = "two motor launcher test - NO ENCODERS", group="twowheel")
 @Disabled
+@TeleOp(name = "Test:Two Motors:No Encoders", group="Lab")
+
 public class TwoMotor_ButtonToggle extends OpMode {
     private DcMotor motor_left = null;
     private DcMotor motor_right = null;
@@ -24,16 +24,15 @@ public class TwoMotor_ButtonToggle extends OpMode {
 
     @Override
     public void init() {
-        motor_left = hardwareMap.dcMotor.get("motor_a");
+        motor_left = hardwareMap.dcMotor.get("motor_1");
         motor_left.setDirection(DcMotorSimple.Direction.FORWARD);
         motor_left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motor_left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motor_right = hardwareMap.dcMotor.get("motor_b");
+
+        motor_right = hardwareMap.dcMotor.get("motor_2");
         motor_right.setDirection(DcMotorSimple.Direction.FORWARD);
         motor_right.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motor_right.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-
 
         forward = true;
 
@@ -69,10 +68,6 @@ public class TwoMotor_ButtonToggle extends OpMode {
 
 
         //2) Stop motor if press b
-
-
-
-
 
 
         if (gamepad1.dpad_up == true) {

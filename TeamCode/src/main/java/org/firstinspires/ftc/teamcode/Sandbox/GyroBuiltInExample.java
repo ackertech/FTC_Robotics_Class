@@ -31,6 +31,7 @@ package org.firstinspires.ftc.teamcode.Sandbox;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -53,8 +54,9 @@ import java.util.Locale;
  *
  * @see <a href="http://www.adafruit.com/products/2472">Adafruit IMU</a>
  */
-@TeleOp(name = "IMU BUILT IN EXAMPLE CODE b reset", group = "LAB")
-//@Disabled
+@Disabled
+@TeleOp(name = "Test:IMU BUILT IN", group = "Lab")
+
 public class GyroBuiltInExample extends LinearOpMode
 {
     //----------------------------------------------------------------------------------------------

@@ -59,8 +59,8 @@ public class Sparx_Isabella extends FourMotorDrive_Isabella{
         flag.setPosition(0);
     }
     public void raiseFlag() {
-        flag.setPosition(0.475);
-    }
+        flag.setPosition(0.675);
+    }   // was 0.475
     public void waveFlagLeft() {
         flag.setPosition(0.38);
     }
