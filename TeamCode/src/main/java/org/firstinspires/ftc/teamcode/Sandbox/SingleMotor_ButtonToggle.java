@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.Sandbox;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -11,7 +10,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 //@Disabled
 @TeleOp(name = "Test:One Motor:No Encoders", group="Lab")
 
-public class Motor_ButtonToggle extends OpMode {
+public class SingleMotor_ButtonToggle extends OpMode {
     private DcMotor motor = null;
     double r_trigger;
     double l_trigger;
