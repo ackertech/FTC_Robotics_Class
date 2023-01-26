@@ -10,11 +10,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.SLAM.drive.SampleMecanumDrive;
 
-/*
- * This is a simple routine to test translational drive capabilities.
- */
-@Config
-@Autonomous(group = "drive")
+
+//@Config
+@Autonomous(name="SLAM:Strafe Drive",group = "SLAM")
 public class StrafeTest extends LinearOpMode {
     public static double DISTANCE = 60; // in
 

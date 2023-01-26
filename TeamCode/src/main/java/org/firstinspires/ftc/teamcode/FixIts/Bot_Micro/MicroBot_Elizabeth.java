@@ -31,10 +31,10 @@ public class MicroBot_Elizabeth extends FourMotorDrive_Elizabeth {
         rearRightMotor = hwBot.dcMotor.get("rear_left_motor");
 
         //Direction of Motors as placed on the robot
-        frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        frontRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        rearLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        rearRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        frontLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        rearLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        rearRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //Using Method from Drivetrain Class to set the motor run modes
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -49,7 +49,7 @@ public class MicroBot_Elizabeth extends FourMotorDrive_Elizabeth {
         //Initializing Servos that is used for any robot mechanisms
         flag = hwBot.get(Servo.class, "flag");
         flag.setDirection(Servo.Direction.FORWARD);
-
+//
         //Intialize LED
         ledLights = hwBot.get(RevBlinkinLedDriver.class, "led_strip");
         ledPattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_OCEAN_PALETTE;
@@ -82,5 +82,8 @@ public class MicroBot_Elizabeth extends FourMotorDrive_Elizabeth {
     public void initFlag () {
         flag.setPosition(.8);
     }
+
+
+
 
 }

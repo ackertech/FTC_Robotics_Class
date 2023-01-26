@@ -27,52 +27,43 @@ public class FourMotorDrive_Daniel {
     }
 
     //Stop
-
     public void stopMotors () {
-        frontLeftMotor.setPower(0);
-        frontRightMotor.setPower(0);
-        frontLeftMotor.setPower(0);
-        frontRightMotor.setPower(0);
+        frontLeftMotor.setPower (0);
+        frontRightMotor.setPower (0);
+        rearLeftMotor.setPower (0);
+        rearRightMotor.setPower (0);
     }
 
-    //Drive Forward
-
+    //Drive forward
     public void driveForward (double power) {
-
-        frontLeftMotor.setPower(power);
-        frontRightMotor.setPower(power);
-        frontLeftMotor.setPower(power);
-        frontRightMotor.setPower(power);
+        power = Math.abs(power);
+        frontLeftMotor.setPower (power);
+        frontRightMotor.setPower (power);
+        rearLeftMotor.setPower (power);
+        rearRightMotor.setPower (power);
     }
-
-    //Drive Backwards
-
+    //Drives backward//
     public void driveBackward (double power) {
-
-        frontLeftMotor.setPower(-power);
-        frontRightMotor.setPower(-power);
-        frontLeftMotor.setPower(-power);
-        frontRightMotor.setPower(-power);
+        power = Math.abs(power);
+        frontLeftMotor.setPower (-power);
+        frontRightMotor.setPower (-power);
+        rearLeftMotor.setPower (-power);
+        rearRightMotor.setPower (-power);
     }
-
-    //Rotate Left
-
+    //rotates left//
     public void rotateLeft (double power) {
-
-        frontLeftMotor.setPower(-power);
-        frontRightMotor.setPower(power);
-        frontLeftMotor.setPower(-power);
-        frontRightMotor.setPower(power);
+        power = Math.abs(power);
+        frontLeftMotor.setPower (-power);
+        frontRightMotor.setPower (power);
+        rearLeftMotor.setPower (-power);
+        rearRightMotor.setPower (power);
     }
-
-    //Rotate Left
-
+    //rotates right//
     public void rotateRight (double power) {
-
-        frontLeftMotor.setPower(power);
-        frontRightMotor.setPower(-power);
-        frontLeftMotor.setPower(power);
-        frontRightMotor.setPower(-power);
+        power = Math.abs(power);
+        frontLeftMotor.setPower (power);
+        frontRightMotor.setPower (-power);
+        rearLeftMotor.setPower (power);
+        rearRightMotor.setPower (-power);
     }
-
 }

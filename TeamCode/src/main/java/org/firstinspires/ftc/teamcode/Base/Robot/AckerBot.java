@@ -34,7 +34,6 @@ public class AckerBot extends MecanumDrive
 
     };
 
-
     // LED Timer
     public ElapsedTime currentTime = new ElapsedTime();
     public int ledTimer;
@@ -51,13 +50,6 @@ public class AckerBot extends MecanumDrive
     public Servo camPivot;
     public Servo trapDoor;
 
-    //Hand Variables
-
-    public Servo pinkyFinger = null;
-    public Servo ringFinger = null;
-    public Servo middleFinger = null;
-    public Servo indexFinger = null;
-    public Servo thumbFinger = null;
 
     //FTC SDK Requirement
     public LinearOpMode linearOp = null;
@@ -127,7 +119,6 @@ public class AckerBot extends MecanumDrive
         ledPattern = RevBlinkinLedDriver.BlinkinPattern.RAINBOW_PARTY_PALETTE;   //https://www.revrobotics.com/content/docs/REV-11-1105-UM.pdf
         ledLights.setPattern(ledPattern);
 
-
         //Timer Reset
         currentTime.reset();
 
@@ -137,27 +128,6 @@ public class AckerBot extends MecanumDrive
 
     }
 
-    public void initHand(HardwareMap hwMap) {
-
-        hwBot = hwMap;
-
-        pinkyFinger = hwBot.get(Servo.class, "pinky");      // port 1
-        pinkyFinger.setDirection(Servo.Direction.FORWARD);
-
-        ringFinger = hwBot.get(Servo.class, "ring");        // port 2
-        ringFinger.setDirection(Servo.Direction.FORWARD);
-
-        middleFinger = hwBot.get(Servo.class, "middle");    // port 3
-        middleFinger.setDirection(Servo.Direction.FORWARD);
-
-        indexFinger = hwBot.get(Servo.class, "index");      // port 4
-        indexFinger.setDirection(Servo.Direction.FORWARD);
-
-        thumbFinger = hwBot.get(Servo.class, "thumb");      // port 5
-        thumbFinger.setDirection(Servo.Direction.FORWARD);
-
-
-    }
 
 
     // LED Control Methods
@@ -222,48 +192,6 @@ public class AckerBot extends MecanumDrive
     public void camLiftStop () {
 
         camLift.setPower(0.0);
-    }
-
-    // Hand Control Methods
-
-    public void closeHand() {
-        pinkyFinger.setPosition(0.05);
-        ringFinger.setPosition(0.05);
-        middleFinger.setPosition(0.05);
-        indexFinger.setPosition(0.05);
-        thumbFinger.setPosition(0.05);
-    }
-
-    public void openHand() {
-        pinkyFinger.setPosition(0.95);
-        ringFinger.setPosition(0.95);
-        middleFinger.setPosition(0.95);
-        indexFinger.setPosition(0.95);
-        thumbFinger.setPosition(0.95);
-    }
-
-    public void makePeaceHand() {
-        pinkyFinger.setPosition(0.05);
-        ringFinger.setPosition(0.05);
-        middleFinger.setPosition(0.95);
-        indexFinger.setPosition(0.95);
-        thumbFinger.setPosition(0.05);
-    }
-
-    public void makeHangHand() {
-        pinkyFinger.setPosition(0.95);
-        ringFinger.setPosition(0.05);
-        middleFinger.setPosition(0.05);
-        indexFinger.setPosition(0.95);
-        thumbFinger.setPosition(0.95);
-    }
-
-    public void makeScissors() {
-        pinkyFinger.setPosition(0.05);
-        ringFinger.setPosition(0.05);
-        middleFinger.setPosition(0.05);
-        indexFinger.setPosition(0.95);
-        thumbFinger.setPosition(0.95);
     }
 
 

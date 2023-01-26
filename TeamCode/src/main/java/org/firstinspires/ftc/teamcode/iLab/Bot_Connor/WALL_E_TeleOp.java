@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.iLab.Bot_Connor;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
@@ -18,13 +19,13 @@ public class WALL_E_TeleOp extends OpMode {
     public double leftSidePower;
     public double rightSidePower;
 
-
+//hi 2
     double leftStickYVal;
     double leftStickXVal;
     double rightStickYVal;
     double rightStickXVal;
 
-    public TankBot_Connor WALL_E = new TankBot_Connor();
+    public WalleBot WALL_E = new WalleBot();
 
     @Override
     public void init () {

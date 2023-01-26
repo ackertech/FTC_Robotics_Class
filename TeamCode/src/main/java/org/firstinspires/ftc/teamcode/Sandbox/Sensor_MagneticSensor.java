@@ -3,11 +3,12 @@ package org.firstinspires.ftc.teamcode.Sandbox;
 import android.inputmethodservice.Keyboard;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.TouchSensor;
-
-@TeleOp (name = "Magnetic Sensor", group = "LAB")
+@Disabled
+@TeleOp (name = "Test:Magnetic Sensor", group = "Lab")
 
 public class Sensor_MagneticSensor extends OpMode {
 
@@ -17,7 +18,7 @@ public class Sensor_MagneticSensor extends OpMode {
 
     @Override
     public void init() {
-        magSensor1 = hardwareMap.get (TouchSensor.class, "MagSensor1");
+        magSensor1 = hardwareMap.get (TouchSensor.class, "MagSensor");
 
         blinkinLedDriver = hardwareMap.get(RevBlinkinLedDriver.class, "blinkin");
         pattern = RevBlinkinLedDriver.BlinkinPattern.RAINBOW_RAINBOW_PALETTE;

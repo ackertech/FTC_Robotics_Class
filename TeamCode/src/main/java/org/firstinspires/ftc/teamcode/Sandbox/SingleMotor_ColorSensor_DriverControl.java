@@ -9,8 +9,9 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp(name = "Single Motor Test + Color Sensor", group = "lab")
 @Disabled
+@TeleOp(name = "Test:Single Motor Test + Color Sensor", group = "Lab")
+
 
 public class SingleMotor_ColorSensor_DriverControl extends OpMode {
 

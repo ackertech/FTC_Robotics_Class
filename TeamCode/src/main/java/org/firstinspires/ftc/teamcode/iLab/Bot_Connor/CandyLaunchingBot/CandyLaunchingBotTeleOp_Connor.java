@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CandyLaunchingBot;
 
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -12,6 +13,7 @@ import org.firstinspires.ftc.teamcode.Base.Robot.AckerBot;
 import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Tank_TeleOp_Connor;
 import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.The_Mighty_and_All_Powerful_Hand;
 
+@Disabled
 @TeleOp(name = "CandyLaunchingBotJohnCena_Connor")
 
 public class CandyLaunchingBotTeleOp_Connor extends OpMode{
