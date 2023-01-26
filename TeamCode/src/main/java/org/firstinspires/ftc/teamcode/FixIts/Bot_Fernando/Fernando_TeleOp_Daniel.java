@@ -24,6 +24,7 @@ public class Fernando_TeleOp_Daniel extends OpMode {
         drive();
         speedControl();
         ledControl();
+        launchControl();
     }
 
     public void ledControl() {
@@ -46,7 +47,15 @@ public class Fernando_TeleOp_Daniel extends OpMode {
         }
 
     }
+    public void launchControl() {
+        if (gamepad2.left_bumper) {
+            Bot.launchMotor.setPower(1.0);
+        }
+        if (gamepad2.right_bumper) {
+            Bot.launchMotor.setPower(0.0);
+        }
 
+    }
     public void drive(){
         if (gamepad1.left_stick_y >0.1) {
             Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
