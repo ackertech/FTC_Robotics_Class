@@ -11,6 +11,8 @@ public class Roadkill_Truxtun extends FourMotorDrive_Truxtun {
     public Servo flag = null;
     public HardwareMap hwBot = null;
 
+    public DcMotor launchMotor = null;
+
     //Default Constructor for robot
     public Roadkill_Truxtun() {}
 
@@ -42,6 +44,13 @@ public void initRobot (HardwareMap hwMap){
     //Initializing Servos that is used for any robot mechanisms
     flag = hwBot.get(Servo.class, "flag");
     flag.setDirection(Servo.Direction.FORWARD);
+
+    //Initialize Launcher Motor
+    launchMotor = hwBot.dcMotor.get("launch_motor");
+    launchMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+    launchMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    launchMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    launchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
     // Robot Methods for raising, Lowering, and Waving the flag
     public void lowerFlag() {
