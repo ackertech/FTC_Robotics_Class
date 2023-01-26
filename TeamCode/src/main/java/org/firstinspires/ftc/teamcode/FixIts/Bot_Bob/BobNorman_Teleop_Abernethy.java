@@ -1,3 +1,4 @@
+
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Bob;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -22,6 +23,7 @@ public BobBot_Abernethy Bot = new BobBot_Abernethy();
 
         drive();
         speedControl();
+        launchControl();
 
     }
 
@@ -42,9 +44,9 @@ public BobBot_Abernethy Bot = new BobBot_Abernethy();
 
     public void  drive() {
 
-        if (gamepad1.left_stick_y > 0.1) {
+        if (gamepad1.left_stick_y < -0.1) {
             Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
-        } else if (gamepad1.left_stick_y < 0.1) {
+        } else if (gamepad1.left_stick_y > 0.1) {
             Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
         } else if (gamepad1.left_stick_x > 0.1) {
             Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
@@ -54,4 +56,16 @@ public BobBot_Abernethy Bot = new BobBot_Abernethy();
             Bot.stopMotors();
         }
     }
+
+    public void launchControl() {
+                if (gamepad2.left_bumper) {
+                    Bot.launchMotor.setPower(0.0);
+                }
+                if (gamepad2.right_bumper) {
+                    Bot.launchMotor.setPower(0.0);
+                }
+    }
+
+
+
 }

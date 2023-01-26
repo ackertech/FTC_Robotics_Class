@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Bob;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -13,6 +14,11 @@ public class BobBot_Abernethy extends FourMotorDrive_Lainaaa {
     //Declare Robot Variables
     public Servo flag = null;
     public HardwareMap hwBot = null;
+    public DcMotor launchMotor = null;
+
+    // LED Variables
+    public RevBlinkinLedDriver ledLights;
+    public RevBlinkinLedDriver.BlinkinPattern ledPattern;
 
 
     //Default Constructor for the Robot
@@ -21,6 +27,13 @@ public class BobBot_Abernethy extends FourMotorDrive_Lainaaa {
 
     //Method to Initialize the Robot Hardware when User presses the Init button
     public void initRobot(HardwareMap hwMap) {
+
+        //initialize Launcher motor
+        launchMotor = hwBot.dcMotor.get("launch_motor");
+        launchMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        launchMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        launchMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        launchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         hwBot = hwMap;
         //Hardware Mapping Between Name on robot and Variable name in Code
@@ -48,9 +61,18 @@ public class BobBot_Abernethy extends FourMotorDrive_Lainaaa {
         //Initializing Servos that is used for any robot mechanisms
         flag = hwBot.get(Servo.class, "flag");
         flag.setDirection(Servo.Direction.FORWARD);
+
+        //Define & Initialize LEDTester Lights
+        ledLights = hwBot.get(RevBlinkinLedDriver.class, "led_strip");
+        ledPattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_FOREST_PALETTE;
+        ledLights.setPattern(ledPattern);
+
+
     }
 
-
+    public void setLedPattern (RevBlinkinLedDriver.BlinkinPattern patternName) {
+        ledLights.setPattern(patternName);
+    }
     //Robot Methods for Raising, Lowering, and Waving the flag
     public void lowerFlag() {
         flag.setPosition(0);
@@ -71,5 +93,7 @@ public class BobBot_Abernethy extends FourMotorDrive_Lainaaa {
     public void initFlag() {
         flag.setPosition(0.8);
     }
+
+
 
 }
