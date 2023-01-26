@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Bob;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -13,6 +14,11 @@ public class BobBot_Abernethy extends FourMotorDrive_Lainaaa {
     //Declare Robot Variables
     public Servo flag = null;
     public HardwareMap hwBot = null;
+
+
+    // LED Variables
+    public RevBlinkinLedDriver ledLights;
+    public RevBlinkinLedDriver.BlinkinPattern ledPattern;
 
 
     //Default Constructor for the Robot
@@ -48,9 +54,18 @@ public class BobBot_Abernethy extends FourMotorDrive_Lainaaa {
         //Initializing Servos that is used for any robot mechanisms
         flag = hwBot.get(Servo.class, "flag");
         flag.setDirection(Servo.Direction.FORWARD);
+
+        //Define & Initialize LEDTester Lights
+        ledLights = hwBot.get(RevBlinkinLedDriver.class, "led_strip");
+        ledPattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_FOREST_PALETTE;
+        ledLights.setPattern(ledPattern);
+
+
     }
 
-
+    public void setLedPattern (RevBlinkinLedDriver.BlinkinPattern patternName) {
+        ledLights.setPattern(patternName);
+    }
     //Robot Methods for Raising, Lowering, and Waving the flag
     public void lowerFlag() {
         flag.setPosition(0);
@@ -71,5 +86,7 @@ public class BobBot_Abernethy extends FourMotorDrive_Lainaaa {
     public void initFlag() {
         flag.setPosition(0.8);
     }
+
+
 
 }
