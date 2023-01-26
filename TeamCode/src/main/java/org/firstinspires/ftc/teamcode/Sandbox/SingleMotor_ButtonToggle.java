@@ -46,8 +46,7 @@ public class SingleMotor_ButtonToggle extends OpMode {
         if (toggleLaunch && forward == true) {
             motor.setPower(speed);
         }
-// 1)
-//        Make motor go reverse? Valid values of motors are [-1, +1]
+
         if(toggleLaunch && forward == false){
             motor.setPower(-speed);
         }
@@ -59,14 +58,6 @@ public class SingleMotor_ButtonToggle extends OpMode {
         if(gamepad1.b == true){
             motor.setPower(0);
         }
-
-
-        //2) Stop motor if press b
-
-
-
-
-
 
         if (gamepad1.dpad_up == true) {
             forward = true;

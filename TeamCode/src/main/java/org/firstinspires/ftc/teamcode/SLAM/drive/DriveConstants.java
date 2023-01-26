@@ -19,9 +19,6 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 @Config
 public class DriveConstants {
 
-    /*
-     * These are motor constants that should be listed online for your motors.
-     */
     public static final double TICKS_PER_REV = 383.6;
     public static final double MAX_RPM = 435;
 

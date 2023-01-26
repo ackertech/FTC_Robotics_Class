@@ -6,15 +6,14 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-//Class is used for testing a single motor, using trigger for variable power.
+
 //@Disabled
 @TeleOp (name = "Test:Single Motor:Triggers", group = "Lab")
 
 public class SingleMotor_Triggers extends OpMode {
     private DcMotor motor = null;
     double power;
-    double powerControl = 0.7;
-//    0.6 not enough from closed --> open.
+    double powerControl = 0.90;
 
     @Override
     public void init() {

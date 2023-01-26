@@ -50,7 +50,7 @@ import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.kV;
 /*
  * Simple mecanum drive hardware implementation for REV hardware.
  */
-@Config
+//@Config
 public class SampleMecanumDrive extends MecanumDrive {
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(0, 0, 0);
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(0, 0, 0);
@@ -116,10 +116,10 @@ public class SampleMecanumDrive extends MecanumDrive {
         // For example, if +Y in this diagram faces downwards, you would use AxisDirection.NEG_Y.
         // BNO055IMUUtil.remapZAxis(imu, AxisDirection.NEG_Y);
 
-        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
-        leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
-        rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
-        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
+        leftFront = hardwareMap.get(DcMotorEx.class, "front_left_motor");
+        leftRear = hardwareMap.get(DcMotorEx.class, "rear_left_motor");
+        rightRear = hardwareMap.get(DcMotorEx.class, "rear_right_motor");
+        rightFront = hardwareMap.get(DcMotorEx.class, "front_right_motor");
 
         motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
 

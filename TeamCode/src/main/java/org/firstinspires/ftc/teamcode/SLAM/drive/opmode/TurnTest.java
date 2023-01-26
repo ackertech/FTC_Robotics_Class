@@ -6,12 +6,11 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.SLAM.drive.SampleMecanumDrive;
 
-/*
- * This is a simple routine to test turning capabilities.
- */
-@Config
-@Autonomous(group = "drive")
+
+//@Config
+@Autonomous(name = "SLAM:Turn Drive", group = "SLAM")
 public class TurnTest extends LinearOpMode {
+
     public static double ANGLE = 90; // deg
 
     @Override
