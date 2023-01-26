@@ -24,6 +24,7 @@ public void loop () {
     speedControl();
     controlFlag();
     ledControl();
+    launchControl();
 }
 
 public void ledControl(){
@@ -76,6 +77,16 @@ public void drive () {
         Bot.lowerFlag();
     }
     else Bot.lowerFlag();
+    }
+
+    public void launchControl() {
+    if (gamepad2.left_bumper) {
+        Bot.launchMotor.setPower(1.0);
+    }
+    if (gamepad2.right_bumper) {
+        Bot.launchMotor.setPower(0.0);
+    }
+
     }
 }
 
