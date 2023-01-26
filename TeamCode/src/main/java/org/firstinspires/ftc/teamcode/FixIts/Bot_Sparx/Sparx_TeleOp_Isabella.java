@@ -11,6 +11,7 @@ public class Sparx_TeleOp_Isabella extends OpMode {
     public double speedMultiply = 0.50;
     public Sparx_Isabella Bot = new Sparx_Isabella();
 
+
     @Override
     public void init() {
 
@@ -22,6 +23,7 @@ public class Sparx_TeleOp_Isabella extends OpMode {
         speedControl();
         servo();
         ledControl();
+        launchControl();
     }
     public void speedControl() {
         if (gamepad1.dpad_right == true) {
@@ -74,10 +76,26 @@ public class Sparx_TeleOp_Isabella extends OpMode {
     public void ledControl() {
         if (gamepad1.left_trigger > 0.1) {
             Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.STROBE_RED);
-        }
-        else if (gamepad1.right_trigger > 0.1) {
+        } else if (gamepad1.right_trigger > 0.1) {
             Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.STROBE_WHITE);
         }
+
     }
+        public void launchControl () {
+            if (gamepad2.left_bumper) {
+                Bot.launchMotor.setPower (1.0);
+            }
+            if (gamepad2.right_bumper)  {
+                Bot.launchMotor.setPower (0.0);
+            }
+        }
+
+
+
+
+
+
+
+
 
 }

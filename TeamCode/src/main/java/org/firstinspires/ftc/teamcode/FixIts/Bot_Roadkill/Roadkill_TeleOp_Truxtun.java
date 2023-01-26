@@ -18,6 +18,7 @@ public class Roadkill_TeleOp_Truxtun extends OpMode {
     public void loop() {
         drive();
         speedControl();
+        launchControl();
     }
 
 public void speedControl() {
@@ -44,7 +45,7 @@ public void speedControl() {
         }
         else if (gamepad1.left_stick_x > 0.1) {
 
-                    Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
+            Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
 
         }
         else if (gamepad1.left_stick_x < -0.1) {
@@ -55,5 +56,12 @@ public void speedControl() {
             Bot.stopMotors();
         }
     }
-
+public void launchControl () {
+        if(gamepad2.left_bumper) {
+            Bot.launchMotor.setPower(1.0);
+        }
+        if (gamepad2.right_bumper) {
+            Bot.launchMotor.setPower(0.0);
+        }
+}
 }
