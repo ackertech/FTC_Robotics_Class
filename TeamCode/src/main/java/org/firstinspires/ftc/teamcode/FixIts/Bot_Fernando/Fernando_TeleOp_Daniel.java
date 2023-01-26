@@ -1,12 +1,13 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Fernando;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name= "Fernando:Daniel")
 public class Fernando_TeleOp_Daniel extends OpMode {
 
-    public double speedMultiply = 8.58;
+    public double speedMultiply = 1.0;
 
     public Fernando_Daniel Bot = new Fernando_Daniel();
 
@@ -22,7 +23,15 @@ public class Fernando_TeleOp_Daniel extends OpMode {
 
         drive();
         speedControl();
+        ledControl();
+    }
 
+    public void ledControl() {
+        if (gamepad1.left_trigger > 0.1){
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern. STROBE_BLUE);
+        } else if (gamepad1.right_trigger > 0.1) {
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.STROBE_BLUE);
+        }
     }
 
     public void speedControl() {

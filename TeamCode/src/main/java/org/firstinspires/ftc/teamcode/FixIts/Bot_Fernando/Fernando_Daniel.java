@@ -1,14 +1,21 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Fernando;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Fernando_Daniel extends FourMotorDrive_Daniel {
-        //Dedlare Robot Variables
+        //Declare Robot Variables
         public Servo flag= null;
         public HardwareMap hwBot = null;
+
+
+    // Led Variables
+    public RevBlinkinLedDriver ledLights;
+    public RevBlinkinLedDriver.BlinkinPattern ledPattern;
+
         //Default Constructor for the Robot
         public Fernando_Daniel() {}
         //Method to Initialize the Robot Hardware when User presses Init Button
@@ -38,6 +45,11 @@ public class Fernando_Daniel extends FourMotorDrive_Daniel {
             //Initializing Servos that is used for any robot mechanisms
             flag = hwBot.get(Servo.class, "flag");
             flag.setDirection(Servo.Direction.FORWARD);
+
+            //Define & Initalie LEDTester Lights
+            ledLights = hwBot.get(RevBlinkinLedDriver.class, "led_strip");
+            ledPattern = RevBlinkinLedDriver.BlinkinPattern.STROBE_BLUE;
+            ledLights.setPattern(ledPattern);
         }
             //Robot Methods for Raising, Lowering, and Waving the Flag
             public void lowerFlag(){
@@ -58,6 +70,10 @@ public class Fernando_Daniel extends FourMotorDrive_Daniel {
             public void initFlag () {
 
             flag.setPosition(.8);
+        }
+        public void setLedPattern (RevBlinkinLedDriver.BlinkinPattern patternName) {
+            ledLights.setPattern(patternName);
+
         }
     }
 

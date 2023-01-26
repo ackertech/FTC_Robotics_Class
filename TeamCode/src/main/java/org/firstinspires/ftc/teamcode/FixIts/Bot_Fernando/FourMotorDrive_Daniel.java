@@ -38,7 +38,7 @@ public class FourMotorDrive_Daniel {
     //Drive Forward
 
     public void driveForward (double power) {
-
+        power = Math.abs(power) ;
         frontLeftMotor.setPower(power);
         frontRightMotor.setPower(power);
         frontLeftMotor.setPower(power);
@@ -48,7 +48,7 @@ public class FourMotorDrive_Daniel {
     //Drive Backwards
 
     public void driveBackward (double power) {
-
+        power = Math.abs(power) ;
         frontLeftMotor.setPower(-power);
         frontRightMotor.setPower(-power);
         frontLeftMotor.setPower(-power);
@@ -58,7 +58,7 @@ public class FourMotorDrive_Daniel {
     //Rotate Left
 
     public void rotateLeft (double power) {
-
+        power = Math.abs(power) ;
         frontLeftMotor.setPower(-power);
         frontRightMotor.setPower(power);
         frontLeftMotor.setPower(-power);
@@ -68,7 +68,7 @@ public class FourMotorDrive_Daniel {
     //Rotate Left
 
     public void rotateRight (double power) {
-
+        power = Math.abs(power) ;
         frontLeftMotor.setPower(power);
         frontRightMotor.setPower(-power);
         frontLeftMotor.setPower(power);
