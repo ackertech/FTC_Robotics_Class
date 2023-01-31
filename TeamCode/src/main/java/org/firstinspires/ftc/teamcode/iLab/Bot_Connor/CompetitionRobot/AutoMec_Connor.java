@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.iLab.Bot_Connor;
+package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CompetitionRobot;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;

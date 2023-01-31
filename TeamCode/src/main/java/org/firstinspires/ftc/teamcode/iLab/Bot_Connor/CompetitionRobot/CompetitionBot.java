@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.iLab.Bot_Connor;
+package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CompetitionRobot;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -7,8 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import org.firstinspires.ftc.teamcode.SLAM.util.BNO055IMUUtil;
-import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CandyLaunchingBot.MecanumDrive_Connor;
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.MecanumDrive_Connor;
 
 public class CompetitionBot extends MecanumDrive_Connor {
 
