@@ -75,22 +75,14 @@ public class BobBot_Abernethy extends FourMotorDrive_Lainaaa {
     }
     //Robot Methods for Raising, Lowering, and Waving the flag
     public void lowerFlag() {
-        flag.setPosition(0);
+        flag.setPosition(0.1);
     }
 
-    public void raiseFlag() {
-        flag.setPosition(4.75);
+    public void popBalloon() {
+        flag.setPosition(.99);
     }
 
-    public void waveFlagLeft() {
-        flag.setPosition(0.38);
-    }
-
-    public void waveFlagRight() {
-        flag.setPosition(0.55);
-    }
-
-    public void initFlag() {
+    public void hideDagger() {
         flag.setPosition(0.8);
     }
 
