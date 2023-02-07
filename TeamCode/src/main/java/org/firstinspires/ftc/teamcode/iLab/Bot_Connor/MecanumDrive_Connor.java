@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Base.Drivetrains.MecanumDrive;
+import org.opencv.core.Mat;
 
 public class MecanumDrive_Connor {
 
@@ -90,7 +91,7 @@ public class MecanumDrive_Connor {
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while (frontLeftMotor.getCurrentPosition() < ticks && LinearOp.opModeIsActive()) {
+        while ((Math.abs(frontLeftMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
             driveForward(speed);
         }
         stopMotors();
@@ -101,7 +102,7 @@ public class MecanumDrive_Connor {
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while (frontLeftMotor.getCurrentPosition() < ticks && LinearOp.opModeIsActive() ) {
+        while ((Math.abs(frontLeftMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive() ) ){
             driveBack(speed);
         }
         stopMotors();
@@ -113,7 +114,7 @@ public class MecanumDrive_Connor {
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while (frontLeftMotor.getCurrentPosition() < ticks && LinearOp.opModeIsActive()) {
+        while ((Math.abs(frontLeftMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ){
             strafeLeft(speed);
         }
         stopMotors();
@@ -124,7 +125,7 @@ public class MecanumDrive_Connor {
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while (frontLeftMotor.getCurrentPosition() < ticks && LinearOp.opModeIsActive()) {
+        while ((Math.abs(frontLeftMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
             strafeRight(speed);
         }
         stopMotors();
@@ -136,7 +137,7 @@ public class MecanumDrive_Connor {
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while (frontRightMotor.getCurrentPosition() < ticks && LinearOp.opModeIsActive()) {
+        while ((Math.abs(frontRightMotor.getCurrentPosition() ) < ticks) && LinearOp.opModeIsActive()) {
             rotateRight(speed);
         }
         stopMotors();
@@ -147,7 +148,7 @@ public class MecanumDrive_Connor {
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while (frontLeftMotor.getCurrentPosition() < ticks && LinearOp.opModeIsActive()) {
+        while ((Math.abs(frontLeftMotor.getCurrentPosition() ) < ticks ) && LinearOp.opModeIsActive()) {
             rotateLeft(speed);
         }
         stopMotors();
