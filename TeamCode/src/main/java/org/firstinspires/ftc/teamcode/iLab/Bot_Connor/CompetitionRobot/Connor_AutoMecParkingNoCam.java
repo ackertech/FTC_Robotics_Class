@@ -1,14 +1,23 @@
 package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CompetitionRobot;
 
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Autonomous (name = "Connor_MechBotAuto")
+@Autonomous (name = "Connor_AutoParkingNoCam")
 
-public class AutoMec_Connor extends LinearOpMode {
+public class Connor_AutoMecParkingNoCam extends LinearOpMode {
 
     CompetitionBot FixitsBot = new CompetitionBot();
+
+    public enum ParkingPosition {
+        RIGHT,
+        CENTER,
+        LEFT,
+        IDLE
+    }
+
+   public ParkingPosition parkingPosition = ParkingPosition.LEFT;
+
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -17,25 +26,52 @@ public class AutoMec_Connor extends LinearOpMode {
         FixitsBot.setLinearOp(this);
 
 
-
         telemetry.addLine("Robot Awaiting Start Procedure");
         telemetry.update();
 
         waitForStart();
 
+
         while (opModeIsActive()) {
 
-            telemetryUpdate("Drive Forward");
-            FixitsBot.driveForward(1,7.8);
-            sleep(1000);
+
+            if (parkingPosition == ParkingPosition.RIGHT) {
+
+                telemetryUpdate("Park Right");
+                FixitsBot.driveForward(1, 7.8);
+                sleep(1000);
+            }
+
+            else if (parkingPosition == ParkingPosition.CENTER) {
+
+                telemetryUpdate("Park Center");
+                FixitsBot.driveForward(1,7.8);
+                sleep(1000);
+                FixitsBot.strafeLeft(1,3.3);
+                sleep(1000);
+            }
+
+            else if (parkingPosition == ParkingPosition.LEFT) {
+
+                telemetryUpdate("Park Left");
+                FixitsBot.driveForward(1,7.8);
+                sleep(1000);
+                FixitsBot.strafeLeft(1,6.6);
+                sleep(1000);
+            }
+
+            else {
+                telemetryUpdate("Cannot Park");
+                parkingPosition = ParkingPosition.IDLE;
+            }
 
 
             requestOpModeStop();
         }
 
         idle();
-    }
 
+    }
 
 
     public void telemetryUpdate(String comment) {
@@ -48,6 +84,7 @@ public class AutoMec_Connor extends LinearOpMode {
         telemetry.addData("Encoder Count: ", FixitsBot.frontLeftMotor.getCurrentPosition());
         telemetry.update();
     }
+
 
 
 }
