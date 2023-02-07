@@ -30,6 +30,8 @@ public class CompetitionBot extends MecanumDrive_Connor {
 
     public void initRobot(HardwareMap hwMap) {
 
+        hwBot = hwMap;
+
         frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
         frontRightMotor = hwBot.dcMotor.get("front_right_motor");
         rearLeftMotor = hwBot.dcMotor.get("rear_left_motor");
