@@ -87,7 +87,7 @@ public class MecanumDrive_Connor {
 
     public void driveForward(double speed, double rotations) {
 
-        double ticks = rotations * (1) * TICKS_PER_ROTATION;
+        double ticks = rotations  * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
@@ -98,7 +98,7 @@ public class MecanumDrive_Connor {
     }
 
     public void driveBack (double speed, double rotations) {
-        double ticks = rotations * (-1) * TICKS_PER_ROTATION;
+        double ticks = rotations  * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
