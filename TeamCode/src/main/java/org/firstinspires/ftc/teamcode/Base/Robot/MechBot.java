@@ -13,9 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.teamcode.Base.Drivetrains.MecanumDrive;
 
 
-public class MechBot extends MecanumDrive
-
-{
+public class MechBot extends MecanumDrive {
 
     // Robot Hardware Constructors
     public HardwareMap hwBot  =  null;

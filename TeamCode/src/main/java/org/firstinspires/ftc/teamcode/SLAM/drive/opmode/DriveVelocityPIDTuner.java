@@ -48,7 +48,7 @@ import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.kV;
  * Pressing B/O (Xbox/PS4) will cede control back to the tuning process.
  */
 //@Config
-@Autonomous(name="SLAM:Drive Velocity PID Tuner", group = "SLAM")
+@Autonomous(name="SLAM:Drive Velocity PID Tuner", group = "SLAMm")
 public class DriveVelocityPIDTuner extends LinearOpMode {
     public static double DISTANCE = 72; // in
 
