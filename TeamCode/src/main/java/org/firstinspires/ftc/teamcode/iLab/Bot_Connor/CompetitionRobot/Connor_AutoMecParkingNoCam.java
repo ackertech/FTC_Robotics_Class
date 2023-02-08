@@ -47,7 +47,7 @@ public class Connor_AutoMecParkingNoCam extends LinearOpMode {
                 telemetryUpdate("Park Center");
                 FixitsBot.driveForward(1,7.8);
                 sleep(1000);
-                FixitsBot.strafeLeft(1,3.3);
+                FixitsBot.strafeLeft(1,6.6);
                 sleep(1000);
             }
 
@@ -56,7 +56,7 @@ public class Connor_AutoMecParkingNoCam extends LinearOpMode {
                 telemetryUpdate("Park Left");
                 FixitsBot.driveForward(1,7.8);
                 sleep(1000);
-                FixitsBot.strafeLeft(1,6.6);
+                FixitsBot.strafeLeft(1,9.9);
                 sleep(1000);
             }
 
