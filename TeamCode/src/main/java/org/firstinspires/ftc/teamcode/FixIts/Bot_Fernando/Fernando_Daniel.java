@@ -10,8 +10,8 @@ public class Fernando_Daniel extends FourMotorDrive_Daniel {
         //Declare Robot Variables
         public Servo flag= null;
         public HardwareMap hwBot = null;
-        public DcMotor launchMotor = null;
-
+        public DcMotor launchMotor1 = null;
+        public DcMotor launchMotor2 = null;
     // Led Variables
     public RevBlinkinLedDriver ledLights;
     public RevBlinkinLedDriver.BlinkinPattern ledPattern;
@@ -44,13 +44,18 @@ public class Fernando_Daniel extends FourMotorDrive_Daniel {
             rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-            //Initialize Launcher Motor
-            launchMotor = hwBot.dcMotor.get("launch_motor");
-            launchMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-            launchMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            launchMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            launchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-
+            //Initialize Launcher Motor 1
+            launchMotor1 = hwBot.dcMotor.get("launch_motor1");
+            launchMotor1.setDirection(DcMotorSimple.Direction.FORWARD);
+            launchMotor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            launchMotor1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            launchMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+            //Initialize Launcher Motor 2
+            launchMotor2 = hwBot.dcMotor.get("launch_motor2");
+            launchMotor2.setDirection(DcMotorSimple.Direction.REVERSE);
+            launchMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            launchMotor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            launchMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
             //Initializing Servos that is used for any robot mechanisms
             flag = hwBot.get(Servo.class, "flag");
             flag.setDirection(Servo.Direction.FORWARD);

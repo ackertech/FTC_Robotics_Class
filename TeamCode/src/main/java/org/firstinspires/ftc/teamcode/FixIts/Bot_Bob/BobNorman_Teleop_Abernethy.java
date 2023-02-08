@@ -24,6 +24,18 @@ public BobBot_Abernethy Bot = new BobBot_Abernethy();
         drive();
         speedControl();
         launchControl();
+        popperControl();
+
+    }
+
+    public void popperControl() {
+        if (gamepad1.a) {
+          Bot.popBalloon();
+        }
+        if (gamepad1.b) {
+          Bot.hideDagger();
+        }
+
 
     }
 
