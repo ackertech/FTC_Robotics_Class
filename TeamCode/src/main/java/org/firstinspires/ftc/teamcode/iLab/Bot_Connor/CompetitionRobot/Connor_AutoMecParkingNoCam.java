@@ -38,24 +38,24 @@ public class Connor_AutoMecParkingNoCam extends LinearOpMode {
             if (parkingPosition == ParkingPosition.RIGHT) {
 
                 telemetryUpdate("Park Right");
-                FixitsBot.driveForward(1, 7.8);
+                FixitsBot.driveForward(1, 7.5);
                 sleep(1000);
-                FixitsBot.strafeRight(1,6.6);
+                FixitsBot.strafeRight(.9,2.5);
             }
 
             else if (parkingPosition == ParkingPosition.CENTER) {
 
                 telemetryUpdate("Park Center");
-                FixitsBot.driveForward(1,7.8);
+                FixitsBot.driveForward(1,7.7);
                 sleep(1000);
             }
 
             else if (parkingPosition == ParkingPosition.LEFT) {
 
                 telemetryUpdate("Park Left");
-                FixitsBot.driveForward(1,7.8);
+                FixitsBot.driveForward(1,7.5);
                 sleep(1000);
-                FixitsBot.strafeLeft(1,6.6);
+                FixitsBot.strafeLeft(1,5.6);
                 sleep(1000);
             }
 
