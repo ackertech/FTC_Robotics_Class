@@ -16,7 +16,7 @@ public class Connor_AutoMecParkingNoCam extends LinearOpMode {
         IDLE
     }
 
-   public ParkingPosition parkingPosition = ParkingPosition.RIGHT;
+   public ParkingPosition parkingPosition = ParkingPosition.CENTER;
 
 
     @Override
@@ -38,8 +38,10 @@ public class Connor_AutoMecParkingNoCam extends LinearOpMode {
             if (parkingPosition == ParkingPosition.RIGHT) {
 
                 telemetryUpdate("Park Right");
-                FixitsBot.driveForward(1, 7.4);
+                FixitsBot.driveForward(1, 7.25);
                 sleep(1000);
+                FixitsBot.rotateRight(.5,.2);
+                sleep(200);
                 FixitsBot.strafeRight(1,4);
             }
 
