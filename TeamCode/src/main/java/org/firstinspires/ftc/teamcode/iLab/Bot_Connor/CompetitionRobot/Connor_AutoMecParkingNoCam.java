@@ -16,7 +16,7 @@ public class Connor_AutoMecParkingNoCam extends LinearOpMode {
         IDLE
     }
 
-   public ParkingPosition parkingPosition = ParkingPosition.LEFT;
+   public ParkingPosition parkingPosition = ParkingPosition.RIGHT;
 
 
     @Override
