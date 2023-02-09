@@ -82,12 +82,17 @@ public class Sparx_TeleOp_Isabella extends OpMode {
 
     }
         public void launchControl () {
-            if (gamepad2.a) {
+            if (gamepad2.left_bumper) {
                 Bot.launchMotor.setPower (1.0);
+                Bot.launchMotor2.setPower (1.0);
             }
-            if (gamepad2.b)  {
+            if (gamepad2.right_bumper)  {
                 Bot.launchMotor.setPower (0.0);
+                Bot.launchMotor2.setPower (0.0);
             }
+
+
+
         }
 
 
