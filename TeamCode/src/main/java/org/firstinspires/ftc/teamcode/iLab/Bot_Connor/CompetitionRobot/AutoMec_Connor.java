@@ -26,28 +26,9 @@ public class AutoMec_Connor extends LinearOpMode {
         while (opModeIsActive()) {
 
             telemetryUpdate("Drive Forward");
-            FixitsBot.driveForward(1,2);
+            FixitsBot.driveForward(1,7.8);
             sleep(1000);
 
-            telemetryUpdate("Drive Back");
-            FixitsBot.driveBack(1,2);
-            sleep(1000);
-
-            telemetryUpdate("Strafe Left");
-            FixitsBot.strafeLeft(1,2);
-            sleep(1000);
-
-            telemetryUpdate("Strafe Right");
-            FixitsBot.strafeRight(1,2);
-            sleep(1000);
-
-            telemetryUpdate("Rotate Left");
-            FixitsBot.rotateLeft(1,1);
-            sleep(1000);
-
-            telemetryUpdate("Rotate Right");
-            FixitsBot.rotateRight(1,1);
-            sleep(5000);
 
             requestOpModeStop();
         }

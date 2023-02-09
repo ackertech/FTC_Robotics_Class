@@ -35,7 +35,12 @@ public class Tank_TeleOp_Connor extends OpMode{
     public double UpAndDownLinearMotorTicks = 900; //will need to change later
     public enum ControlOfUpAndDownLinearMotor {FORWARD, REVERSE}
     public ControlOfUpAndDownLinearMotor controlOfUpAndDownLinearMotor = ControlOfUpAndDownLinearMotor.FORWARD;
-
+    public enum ControlOfSidewaysLinearMotor {FORWARD, REVERSE}
+    public ControlOfSidewaysLinearMotor controlOfSidewaysLinearMotor = ControlOfSidewaysLinearMotor.FORWARD;
+    public enum ControlOfLeftClaw {OPEN,CLOSED}
+    public ControlOfLeftClaw controlOfLeftClaw = ControlOfLeftClaw.CLOSED;
+    public enum ControlOfRightClaw {OPEN,CLOSED}
+    public ControlOfRightClaw controlOfRightClaw = ControlOfRightClaw.CLOSED;
     public Style driverStyle = Style.ONESTICK;
     public Gamepad2_Style gamepadTwoStyle = Gamepad2_Style.HANDGESTURES;
 
