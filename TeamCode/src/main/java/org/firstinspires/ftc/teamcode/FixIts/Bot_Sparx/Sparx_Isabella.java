@@ -22,6 +22,7 @@ public class Sparx_Isabella extends FourMotorDrive_Isabella{
     public Sparx_Isabella () {}
     //Method to initialize the robot hardware when user init button//
     public void initSparx (HardwareMap hwMap) {
+        hwBot = hwMap;
 
         //Initialize Launcher Motor//
         launchMotor = hwBot.dcMotor.get("launch_motor");
@@ -30,7 +31,7 @@ public class Sparx_Isabella extends FourMotorDrive_Isabella{
         launchMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         launchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
-        hwBot = hwMap;
+
         //hardware mapping betwee Name on robot and variable name in code//
         frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
         frontRightMotor = hwBot.dcMotor.get("front_right_motor");
