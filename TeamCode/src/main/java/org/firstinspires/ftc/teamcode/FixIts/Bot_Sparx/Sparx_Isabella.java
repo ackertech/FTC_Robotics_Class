@@ -11,6 +11,8 @@ public class Sparx_Isabella extends FourMotorDrive_Isabella{
     //Dedlare Robot Variables//
     public Servo flag = null;
     public DcMotor launchMotor = null;
+    public DcMotor launchMotor2 = null;
+
     public HardwareMap hwBot = null;
     //Led Variables//
     public RevBlinkinLedDriver ledLights;
@@ -22,15 +24,22 @@ public class Sparx_Isabella extends FourMotorDrive_Isabella{
     public Sparx_Isabella () {}
     //Method to initialize the robot hardware when user init button//
     public void initSparx (HardwareMap hwMap) {
+        hwBot = hwMap;
 
         //Initialize Launcher Motor//
+
         launchMotor = hwBot.dcMotor.get("launch_motor");
         launchMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         launchMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         launchMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         launchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
-        hwBot = hwMap;
+        launchMotor2 = hwBot.dcMotor.get("launch_motor_2");
+        launchMotor2.setDirection(DcMotorSimple.Direction.FORWARD);
+        launchMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        launchMotor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        launchMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+
         //hardware mapping betwee Name on robot and variable name in code//
         frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
         frontRightMotor = hwBot.dcMotor.get("front_right_motor");
