@@ -182,6 +182,10 @@ public class The_Mighty_and_All_Powerful_Hand {
         lowerArm();
     }
 
+
+
+
+
     public void clawOpen() {
         claw.setPosition(1);
 }

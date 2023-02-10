@@ -159,6 +159,9 @@ public class WALL_E_TeleOp extends OpMode {
             if (controlOfSidewaysLinearMotor == controlOfSidewaysLinearMotor.REVERSE) {
                 controlOfSidewaysLinearMotor = controlOfSidewaysLinearMotor.FORWARD;
             }
+            else if (controlOfSidewaysLinearMotor == controlOfSidewaysLinearMotor.FORWARD) {
+                controlOfSidewaysLinearMotor = controlOfSidewaysLinearMotor.REVERSE;
+            }
         }
 
         if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.FORWARD) {
