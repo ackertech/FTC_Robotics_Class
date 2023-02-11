@@ -190,7 +190,7 @@ public class MecanumDrive {
         return powerNormPID =((powerPID -orig_min)/(orig_max -orig_min)) * (new_max -new_min) + new_min;
     }
 
-    public void drivePID(double rotations, double Kp, double Ki, double Kd) {
+    public void driveForwardPID(double rotations, double Kp, double Ki, double Kd) {
 
         //Set Motor Run Modes
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

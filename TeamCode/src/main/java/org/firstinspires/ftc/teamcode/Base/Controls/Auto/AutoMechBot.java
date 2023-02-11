@@ -26,33 +26,35 @@ public class AutoMechBot extends LinearOpMode {
 
         while (opModeIsActive()){
 
-            updateTelemetry("Drive Forwards");
-            Bot.driveDirection(1, 2,"FWD");
-            sleep(1000);
+            Bot.driveForwardPID(4,0.8,0,0);
 
-            updateTelemetry("Drive Backwards");
-            Bot.driveDirection(1, 2,"RWD");
-            sleep(1000);
-
-            updateTelemetry("Strafe Right");
-            Bot.driveDirection(1, 2,"STR");
-            sleep(1000);
-
-            updateTelemetry("Strafe Left");
-            Bot.driveDirection(1, 2,"STL");
-            sleep(1000);
-
-            updateTelemetry("Rotate Left");
-            Bot.driveDirection(1, 1,"RL");
-            sleep(1000);
-
-            updateTelemetry("Rotate Right");
-            Bot.driveDirection(1, 1,"RR");
-            sleep(1000);
-
-            updateTelemetry("Drive Backwards");
-            Bot.driveDirection(1, 2,"RWD");
-            sleep(5000);
+//            updateTelemetry("Drive Forwards");
+//            Bot.driveDirection(1, 2,"FWD");
+//            sleep(1000);
+//
+//            updateTelemetry("Drive Backwards");
+//            Bot.driveDirection(1, 2,"RWD");
+//            sleep(1000);
+//
+//            updateTelemetry("Strafe Right");
+//            Bot.driveDirection(1, 2,"STR");
+//            sleep(1000);
+//
+//            updateTelemetry("Strafe Left");
+//            Bot.driveDirection(1, 2,"STL");
+//            sleep(1000);
+//
+//            updateTelemetry("Rotate Left");
+//            Bot.driveDirection(1, 1,"RL");
+//            sleep(1000);
+//
+//            updateTelemetry("Rotate Right");
+//            Bot.driveDirection(1, 1,"RR");
+//            sleep(1000);
+//
+//            updateTelemetry("Drive Backwards");
+//            Bot.driveDirection(1, 2,"RWD");
+//            sleep(5000);
 
 
             requestOpModeStop();
