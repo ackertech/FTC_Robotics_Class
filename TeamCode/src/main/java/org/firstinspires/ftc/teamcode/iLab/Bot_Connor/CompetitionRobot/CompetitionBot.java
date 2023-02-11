@@ -8,12 +8,11 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.MecanumDrive_Connor;
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-
 
 import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGREES;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.XYZ;
@@ -70,42 +69,45 @@ public class CompetitionBot extends MecanumDrive_Connor {
         BNO055IMU.Parameters parametersimu = new BNO055IMU.Parameters();
         parametersimu.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parametersimu.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        imu = hwBot.get(BNO055IMU.class, "imu");
-        imu.initialize(parametersimu);
         parametersimu.calibrationDataFile = "BNO055IMUCalibration.json"; // see the calibration sample opmode
+
         parametersimu.loggingEnabled = true;
         parametersimu.loggingTag = "IMU";
         parametersimu.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
 
+        imu = hwBot.get(BNO055IMU.class, "imu");
+        imu.initialize(parametersimu);
+
 
     }
 
-//    public void gyroCorrection (double speed, double angle) {
-//
-//        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX,BNO055IMU.AngleUnit.DEGREES);
-//
-//        if (angles.firstAngle >= angle + TOLERANCE) {
-//            while (angles.firstAngle >=  angle + TOLERANCE && LinearOp.opModeIsActive()) {
-//                rotateRight(speed);
-//                angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, BNO055IMU.AngleUnit.DEGREES);
-//            }
-//        }
-//        else if (angles.firstAngle <= angle - TOLERANCE) {
-//            while (angles.firstAngle <= angle - TOLERANCE && LinearOp.opModeIsActive()) {
-//                rotateLeft(speed);
-//                angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, BNO055IMU.AngleUnit.DEGREES);
-//            }
-//        }
-//        stopMotors();
-//
-//        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, BNO055IMU.AngleUnit.DEGREES);
-//    }
+    public void gyroCorrection (double speed, double angle) {
+
+        angles = imu.getAngularOrientation(
+                AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+
+        if (angles.firstAngle >= angle + TOLERANCE) {
+            while (angles.firstAngle >=  angle + TOLERANCE && LinearOp.opModeIsActive()) {
+                rotateRight(speed);
+                angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+            }
+        }
+        else if (angles.firstAngle <= angle - TOLERANCE) {
+            while (angles.firstAngle <= angle - TOLERANCE && LinearOp.opModeIsActive()) {
+                rotateLeft(speed);
+                angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+            }
+        }
+        stopMotors();
+
+        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+    }
 
 
-//    public void gyroReset () {
-//        BNO055IMU.Parameters parametersimu = new BNO055IMU.Parameters();
-//        imu.initialize(parametersimu);
-//    }
+    public void gyroReset () {
+        BNO055IMU.Parameters parametersimu = new BNO055IMU.Parameters();
+        imu.initialize(parametersimu);
+    }
 
 
 }
