@@ -78,7 +78,6 @@ public class CompetitionBot extends MecanumDrive_Connor {
         imu = hwBot.get(BNO055IMU.class, "imu");
         imu.initialize(parametersimu);
 
-
     }
 
     public void gyroCorrection (double speed, double angle) {
