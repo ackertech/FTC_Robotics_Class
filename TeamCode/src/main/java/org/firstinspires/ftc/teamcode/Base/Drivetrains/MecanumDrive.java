@@ -11,6 +11,11 @@ public class MecanumDrive {
     public DcMotor frontRightMotor;
     public DcMotor rearLeftMotor;
     public DcMotor rearRightMotor;
+
+    // These are motor variables from running with encoders (not power)
+    public static final double TICKS_PER_ROTATION = 537.7;  //
+    double gearRatio = 0.5;
+    double wheelRadius = 1.9685;  // inches
     double powerPID;
     double powerNormPID;
 
@@ -22,8 +27,7 @@ public class MecanumDrive {
         this.linearOp = linearOp;
     }
 
-    // These are motor variables from running with encoders (not power)
-    public static final double TICKS_PER_ROTATION = 386.3;  //386.3 is defined from the specs of the motor
+
 
     // Default Constructors
 
@@ -71,6 +75,13 @@ public class MecanumDrive {
         frontRightMotor.setPower(0);
         rearLeftMotor.setPower(0);
         rearRightMotor.setPower(0);
+    }
+
+    public void drivePID(double speed) {
+        frontLeftMotor.setPower(speed);
+        frontRightMotor.setPower(speed);
+        rearLeftMotor.setPower(speed);
+        rearRightMotor.setPower(speed);
     }
 
     public void driveForward(double speed) {
@@ -191,7 +202,14 @@ public class MecanumDrive {
         return powerNormPID =((powerPID -orig_min)/(orig_max -orig_min)) * (new_max -new_min) + new_min;
     }
 
-    public void driveForwardPID(double rotations, double Kp, double Ki, double Kd) {
+    public double convDistancetoTicks(double dist) {
+        double rotations, ticks;
+              rotations  =  dist / (2 * Math.PI * gearRatio * wheelRadius );
+              ticks = rotations * TICKS_PER_ROTATION;
+     return ticks;
+    }
+
+    public void drivePID(double rotations, double Kp, double Ki, double Kd) {
 
         //Set Motor Run Modes
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -204,6 +222,57 @@ public class MecanumDrive {
         // Declare and Initialize variables
         double currentPosition = Math.abs(frontLeftMotor.getCurrentPosition());
         double targetPosition = rotations * TICKS_PER_ROTATION;
+        double integralSum = 0;
+        double error;
+        double previousPosition = 0;
+        double lastError = 0;
+        double derivative;
+
+        while ( currentPosition < targetPosition && linearOp.opModeIsActive() ) {
+
+            currentPosition = Math.abs(frontLeftMotor.getCurrentPosition());
+            error = targetPosition - currentPosition;
+
+            // Calculate the Derivative
+            derivative = (error - lastError) / timer.seconds();
+
+            // Calculate the Integral Sum
+            integralSum =  integralSum + (error * timer.seconds());
+
+            //Increasing Kp makes robot approach target faster and lead to overshooting target
+            //Incrasing kd makes the approach approach the target slower
+            powerPID = ( Kp * error) + (Ki * integralSum) + (Kd * derivative) ;
+            powerNormPID =  normalizePower(powerPID, targetPosition);
+
+            //Drive Forward
+            drivePID(powerNormPID);
+            lastError = error;
+
+            linearOp.telemetry.addData("PID Power:", powerPID);
+            linearOp.telemetry.addData("PID Normalized Power:", powerNormPID);
+            linearOp.telemetry.addData("FL Power:", frontLeftMotor.getPower());
+            linearOp.telemetry.addData("Current Position:", currentPosition);
+            linearOp.telemetry.addData("Target Positionr:", targetPosition);
+            linearOp.telemetry.addData("Previous Position:", previousPosition);
+            linearOp.telemetry.update();
+
+        }
+        stopMotors();
+    }
+
+    public void driveForwardDistancePID(double inches, double Kp, double Ki, double Kd) {
+
+        //Set Motor Run Modes
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        // Timer Variables
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
+
+        // Declare and Initialize variables
+        double currentPosition = Math.abs(frontLeftMotor.getCurrentPosition());
+        double targetPosition = convDistancetoTicks(inches);
         double integralSum = 0;
         double error;
         double previousPosition = 0;
