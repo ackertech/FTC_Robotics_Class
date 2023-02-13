@@ -165,11 +165,12 @@ public class MecanumDrive {
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         double currentPower = minspeed;
+        double minPower = 0.20;
         double tolerance = 0.97;
 
         while ((Math.abs(frontLeftMotor.getCurrentPosition()) < ticks) && linearOp.opModeIsActive()) {
             if (currentPower < (maxspeed * tolerance)) {
-                driveForward(currentPower);
+                driveForward(minspeed+currentPower);
                 currentPower += .001;
                 linearOp.telemetry.addData("Front Lef Motor: ", frontLeftMotor.getPower());
                 linearOp.telemetry.addData("Current Power Var: ", currentPower);

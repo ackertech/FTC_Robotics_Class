@@ -27,7 +27,7 @@ public class AutoMechBotPIDTester extends LinearOpMode {
 
             updateTelemetry("Driving Forward with PID Control");
             sleep(1000);
-            Bot.drivePID(15, .85,.0,.7);
+            Bot.driveForwardPID(8,0.70,.0,.30);
             //updateTelemetry("Finished");
             sleep(3000);
 
