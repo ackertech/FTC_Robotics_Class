@@ -1,8 +1,11 @@
 package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CompetitionRobot;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
+
+@TeleOp (name = "CompetitionTeleOp_Connor")
 
 public class Connor_CompetitionTeleop extends OpMode {
 
@@ -52,9 +55,9 @@ public class Connor_CompetitionTeleop extends OpMode {
 
         leftStickYVal = gamepad1.left_stick_y;
         leftStickYVal = Range.clip(leftStickYVal, -1, 1);
-        leftStickXVal = gamepad1.left_stick_x;
+        leftStickXVal = -gamepad1.left_stick_x;
         leftStickXVal = Range.clip(leftStickXVal, -1, 1);
-        rightStickXVal = gamepad1.right_stick_x;
+        rightStickXVal = -gamepad1.right_stick_x;
         rightStickXVal = Range.clip(rightStickXVal, -1, 1);
 
         frontLeftSpeed = leftStickYVal + leftStickXVal + rightStickXVal;
