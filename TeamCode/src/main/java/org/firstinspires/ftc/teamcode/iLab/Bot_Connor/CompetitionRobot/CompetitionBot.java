@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CompetitionRobot;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -36,6 +37,9 @@ public class CompetitionBot extends MecanumDrive_Connor {
     public final double SPEED = .3;
     public final double TOLERANCE = .4;
 
+    public DcMotor linearSlide;
+    public DcMotor lazy_Susan;
+
     public CompetitionBot() {}
 
 
@@ -61,6 +65,21 @@ public class CompetitionBot extends MecanumDrive_Connor {
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+
+        linearSlide = hwBot.dcMotor.get("linearSlide");
+        linearSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+        linearSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        lazy_Susan = hwBot.dcMotor.get("lazySusan");
+        lazy_Susan.setDirection(DcMotor.Direction.FORWARD);
+        lazy_Susan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         //Timer Reset
         currentTime.reset();
@@ -108,5 +127,17 @@ public class CompetitionBot extends MecanumDrive_Connor {
         imu.initialize(parametersimu);
     }
 
+
+    public void lazySusanLeft (double power) {
+        lazy_Susan.setPower(Math.abs(power));
+    }
+
+    public void lazySusanRight (double power) {
+        lazy_Susan.setPower(-Math.abs(power));
+    }
+
+    public void lazySusanStop(){
+        lazy_Susan.setPower(0);
+    }
 
 }
