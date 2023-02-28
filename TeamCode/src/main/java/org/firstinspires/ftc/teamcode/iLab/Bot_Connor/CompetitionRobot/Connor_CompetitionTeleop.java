@@ -33,12 +33,15 @@ public class Connor_CompetitionTeleop extends OpMode {
     public double linearSlideTicks = 350; //537.6
     public double linearSlideMidTicks = 250;
     public double linearSlideLowTicks = 150;
-    public double linearSlidePower = 0.20;
+    public double linearSlidePower = 1;
 
     public enum LazySusanEncoder {FORWARD, REVERSE, OFF}
     public LazySusanEncoder lazySusanEncoder = LazySusanEncoder.OFF;
     public double lazySusanTicks = 5000;
     public double lazySusanPower = 0.90;
+
+
+
 
     public CompetitionBot CompBot = new CompetitionBot();
 
@@ -57,6 +60,7 @@ public class Connor_CompetitionTeleop extends OpMode {
     @Override
     public void loop(){
         linearSlideControl();
+        mannualLinearSlideControl();
         lazySusanControl();
         drive();
         speedControl();
@@ -176,7 +180,25 @@ public class Connor_CompetitionTeleop extends OpMode {
                 CompBot.linearSlide.setPower(0);
          }
 
+
+    }
+
+    public void  mannualLinearSlideControl() {
+        leftStickYVal = gamepad2.left_stick_y;
+        leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+
+        if (leftStickYVal > 0.1) {
+            CompBot.linearSlideUp(linearSlidePower);
         }
+
+        else if (leftStickYVal < -0.1) {
+            CompBot.linearSlideDown(linearSlidePower);
+        }
+
+        else {
+            CompBot.linearSlideStop();
+        }
+    }
 
 public void lazySusanControl(){
     if (gamepad2.left_bumper) {
@@ -231,6 +253,7 @@ public void lazySusanControl(){
         telemetry.addData("pwr", "FR mtr: " + frontRightSpeed);
         telemetry.addData("pwr", "RL mtr: " + rearLeftSpeed);
         telemetry.addData("pwr", "RR mtr: " + rearRightSpeed);
+        telemetry.addData("linSLide", "hi",CompBot.linearSlide.getCurrentPosition());
         if (controlOfLinearSlide == ControlOfLinearSlide.HIGH) {
             telemetry.addLine("Linear Slide Position - HIGH");
         }

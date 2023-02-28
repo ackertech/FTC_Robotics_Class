@@ -68,7 +68,7 @@ public class CompetitionBot extends MecanumDrive_Connor {
 
 
         linearSlide = hwBot.dcMotor.get("linearSlide");
-        linearSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+        linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
         linearSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -138,6 +138,17 @@ public class CompetitionBot extends MecanumDrive_Connor {
 
     public void lazySusanStop(){
         lazy_Susan.setPower(0);
+    }
+
+    public void linearSlideUp (double power) {
+        linearSlide.setPower(-Math.abs(power));
+    }
+
+    public void linearSlideDown (double power) {linearSlide.setPower(Math.abs(power));
+    }
+
+    public void linearSlideStop() {
+        linearSlide.setPower(0);
     }
 
 }
