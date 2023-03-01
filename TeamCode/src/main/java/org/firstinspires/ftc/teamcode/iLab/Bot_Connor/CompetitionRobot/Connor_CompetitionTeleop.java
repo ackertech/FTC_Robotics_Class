@@ -30,6 +30,8 @@ public class Connor_CompetitionTeleop extends OpMode {
     public ElapsedTime TeleOpTime = new ElapsedTime();
     public enum ControlOfLinearSlide {GROUND, LOW, MIDDLE, HIGH}
     public ControlOfLinearSlide controlOfLinearSlide = ControlOfLinearSlide.GROUND;
+    public enum ControlOfCompClaw {OPEN, CLOSED}
+    public ControlOfCompClaw controlOfCompClaw = ControlOfCompClaw.OPEN;
     public double linearSlideTicks = 350; //537.6
     public double linearSlideMidTicks = 250;
     public double linearSlideLowTicks = 150;
@@ -59,6 +61,7 @@ public class Connor_CompetitionTeleop extends OpMode {
     }
     @Override
     public void loop(){
+        clawControl();
         linearSlideControl();
         mannualLinearSlideControl();
         lazySusanControl();
@@ -120,6 +123,34 @@ public class Connor_CompetitionTeleop extends OpMode {
             CompBot.rearRightMotor.setPower(rearRightSpeed * speedMultiply);
         }
     }
+
+
+    public void clawControl(){
+
+        if (gamepad2.right_trigger > 0.1) {
+            if (controlOfCompClaw == controlOfCompClaw.OPEN) {
+                controlOfCompClaw = controlOfCompClaw.CLOSED;
+            }
+
+            else {
+                controlOfCompClaw = controlOfCompClaw.OPEN;
+            }
+        }
+
+        if (controlOfCompClaw == ControlOfCompClaw.OPEN) {
+            CompBot.claw.setPosition(0);
+        }
+
+        else if (controlOfCompClaw == controlOfCompClaw.CLOSED) {
+            CompBot.claw.setPosition(.25);
+        }
+    }
+
+
+
+
+
+
 
     public void linearSlideControl() {
         if (gamepad2.dpad_up)  {

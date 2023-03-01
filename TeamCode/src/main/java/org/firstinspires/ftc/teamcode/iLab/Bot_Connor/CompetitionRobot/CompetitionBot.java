@@ -5,6 +5,7 @@ import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
@@ -39,6 +40,7 @@ public class CompetitionBot extends MecanumDrive_Connor {
 
     public DcMotor linearSlide;
     public DcMotor lazy_Susan;
+    public Servo claw = null;
 
     public CompetitionBot() {}
 
@@ -80,6 +82,11 @@ public class CompetitionBot extends MecanumDrive_Connor {
 
         lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        claw = hwBot.get(Servo.class, "claw");
+        claw.setDirection(Servo.Direction.FORWARD);
+
+        //45 degrees
 
         //Timer Reset
         currentTime.reset();
