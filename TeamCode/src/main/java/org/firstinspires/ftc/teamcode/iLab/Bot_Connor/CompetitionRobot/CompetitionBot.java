@@ -154,6 +154,27 @@ public class CompetitionBot extends MecanumDrive_Connor {
     public void linearSlideDown (double power) {linearSlide.setPower(Math.abs(power));
     }
 
+    public void linearSlideUp (double power, double rotations) {
+        double ticks = rotations * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        while (Math.abs(linearSlide.getCurrentPosition()) < ticks && LinearOp.opModeIsActive()) {
+            linearSlideUp(power);
+        }
+        linearSlideStop();
+    }
+
+    public void linearSlideDown (double power, double rotations) {
+        double ticks = rotations * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        while (Math.abs(linearSlide.getCurrentPosition()) >= ticks && LinearOp.opModeIsActive()) {
+            linearSlideDown(power);
+        }
+        linearSlideStop();
+    }
+
+
     public void linearSlideStop() {
         linearSlide.setPower(0);
     }
