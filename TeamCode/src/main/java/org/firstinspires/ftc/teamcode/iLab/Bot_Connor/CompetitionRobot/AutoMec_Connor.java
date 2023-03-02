@@ -26,13 +26,13 @@ public class AutoMec_Connor extends LinearOpMode {
         while (opModeIsActive()) {
 
             telemetryUpdate("Rotate Left");
-            FixitsBot.rotateLeft(.7,3.9);
+            FixitsBot.rotateLeft(.7,3.4);
             sleep(1000);
 
-            FixitsBot.gyroCorrection(.7,0);
+
 
             telemetryUpdate("Drive Forward");
-            FixitsBot.driveForward(1,7.8);
+            FixitsBot.driveForward(1,3.9);
             sleep(1000);
 
             telemetryUpdate("Grabbing Cone");
@@ -43,7 +43,7 @@ public class AutoMec_Connor extends LinearOpMode {
             FixitsBot.strafeRight(1,7.8);
             sleep(1000);
 
-            FixitsBot.gyroCorrection(.7,0);
+
 
             telemetryUpdate("Turning");
             FixitsBot.rotateRight(.7,2.5);
