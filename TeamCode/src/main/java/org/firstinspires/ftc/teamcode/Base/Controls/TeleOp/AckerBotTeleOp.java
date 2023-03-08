@@ -32,8 +32,8 @@ public class AckerBotTeleOp extends OpMode {
     boolean reverseModeToggle = false;
 
     //Arm & Elbow Variables
-    public enum ArmState {ARM_START, ARM_RAISE, ARM_REST, ARM_RETRACT}
-    ArmState armState = ArmState.ARM_START;
+    public enum GateState {ARM_START, ARM_RAISE, ARM_REST, ARM_RETRACT}
+    GateState armState = GateState.ARM_START;
     public enum ArmControl {AUTO, MANUAL}
     public ArmControl armControl = ArmControl.AUTO;
 
@@ -274,28 +274,28 @@ public class AckerBotTeleOp extends OpMode {
                 case ARM_START:
                     if (gamepad2.dpad_up) {
                         Handy.elbow.setPosition(Handy.elbowMaxPos);
-                        armState = ArmState.ARM_RAISE;
+                        armState = GateState.ARM_RAISE;
                     }
                     break;
                 case ARM_RAISE:
                     Handy.closePartial();
-                    armState = ArmState.ARM_REST;
+                    armState = GateState.ARM_REST;
 
                     break;
                 case ARM_REST:
                     if (gamepad2.dpad_down) {
                         Handy.closePartial();;
                         Handy.elbow.setPosition(Handy.elbowMinPos);
-                        armState = ArmState.ARM_RETRACT;
+                        armState = GateState.ARM_RETRACT;
                     }
                     break;
                 case ARM_RETRACT:
                     Handy.closePartial();
-                    armState = ArmState.ARM_START;
+                    armState = GateState.ARM_START;
 
                     break;
                 default:
-                    armState = ArmState.ARM_START;
+                    armState = GateState.ARM_START;
             }
 
         }
