@@ -49,7 +49,10 @@ public class Connor_CompetitionTeleop extends OpMode {
 
 
     @Override
-    public void init() {CompBot.initRobot(hardwareMap);}
+    public void init() {
+        CompBot.initRobot(hardwareMap);
+        CompBot.claw.setPosition(0);
+    }
 
 
     @Override
@@ -127,21 +130,11 @@ public class Connor_CompetitionTeleop extends OpMode {
 
     public void clawControl(){
 
-        if (gamepad2.a) {
-            if (controlOfCompClaw == controlOfCompClaw.OPEN) {
-                controlOfCompClaw = controlOfCompClaw.CLOSED;
-            }
-
-            else {
-                controlOfCompClaw = controlOfCompClaw.OPEN;
-            }
-        }
-
-        if (controlOfCompClaw == ControlOfCompClaw.OPEN) {
+        if (gamepad2.right_trigger > 0.1) {
             CompBot.claw.setPosition(0);
         }
 
-        else if (controlOfCompClaw == controlOfCompClaw.CLOSED) {
+        if (gamepad2.left_trigger > 0.1) {
             CompBot.claw.setPosition(.25);
         }
     }
