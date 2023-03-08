@@ -46,13 +46,14 @@ public class Fernando_Daniel extends FourMotorDrive_Daniel {
 
             //Initialize Launcher Motor 1
             launchMotor1 = hwBot.dcMotor.get("launch_motor1");
-            launchMotor1.setDirection(DcMotorSimple.Direction.FORWARD);
+            launchMotor1.setDirection(DcMotorSimple.Direction.REVERSE);
             launchMotor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             launchMotor1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             launchMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+
             //Initialize Launcher Motor 2
             launchMotor2 = hwBot.dcMotor.get("launch_motor2");
-            launchMotor2.setDirection(DcMotorSimple.Direction.REVERSE);
+            launchMotor2.setDirection(DcMotorSimple.Direction.FORWARD);
             launchMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             launchMotor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             launchMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
