@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Base.Controls.TeleOp.AckerBotTeleOp;
 
 //@Disabled
-@TeleOp(name = "Digital Twin")
+@TeleOp(name = "Digital Twin TA")
 public class DigitalTwinTeleAuto extends OpMode {
 
     //Conveyor Belt Variables

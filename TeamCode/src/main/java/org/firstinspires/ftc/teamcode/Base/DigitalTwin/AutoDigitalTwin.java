@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import org.firstinspires.ftc.teamcode.Base.DigitalTwin.DigitalTwin;
 
 @Disabled
-@Autonomous(name = "Digital Twin")
+@Autonomous(name = "Digital Twin A")
 
 public class AutoDigitalTwin extends LinearOpMode {
 

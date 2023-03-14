@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 
 //@Disabled
-@TeleOp(name = "Digital Twin")
+@TeleOp(name = "Digital Twin T")
 public class TeleOpDigitalTwin extends OpMode {
 
     double speedMultiply = 1.0;

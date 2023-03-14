@@ -79,7 +79,7 @@ public abstract class Connor_AutoMain extends LinearOpMode {
                 telemetry.addLine("No Tag Found ...... Try Harder Next Time");
 
                 if (tagOfInterest == null) {
-                    telemetry.addLine("Tag has not been faound at all.");
+                    telemetry.addLine("Tag has not been found at all.");
                 } else {
                     telemetry.addLine("\nTag was found before. Last seen at:");
                     tagTelemetry(tagOfInterest);
