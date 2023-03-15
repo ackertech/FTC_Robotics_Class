@@ -189,5 +189,9 @@ public class CompetitionBot extends MecanumDrive_Connor {
         linearSlide.setPower(0);
     }
 
+    public void clawOpen () {claw.setPosition(0);}
+
+    public void clawClose () {claw.setPosition(.25);}
+
 
 }

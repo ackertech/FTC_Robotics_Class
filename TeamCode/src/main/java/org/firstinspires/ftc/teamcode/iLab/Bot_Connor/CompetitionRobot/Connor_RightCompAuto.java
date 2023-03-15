@@ -1,11 +1,10 @@
 package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CompetitionRobot;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Base.Sensors.TagSleeveDetection;
-import org.openftc.easyopencv.OpenCvCamera;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-public class Connor_CompAuto extends Connor_AutoMain {
+@Autonomous (name = "Connor_RightCompAuto")
+public class Connor_RightCompAuto extends Connor_AutoMain{
 
     CompetitionBot FixitsBot = new CompetitionBot();
 
@@ -36,6 +35,25 @@ public class Connor_CompAuto extends Connor_AutoMain {
         while (opModeIsActive()) {
 
             FixitsBot.gyroReset();
+
+            FixitsBot.driveForward(1,5.1);
+            sleep(500);
+            FixitsBot.gyroCorrection(0.2,-45);
+            sleep(500);
+            FixitsBot.rotateLeft(.5,1);
+            sleep(500);
+            FixitsBot.linearSlideUp(0.7,3);
+            sleep(500);
+            FixitsBot.driveForward(0.5,.31);
+            sleep(500);
+            FixitsBot.clawOpen();
+            sleep(500);
+            FixitsBot.driveBack(0.5, 0.6);
+            FixitsBot.linearSlideDown(0.7,3);
+            FixitsBot.rotateRight(.5,1);
+            sleep(500);
+            FixitsBot.driveBack(1,4.89);
+            sleep(500);
 
 
 
@@ -77,12 +95,6 @@ public class Connor_CompAuto extends Connor_AutoMain {
                 telemetryUpdate("Cannot Park - Park Position = NONE");
 
             }
-
-
-
-
-
-
         }
         requestOpModeStop();
 
@@ -102,4 +114,3 @@ public class Connor_CompAuto extends Connor_AutoMain {
     }
 
 }
-
