@@ -111,16 +111,20 @@ public class CompetitionBot extends MecanumDrive_Connor {
         angles = imu.getAngularOrientation(
                 AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
-        if (angles.firstAngle >= angle + TOLERANCE) {
+        if (angles.firstAngle >= angle + TOLERANCE && LinearOp.opModeIsActive()) {
             while (angles.firstAngle >=  angle + TOLERANCE && LinearOp.opModeIsActive()) {
                 rotateRight(speed);
                 angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+
+               LinearOp.telemetry.addData("Current Angle Est: ", angles.firstAngle);
             }
         }
-        else if (angles.firstAngle <= angle - TOLERANCE) {
+        else if (angles.firstAngle <= angle - TOLERANCE && LinearOp.opModeIsActive()) {
             while (angles.firstAngle <= angle - TOLERANCE && LinearOp.opModeIsActive()) {
                 rotateLeft(speed);
                 angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+
+                LinearOp.telemetry.addData("Current Angle Est:" , angles.firstAngle);
             }
         }
         stopMotors();
@@ -143,6 +147,10 @@ public class CompetitionBot extends MecanumDrive_Connor {
         lazy_Susan.setPower(-Math.abs(power));
     }
 
+    public void autoSusanLeft (double power, double rotations) {lazy_Susan.setPower(Math.abs(power));}
+
+    public void autoSusanRight (double power, double rotations) {lazy_Susan.setPower(-Math.abs(power));}
+
     public void lazySusanStop(){
         lazy_Susan.setPower(0);
     }
@@ -156,8 +164,8 @@ public class CompetitionBot extends MecanumDrive_Connor {
 
 
 
-    public void linearSlideUp (double power, double rotations) {
-        double ticks = rotations * TICKS_PER_ROTATION;
+    public void linearSlideUp (double power, double rotations)  {
+        double ticks = rotations * (1) * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         while (Math.abs(linearSlide.getCurrentPosition()) < ticks && LinearOp.opModeIsActive()) {
@@ -180,5 +188,6 @@ public class CompetitionBot extends MecanumDrive_Connor {
     public void linearSlideStop() {
         linearSlide.setPower(0);
     }
+
 
 }

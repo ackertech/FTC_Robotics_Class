@@ -15,7 +15,7 @@ public abstract class Connor_AutoMain extends LinearOpMode {
 
     OpenCvCamera camera;
     TagSleeveDetection tagPipeline;
-    public enum ParkingPosition_Connor {ONE, TWO, THREE, NONE}
+    public enum ParkingPosition_Connor {LEFT, MIDDLE, RIGHT, NONE}
     public ParkingPosition_Connor parkPosition = ParkingPosition_Connor.NONE;
 
 
@@ -67,15 +67,22 @@ public abstract class Connor_AutoMain extends LinearOpMode {
 
             if (tagFound) {
                 if (tagOfInterest.id == ID_TAG_LIST[0]) {
-                    parkPosition = ParkingPosition_Connor.ONE;
+                    parkPosition = ParkingPosition_Connor.LEFT;
                 } else if (tagOfInterest.id == ID_TAG_LIST[1]) {
-                    parkPosition = ParkingPosition_Connor.TWO;
+                    parkPosition = ParkingPosition_Connor.MIDDLE;
                 } else if (tagOfInterest.id == ID_TAG_LIST[2]) {
-                    parkPosition = ParkingPosition_Connor.THREE;
+                    parkPosition = ParkingPosition_Connor.RIGHT;
                 } else {
                     parkPosition = ParkingPosition_Connor.NONE;
                 }
-            } else {
+
+                telemetry.addLine("Tag Found ... Somehow");
+                parkingTelemetry();
+                tagTelemetry(tagOfInterest);
+                telemetry.update();
+            }
+
+            else {
                 telemetry.addLine("No Tag Found ...... Try Harder Next Time");
 
                 if (tagOfInterest == null) {
@@ -86,9 +93,23 @@ public abstract class Connor_AutoMain extends LinearOpMode {
                 }
 
             }
-            telemetry.update();
+
 
         }
+
+        else {
+            telemetry.addLine("No Tag Found ...... Try Harder Next Time");
+
+            if (tagOfInterest == null) {
+                telemetry.addLine("Tag has not been found at all.");
+            } else {
+                telemetry.addLine("\nTag was found before. Last seen at:");
+                tagTelemetry(tagOfInterest);
+            }
+
+        }
+
+        telemetry.update();
 
 
     }
@@ -96,6 +117,7 @@ public abstract class Connor_AutoMain extends LinearOpMode {
         public void parkingTelemetry() {
             telemetry.addData("Tag ID", tagOfInterest.id);
             telemetry.addData("Parking Location: ", parkPosition);
+
         }
 
 
@@ -108,6 +130,7 @@ public abstract class Connor_AutoMain extends LinearOpMode {
                 telemetry.addLine(String.format("Rotation Yaw: %.2f degrees", Math.toDegrees(detection.pose.yaw)));
                 telemetry.addLine(String.format("Rotation Pitch: %.2f degrees", Math.toDegrees(detection.pose.pitch)));
                 telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(detection.pose.roll)));
+
             }
 
 
