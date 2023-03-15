@@ -3,7 +3,9 @@ package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CompetitionRobot;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
@@ -36,6 +38,10 @@ public class CompetitionBot extends MecanumDrive_Connor {
     public final double SPEED = .3;
     public final double TOLERANCE = .4;
 
+    public DcMotor linearSlide;
+    public DcMotor lazy_Susan;
+    public Servo claw = null;
+
     public CompetitionBot() {}
 
 
@@ -62,6 +68,26 @@ public class CompetitionBot extends MecanumDrive_Connor {
         rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+
+        linearSlide = hwBot.dcMotor.get("linearSlide");
+        linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+        linearSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        lazy_Susan = hwBot.dcMotor.get("lazySusan");
+        lazy_Susan.setDirection(DcMotor.Direction.FORWARD);
+        lazy_Susan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        claw = hwBot.get(Servo.class, "claw");
+        claw.setDirection(Servo.Direction.FORWARD);
+
+        //45 degrees
+
         //Timer Reset
         currentTime.reset();
 
@@ -85,16 +111,20 @@ public class CompetitionBot extends MecanumDrive_Connor {
         angles = imu.getAngularOrientation(
                 AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
-        if (angles.firstAngle >= angle + TOLERANCE) {
+        if (angles.firstAngle >= angle + TOLERANCE && LinearOp.opModeIsActive()) {
             while (angles.firstAngle >=  angle + TOLERANCE && LinearOp.opModeIsActive()) {
                 rotateRight(speed);
                 angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+
+               LinearOp.telemetry.addData("Current Angle Est: ", angles.firstAngle);
             }
         }
-        else if (angles.firstAngle <= angle - TOLERANCE) {
+        else if (angles.firstAngle <= angle - TOLERANCE && LinearOp.opModeIsActive()) {
             while (angles.firstAngle <= angle - TOLERANCE && LinearOp.opModeIsActive()) {
                 rotateLeft(speed);
                 angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+
+                LinearOp.telemetry.addData("Current Angle Est:" , angles.firstAngle);
             }
         }
         stopMotors();
@@ -106,6 +136,57 @@ public class CompetitionBot extends MecanumDrive_Connor {
     public void gyroReset () {
         BNO055IMU.Parameters parametersimu = new BNO055IMU.Parameters();
         imu.initialize(parametersimu);
+    }
+
+
+    public void lazySusanLeft (double power) {
+        lazy_Susan.setPower(Math.abs(power));
+    }
+
+    public void lazySusanRight (double power) {
+        lazy_Susan.setPower(-Math.abs(power));
+    }
+
+    public void autoSusanLeft (double power, double rotations) {lazy_Susan.setPower(Math.abs(power));}
+
+    public void autoSusanRight (double power, double rotations) {lazy_Susan.setPower(-Math.abs(power));}
+
+    public void lazySusanStop(){
+        lazy_Susan.setPower(0);
+    }
+
+    public void linearSlideUp (double power) {
+        linearSlide.setPower(-Math.abs(power));
+    }
+
+    public void linearSlideDown (double power) {linearSlide.setPower(Math.abs(power));
+    }
+
+
+
+    public void linearSlideUp (double power, double rotations)  {
+        double ticks = rotations * (1) * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        while (Math.abs(linearSlide.getCurrentPosition()) < ticks && LinearOp.opModeIsActive()) {
+            linearSlideUp(power);
+        }
+        linearSlideStop();
+    }
+
+    public void linearSlideDown (double power, double rotations) {
+        double ticks = rotations * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        while (Math.abs(linearSlide.getCurrentPosition()) >= ticks && LinearOp.opModeIsActive()) {
+            linearSlideDown(power);
+        }
+        linearSlideStop();
+    }
+
+
+    public void linearSlideStop() {
+        linearSlide.setPower(0);
     }
 
 
