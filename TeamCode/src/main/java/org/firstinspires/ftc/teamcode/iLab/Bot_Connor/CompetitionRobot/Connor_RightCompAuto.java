@@ -20,25 +20,20 @@ public class Connor_RightCompAuto extends Connor_AutoMain{
         telemetry.addLine("Robot Awaiting Start Procedure");
         telemetry.update();
 
-        while (!isStarted() && !isStopRequested()) {
-            findTag();
-            sleep(500);
-            findTag();
-            sleep(500);
-            findTag();
-            sleep(500);
-            camera.closeCameraDevice();
-        }
-
         waitForStart();
 
         while (opModeIsActive()) {
+            detectTags();
+            //camera.closeCameraDevice();
+            parkingTelemetry();
 
             FixitsBot.gyroReset();
 
+            FixitsBot.clawClose();
+
             FixitsBot.driveForward(1,5.1);
             sleep(500);
-            FixitsBot.gyroCorrection(0.2,-45);
+           // FixitsBot.gyroCorrection(0.2,-45);
             sleep(500);
             FixitsBot.rotateLeft(.5,1);
             sleep(500);

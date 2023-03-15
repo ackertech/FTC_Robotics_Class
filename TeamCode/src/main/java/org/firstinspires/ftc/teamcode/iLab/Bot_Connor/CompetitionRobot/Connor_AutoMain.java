@@ -114,6 +114,32 @@ public abstract class Connor_AutoMain extends LinearOpMode {
 
     }
 
+    public void stopCamera() {
+        camera.stopRecordingPipeline();
+        camera.stopStreaming();
+        camera.closeCameraDevice();
+    }
+
+
+    public void detectTags() {
+
+        findTag();
+
+        sleep(500);
+
+        findTag();
+
+        sleep(500);
+
+        findTag();
+
+        sleep(500);
+
+        stopCamera();
+
+        sleep(500);
+    }
+
         public void parkingTelemetry() {
             telemetry.addData("Tag ID", tagOfInterest.id);
             telemetry.addData("Parking Location: ", parkPosition);
