@@ -13,25 +13,32 @@ public class Connor_LeftCompAuto extends Connor_AutoMain {
 
     public ParkingPosition_Connor parkPosition = ParkingPosition_Connor.NONE;
 
+
+
+
     @Override
     public void runOpMode() throws InterruptedException {
+
         FixitsBot.initRobot(hardwareMap);
         FixitsBot.setLinearOp(this);
+
         initPipeline();
 
-
         telemetry.addLine("Robot Awaiting Start Procedure");
+        while (opModeIsActive()) {
+            while (!isStarted() && !isStopRequested()) {
+                findTag();
+                sleep(20);
+            }
         telemetry.update();
-
 
 
         waitForStart();
 
-        while (opModeIsActive()) {
 
 
            detectTags();
-            //camera.closeCameraDevice();
+
             parkingTelemetry();
 
             FixitsBot.gyroReset();

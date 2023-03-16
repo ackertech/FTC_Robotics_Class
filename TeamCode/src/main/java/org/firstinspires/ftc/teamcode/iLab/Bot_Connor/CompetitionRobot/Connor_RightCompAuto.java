@@ -18,12 +18,22 @@ public class Connor_RightCompAuto extends Connor_AutoMain{
 
 
         telemetry.addLine("Robot Awaiting Start Procedure");
+
+        while (!isStarted() && !isStopRequested()) {
+            findTag();
+            sleep(20);
+        }
         telemetry.update();
 
         waitForStart();
 
         while (opModeIsActive()) {
+
+
+
             detectTags();
+
+
             //camera.closeCameraDevice();
             parkingTelemetry();
 
@@ -37,18 +47,19 @@ public class Connor_RightCompAuto extends Connor_AutoMain{
             sleep(500);
             FixitsBot.rotateLeft(.5,1);
             sleep(500);
-            FixitsBot.linearSlideUp(0.7,3);
-            sleep(500);
+            FixitsBot.linearSlideUp(1);
+            sleep(700);
+            FixitsBot.linearSlide.setPower(0);
             FixitsBot.driveForward(0.5,.31);
             sleep(500);
             FixitsBot.clawOpen();
-            sleep(500);
-            FixitsBot.driveBack(0.5, 0.6);
-            FixitsBot.linearSlideDown(0.7,3);
-            FixitsBot.rotateRight(.5,1);
-            sleep(500);
-            FixitsBot.driveBack(1,4.89);
-            sleep(500);
+        //    sleep(500);
+       //     FixitsBot.driveBack(0.5, 0.6);
+        //    FixitsBot.linearSlideDown(0.7,3);
+      //      FixitsBot.rotateRight(.5,1);
+        //    sleep(500);
+        //    FixitsBot.driveBack(1,4.89);
+         //   sleep(500);
 
 
 
