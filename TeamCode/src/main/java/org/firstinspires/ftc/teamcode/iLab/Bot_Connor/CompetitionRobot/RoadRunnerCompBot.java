@@ -36,6 +36,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
@@ -57,6 +58,10 @@ public class RoadRunnerCompBot extends MecanumDrive {
     public static double VX_WEIGHT = 1;
     public static double VY_WEIGHT = 1;
     public static double OMEGA_WEIGHT = 1;
+
+    public DcMotor linearSlide;
+    public DcMotor lazy_Susan;
+    public Servo claw = null;
 
     private TrajectorySequenceRunner trajectorySequenceRunner;
 
@@ -139,6 +144,24 @@ public class RoadRunnerCompBot extends MecanumDrive {
         // TODO: reverse any motors using DcMotor.setDirection()
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        linearSlide = hardwareMap.dcMotor.get("linearSlide");
+        linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+        linearSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        lazy_Susan = hardwareMap.dcMotor.get("lazySusan");
+        lazy_Susan.setDirection(DcMotor.Direction.FORWARD);
+        lazy_Susan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        claw = hardwareMap.get(Servo.class, "claw");
+        claw.setDirection(Servo.Direction.FORWARD);
+
 
         // TODO: if desired, use setLocalizer() to change the localization method
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
@@ -310,5 +333,31 @@ public class RoadRunnerCompBot extends MecanumDrive {
     public static TrajectoryAccelerationConstraint getAccelerationConstraint(double maxAccel) {
         return new ProfileAccelerationConstraint(maxAccel);
     }
+
+    public void lazySusanLeft (double power) {
+        lazy_Susan.setPower(Math.abs(power));
+    }
+
+    public void lazySusanRight (double power) {
+        lazy_Susan.setPower(-Math.abs(power));
+    }
+    public void lazySusanStop(){
+        lazy_Susan.setPower(0);
+    }
+    public void linearSlideUp (double power) {
+        linearSlide.setPower(-Math.abs(power));
+    }
+
+    public void linearSlideDown (double power) {linearSlide.setPower(Math.abs(power));
+    }
+    public void linearSlideStop() {
+        linearSlide.setPower(0);
+    }
+
+    public void clawOpen () {claw.setPosition(0);}
+
+    public void clawClose () {claw.setPosition(.25);}
+
+
 }
 
