@@ -44,15 +44,13 @@ public class Fernando_Daniel extends FourMotorDrive_Daniel {
             rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-            //Initialize Launcher Motor 1
-            launchMotor1 = hwBot.dcMotor.get("launch_motor1");
-            launchMotor1.setDirection(DcMotorSimple.Direction.REVERSE);
+            launchMotor1 = hwBot.dcMotor.get("launch_motor");
+            launchMotor1.setDirection(DcMotorSimple.Direction.FORWARD);
             launchMotor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             launchMotor1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             launchMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
-            //Initialize Launcher Motor 2
-            launchMotor2 = hwBot.dcMotor.get("launch_motor2");
+            launchMotor2 = hwBot.dcMotor.get("launch_motor_2");
             launchMotor2.setDirection(DcMotorSimple.Direction.FORWARD);
             launchMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             launchMotor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -70,22 +68,11 @@ public class Fernando_Daniel extends FourMotorDrive_Daniel {
             public void lowerFlag(){
                 flag.setPosition(0);
             }
-            public void raiseFlag () {
+            public void raiseFlag () {flag.setPosition(0.475);}
+            public void waveFlagLeft () {flag.setPosition(0.38);}
+            public void waveFlagRight () {flag.setPosition(0.55);}
+            public void initFlag () {flag.setPosition(.2);}  //was .8
 
-            flag.setPosition(0.475);
-        }
-             public void waveFlagLeft () {
-
-            flag.setPosition(0.38);
-        }
-            public void waveFlagRight () {
-
-            flag.setPosition(0.55);
-        }
-            public void initFlag () {
-
-            flag.setPosition(.8);
-        }
         public void setLedPattern (RevBlinkinLedDriver.BlinkinPattern patternName) {
             ledLights.setPattern(patternName);
 
