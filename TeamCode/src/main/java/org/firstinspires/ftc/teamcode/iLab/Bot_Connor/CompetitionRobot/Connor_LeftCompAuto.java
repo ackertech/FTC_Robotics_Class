@@ -1,41 +1,69 @@
 package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CompetitionRobot;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Base.Sensors.TagSleeveDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 
-public class Connor_CompAuto extends Connor_AutoMain {
+@Autonomous (name = "Connor_LeftCompAuto")
+public class Connor_LeftCompAuto extends Connor_AutoMain {
 
     CompetitionBot FixitsBot = new CompetitionBot();
 
     public ParkingPosition_Connor parkPosition = ParkingPosition_Connor.NONE;
 
+
+
+
     @Override
     public void runOpMode() throws InterruptedException {
+
         FixitsBot.initRobot(hardwareMap);
         FixitsBot.setLinearOp(this);
+
         initPipeline();
 
-
         telemetry.addLine("Robot Awaiting Start Procedure");
+        while (opModeIsActive()) {
+            while (!isStarted() && !isStopRequested()) {
+                findTag();
+                sleep(20);
+            }
         telemetry.update();
 
-        while (!isStarted() && !isStopRequested()) {
-            findTag();
-            sleep(500);
-            findTag();
-            sleep(500);
-            findTag();
-            sleep(500);
-            camera.closeCameraDevice();
-        }
 
         waitForStart();
 
-        while (opModeIsActive()) {
+
+
+           detectTags();
+
+            parkingTelemetry();
 
             FixitsBot.gyroReset();
+
+
+            FixitsBot.clawClose();
+
+            FixitsBot.driveForward(1,5.1);
+            sleep(500);
+           // FixitsBot.gyroCorrection(0.2,-45);
+            sleep(500);
+            FixitsBot.rotateRight(.5,1);
+            sleep(500);
+            FixitsBot.linearSlideUp(0.7,3);
+            sleep(500);
+            FixitsBot.driveForward(0.5,.31);
+            sleep(500);
+            FixitsBot.clawOpen();
+            sleep(500);
+            FixitsBot.driveBack(0.5, 0.6);
+            FixitsBot.linearSlideDown(0.7,3);
+            FixitsBot.rotateLeft(.5,1);
+            sleep(500);
+            FixitsBot.driveBack(1,4.89);
+            sleep(500);
 
 
 
@@ -77,12 +105,6 @@ public class Connor_CompAuto extends Connor_AutoMain {
                 telemetryUpdate("Cannot Park - Park Position = NONE");
 
             }
-
-
-
-
-
-
         }
         requestOpModeStop();
 
@@ -100,6 +122,4 @@ public class Connor_CompAuto extends Connor_AutoMain {
         telemetry.addLine("LONG LIVE TACO");
         telemetry.update();
     }
-
 }
-

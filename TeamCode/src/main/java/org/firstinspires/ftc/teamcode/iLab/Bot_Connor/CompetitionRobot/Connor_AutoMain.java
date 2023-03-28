@@ -87,7 +87,8 @@ public abstract class Connor_AutoMain extends LinearOpMode {
 
                 if (tagOfInterest == null) {
                     telemetry.addLine("Tag has not been found at all.");
-                } else {
+                }
+                else {
                     telemetry.addLine("\nTag was found before. Last seen at:");
                     tagTelemetry(tagOfInterest);
                 }
@@ -112,6 +113,32 @@ public abstract class Connor_AutoMain extends LinearOpMode {
         telemetry.update();
 
 
+    }
+
+    public void stopCamera() {
+        camera.stopRecordingPipeline();
+        camera.stopStreaming();
+        camera.closeCameraDevice();
+    }
+
+
+    public void detectTags() {
+
+        findTag();
+
+        sleep(500);
+
+        findTag();
+
+        sleep(500);
+
+        findTag();
+
+        sleep(500);
+
+        stopCamera();
+
+        sleep(500);
     }
 
         public void parkingTelemetry() {
