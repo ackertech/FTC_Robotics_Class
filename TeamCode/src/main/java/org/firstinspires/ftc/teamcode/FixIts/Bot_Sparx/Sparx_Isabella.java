@@ -8,10 +8,12 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Sparx_Isabella extends FourMotorDrive_Isabella{
 
-    //Dedlare Robot Variables//
+    //Declare Robot Variables//
     public Servo flag = null;
     public DcMotor launchMotor = null;
     public DcMotor launchMotor2 = null;
+    public Servo discLaunch = null;
+    public Servo catapult = null;
 
     public HardwareMap hwBot = null;
     //Led Variables//
