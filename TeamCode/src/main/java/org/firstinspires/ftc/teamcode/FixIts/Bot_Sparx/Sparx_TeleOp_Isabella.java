@@ -94,6 +94,7 @@ public class Sparx_TeleOp_Isabella extends OpMode {
                 Bot.launchMotor2.setPower(0.0);
             }
         }
+        //
         public void discControl () {
                 if (gamepad2.a) {
                     Bot.discLaunch.setPosition(0.25);
