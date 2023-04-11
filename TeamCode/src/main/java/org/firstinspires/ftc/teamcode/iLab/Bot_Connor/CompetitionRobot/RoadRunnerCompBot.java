@@ -1,8 +1,20 @@
-package org.firstinspires.ftc.teamcode.SLAM.drive;
+package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CompetitionRobot;
+
+
+import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.MAX_ACCEL;
+import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.MAX_ANG_ACCEL;
+import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.MAX_ANG_VEL;
+import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.MAX_VEL;
+import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.MOTOR_VELO_PID;
+import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.RUN_USING_ENCODER;
+import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.TRACK_WIDTH;
+import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.encoderTicksToInches;
+import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.kA;
+import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.kStatic;
+import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.kV;
 
 import androidx.annotation.NonNull;
 
-import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.control.PIDCoefficients;
 import com.acmerobotics.roadrunner.drive.DriveSignal;
 import com.acmerobotics.roadrunner.drive.MecanumDrive;
@@ -24,6 +36,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
@@ -36,23 +49,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.MAX_ACCEL;
-import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.MAX_ANG_ACCEL;
-import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.MAX_ANG_VEL;
-import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.MAX_VEL;
-import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.MOTOR_VELO_PID;
-import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.RUN_USING_ENCODER;
-import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.TRACK_WIDTH;
-import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.encoderTicksToInches;
-import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.kA;
-import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.kStatic;
-import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.kV;
-
-/*
- * Simple mecanum drive hardware implementation for REV hardware.
- */
-//@Config
-public class SampleMecanumDrive extends MecanumDrive {
+public class RoadRunnerCompBot extends MecanumDrive {
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(8, 0, 0);
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(8, 0, 0);
 
@@ -61,6 +58,10 @@ public class SampleMecanumDrive extends MecanumDrive {
     public static double VX_WEIGHT = 1;
     public static double VY_WEIGHT = 1;
     public static double OMEGA_WEIGHT = 1;
+
+    public DcMotor linearSlide;
+    public DcMotor lazy_Susan;
+    public Servo claw = null;
 
     private TrajectorySequenceRunner trajectorySequenceRunner;
 
@@ -75,7 +76,7 @@ public class SampleMecanumDrive extends MecanumDrive {
     private BNO055IMU imu;
     private VoltageSensor batteryVoltageSensor;
 
-    public SampleMecanumDrive(HardwareMap hardwareMap) {
+    public RoadRunnerCompBot(HardwareMap hardwareMap) {
         super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
 
         follower = new HolonomicPIDVAFollower(TRANSLATIONAL_PID, TRANSLATIONAL_PID, HEADING_PID,
@@ -143,6 +144,24 @@ public class SampleMecanumDrive extends MecanumDrive {
         // TODO: reverse any motors using DcMotor.setDirection()
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        linearSlide = hardwareMap.dcMotor.get("linearSlide");
+        linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+        linearSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        lazy_Susan = hardwareMap.dcMotor.get("lazySusan");
+        lazy_Susan.setDirection(DcMotor.Direction.FORWARD);
+        lazy_Susan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        claw = hardwareMap.get(Servo.class, "claw");
+        claw.setDirection(Servo.Direction.FORWARD);
+
 
         // TODO: if desired, use setLocalizer() to change the localization method
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
@@ -314,4 +333,31 @@ public class SampleMecanumDrive extends MecanumDrive {
     public static TrajectoryAccelerationConstraint getAccelerationConstraint(double maxAccel) {
         return new ProfileAccelerationConstraint(maxAccel);
     }
+
+    public void lazySusanLeft (double power) {
+        lazy_Susan.setPower(Math.abs(power));
+    }
+
+    public void lazySusanRight (double power) {
+        lazy_Susan.setPower(-Math.abs(power));
+    }
+    public void lazySusanStop(){
+        lazy_Susan.setPower(0);
+    }
+    public void linearSlideUp (double power) {
+        linearSlide.setPower(-Math.abs(power));
+    }
+
+    public void linearSlideDown (double power) {linearSlide.setPower(Math.abs(power));
+    }
+    public void linearSlideStop() {
+        linearSlide.setPower(0);
+    }
+
+    public void clawOpen () {claw.setPosition(0);}
+
+    public void clawClose () {claw.setPosition(.25);}
+
+
 }
+

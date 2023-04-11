@@ -24,7 +24,7 @@ public class RoboticHand {
     public double elbowMaxPos = 0.55;
     public double elbowMinPos = 0.8;
     public double elbowHalfPos = 0.7;
-    public double elbowCurrPos = 0.18;
+    public double   elbowCurrPos = 0.18;
     public double elbowIncrements = 0.0005;
 
     //Hardware Constructors

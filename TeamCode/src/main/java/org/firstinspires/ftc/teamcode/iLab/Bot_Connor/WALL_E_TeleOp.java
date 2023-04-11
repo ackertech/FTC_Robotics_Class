@@ -146,7 +146,7 @@ public class WALL_E_TeleOp extends OpMode {
 
 
 
-        if (gamepad2.left_bumper) {
+        if (gamepad2.dpad_left) {
             if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.REVERSE) {
                 controlOfUpAndDownLinearMotor = controlOfUpAndDownLinearMotor.FORWARD;
             } else if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.FORWARD) {
@@ -155,7 +155,7 @@ public class WALL_E_TeleOp extends OpMode {
 
         }
 
-        if (gamepad2.right_bumper) {
+        if (gamepad2.dpad_right) {
             if (controlOfSidewaysLinearMotor == controlOfSidewaysLinearMotor.REVERSE) {
                 controlOfSidewaysLinearMotor = controlOfSidewaysLinearMotor.FORWARD;
             }
@@ -198,38 +198,21 @@ public class WALL_E_TeleOp extends OpMode {
     public void clawControl()  {
 
         if (gamepad2.left_trigger >0.1) {
-            if (controlOfLeftClaw == controlOfLeftClaw.CLOSED) {
-                controlOfLeftClaw = controlOfLeftClaw.OPEN;
-            }
-            else {
-                controlOfLeftClaw = controlOfLeftClaw.CLOSED;
-            }
-        }
-
-        if (gamepad2.right_trigger >0.1) {
-            if (controlOfRightClaw == controlOfRightClaw.CLOSED) {
-                controlOfRightClaw = controlOfRightClaw.OPEN;
-            }
-            else {
-                controlOfRightClaw = controlOfRightClaw.CLOSED;
-            }
-        }
-
-        if (controlOfLeftClaw == controlOfLeftClaw.OPEN) {
             Hand.clawOpen();
         }
 
-        else if (controlOfLeftClaw == controlOfLeftClaw.CLOSED) {
-            Hand.clawClose();
+        if (gamepad2.right_trigger >0.1) {
+            Hand.rightClawOpen();
         }
 
-         if (controlOfRightClaw == controlOfRightClaw.OPEN) {
-             Hand.rightClawOpen();
-         }
+       if (gamepad2.left_bumper) {
+           Hand.clawClose();
+       }
 
-         else if (controlOfRightClaw == controlOfRightClaw.CLOSED) {
-             Hand.rightClawClose();
-         }
+       if (gamepad2.right_bumper) {
+           Hand.rightClawClose();
+       }
+
 
 
 

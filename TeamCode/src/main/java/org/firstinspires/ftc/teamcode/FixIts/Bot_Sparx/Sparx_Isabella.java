@@ -42,7 +42,7 @@ public class Sparx_Isabella extends FourMotorDrive_Isabella{
         launchMotor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         launchMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
-        //hardware mapping betwee Name on robot and variable name in code//
+        //hardware mapping between Name on robot and variable name in code//
         frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
         frontRightMotor = hwBot.dcMotor.get("front_right_motor");
         rearLeftMotor = hwBot.dcMotor.get("rear_left_motor");
