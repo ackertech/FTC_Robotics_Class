@@ -186,12 +186,8 @@ public class The_Mighty_and_All_Powerful_Hand {
 
 
 
-    public void clawOpen() {
-        claw.setPosition(1);
-}
-    public void clawClose() {
-        claw.setPosition(0);
-}
+    public void leftClawOpen() {claw.setPosition(1);}
+    public void leftClawClose() {claw.setPosition(0);}
     public void rightClawOpen() {rightClaw.setPosition(1);}
     public void rightClawClose() {rightClaw.setPosition(0);}
 

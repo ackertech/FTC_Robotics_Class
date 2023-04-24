@@ -11,6 +11,10 @@ public class Tank_FourMotorDrive_Connor {
     public DcMotor rearLeftMotor;
     public DcMotor rearRightMotor;
 
+
+
+    public LinearOpMode LinearOp = null;
+    public static final double TICKS_PER_ROTATION = 386.3;
     // This part is just required- try to memorize
     public LinearOpMode linearOp = null;
     public void setLinearOp(LinearOpMode linearOp) {this.linearOp =linearOp;}
@@ -50,6 +54,18 @@ public class Tank_FourMotorDrive_Connor {
         rearLeftMotor.setPower(-ABSpower);
         rearRightMotor.setPower(-ABSpower);
 
+    }
+
+    public void driveForward (double speed, double rotations) {
+
+        double ticks = rotations  * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while ((Math.abs(frontLeftMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
+            driveForward(speed);
+        }
+        stopMotors();
     }
 
     public void rotateLeft (double power) {

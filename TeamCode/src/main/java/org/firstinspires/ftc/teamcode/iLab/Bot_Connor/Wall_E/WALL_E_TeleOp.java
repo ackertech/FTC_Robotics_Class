@@ -1,10 +1,11 @@
-package org.firstinspires.ftc.teamcode.iLab.Bot_Connor;
+package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Wall_E;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Tank_TeleOp_Connor;
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.The_Mighty_and_All_Powerful_Hand;
 
 //@Disabled
 @TeleOp(name = "WALL-E_TeleOp_Connor")
@@ -20,6 +21,8 @@ public class WALL_E_TeleOp extends OpMode {
 
     public double leftSidePower;
     public double rightSidePower;
+
+    public double linearMotorPower = 0.85;
 
     public enum LazySusanControl {AUTO, MANUAL}
 
@@ -143,77 +146,43 @@ public class WALL_E_TeleOp extends OpMode {
 
 
     public void LinearMotorControl() {
-
-
-
-        if (gamepad2.dpad_left) {
-            if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.REVERSE) {
-                controlOfUpAndDownLinearMotor = controlOfUpAndDownLinearMotor.FORWARD;
-            } else if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.FORWARD) {
-                controlOfUpAndDownLinearMotor = controlOfUpAndDownLinearMotor.REVERSE;
-            }
+        if (gamepad2.right_stick_y < -0.1) {
+            WALL_E.sidewaysLinearMotorForward(linearMotorPower);
+        } else if (gamepad2.right_stick_y > 0.1) {
+                WALL_E.sidewaysLinearMotorBack(linearMotorPower);
+            } else {
+                WALL_E.sidewaysLinearMotorStop();
 
         }
 
-        if (gamepad2.dpad_right) {
-            if (controlOfSidewaysLinearMotor == controlOfSidewaysLinearMotor.REVERSE) {
-                controlOfSidewaysLinearMotor = controlOfSidewaysLinearMotor.FORWARD;
-            }
-            else if (controlOfSidewaysLinearMotor == controlOfSidewaysLinearMotor.FORWARD) {
-                controlOfSidewaysLinearMotor = controlOfSidewaysLinearMotor.REVERSE;
-            }
-        }
-
-        if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.FORWARD) {
-            if (Math.abs(WALL_E.upAndDownLinearMotor.getCurrentPosition()) < 1500) {
-                WALL_E.upAndDownLinearMotor.setPower(0.4);
-            } else {
-                WALL_E.upAndDownLinearMotor.setPower(0);
-            }
-        } else if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.REVERSE) {
-            if (Math.abs(WALL_E.upAndDownLinearMotor.getCurrentPosition()) < 1500) {
-                WALL_E.upAndDownLinearMotor.setPower(-0.4);
-            } else {
-                WALL_E.upAndDownLinearMotor.setPower(0);
-            }
-        }
+        if (gamepad2.left_stick_y < -0.1) {
+            WALL_E.upAndDownLinearMotorForward(linearMotorPower);
+        } else if (gamepad2.left_stick_y > 0.1) {
+            WALL_E.upAndDownLinearMotorBack(linearMotorPower);
+        } else {
+            WALL_E.upAndDownLinearMotorStop(); }
 
 
-        if (controlOfSidewaysLinearMotor == controlOfSidewaysLinearMotor.FORWARD) {
-            if (Math.abs(WALL_E.sidewaysLinearMotor.getCurrentPosition()) < 1500) {
-                WALL_E.sidewaysLinearMotor.setPower(0.4);
-            } else {
-                WALL_E.sidewaysLinearMotor.setPower(0);
-            }
-        } else if (controlOfSidewaysLinearMotor == controlOfSidewaysLinearMotor.REVERSE) {
-            if (Math.abs(WALL_E.sidewaysLinearMotor.getCurrentPosition()) < 1500) {
-                WALL_E.sidewaysLinearMotor.setPower(-0.4);
-            } else {
-                WALL_E.sidewaysLinearMotor.setPower(0);
-            }
-        }
+
+
+
     }
 
 
     public void clawControl()  {
 
-        if (gamepad2.left_trigger >0.1) {
-            Hand.clawOpen();
-        }
-
-        if (gamepad2.right_trigger >0.1) {
-            Hand.rightClawOpen();
-        }
-
-       if (gamepad2.left_bumper) {
-           Hand.clawClose();
-       }
-
-       if (gamepad2.right_bumper) {
-           Hand.rightClawClose();
-       }
-
-
+      if (gamepad2.left_trigger > 0.1) {
+          WALL_E.leftClawOpen();
+      }
+      else if (gamepad2.left_bumper) {
+          WALL_E.leftClawClose();
+      }
+      else if (gamepad2.right_trigger > 0.1) {
+          WALL_E.rightClawOpen();
+      }
+      else if (gamepad2.right_bumper) {
+          WALL_E.rightClawClose();
+      }
 
 
 
@@ -238,50 +207,16 @@ public class WALL_E_TeleOp extends OpMode {
 
 
     public void lazySusanControl() {
-        if (gamepad2.start) {
-            if (lazySusanControl == lazySusanControl.MANUAL) {
-                lazySusanControl = lazySusanControl.AUTO;
-            } else {
-                lazySusanControl = lazySusanControl.MANUAL;
-            }
-        }
 
-        if (lazySusanControl == lazySusanControl.MANUAL) {
-            if (gamepad2.right_stick_x > 0.1) {
+
+            if (gamepad2.right_stick_x < -0.1) {
                 WALL_E.lazySusanLeft(lazySusanPower);
-            } else if (gamepad2.right_stick_x < -0.1) {
+            } else if (gamepad2.right_stick_x > 0.1) {
                 WALL_E.lazySusanRight(lazySusanPower);
             } else {
                 WALL_E.lazySusanStop();
             }
-        } else if (lazySusanControl == lazySusanControl.AUTO) {
-            if (gamepad2.a) {
-                lazySusanEncoder = lazySusanEncoder.FORWARD;
-                WALL_E.lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-                WALL_E.lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            }
 
-            if (gamepad2.b) {
-                lazySusanEncoder = lazySusanEncoder.REVERSE;
-                WALL_E.lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-                WALL_E.lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            }
-
-            if (lazySusanEncoder == lazySusanEncoder.FORWARD) {
-                if (Math.abs(WALL_E.lazy_Susan.getCurrentPosition()) < lazySusanTicks) {
-                    WALL_E.lazy_Susan.setPower(lazySusanPower);
-                } else {
-                    WALL_E.lazy_Susan.setPower(0);
-                }
-            } else if (lazySusanEncoder == lazySusanEncoder.REVERSE) {
-                if (Math.abs(WALL_E.lazy_Susan.getCurrentPosition()) < lazySusanTicks) {
-                    WALL_E.lazy_Susan.setPower(-lazySusanPower);
-                } else {
-                    WALL_E.lazy_Susan.setPower(0);
-                }
-            }
-
-        }
     }
 
 

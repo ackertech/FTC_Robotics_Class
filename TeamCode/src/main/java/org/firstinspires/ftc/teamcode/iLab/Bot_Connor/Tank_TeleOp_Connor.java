@@ -330,11 +330,11 @@ public class Tank_TeleOp_Connor extends OpMode{
                     UpAndDownLinearMotorControl();
 
                     if (gamepad2.left_trigger > 0.1) {
-                        Hand.clawOpen();
+                        Hand.leftClawOpen();
                     }
 
                     else if (gamepad2.right_trigger > 0.1) {
-                        Hand.clawClose();
+                        Hand.leftClawClose();
                     }
             }
 

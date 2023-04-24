@@ -1,8 +1,11 @@
-package org.firstinspires.ftc.teamcode.iLab.Bot_Connor;
+package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Wall_E;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Tank_FourMotorDrive_Connor;
 
 
 public class WalleBot extends Tank_FourMotorDrive_Connor {
@@ -11,7 +14,8 @@ public class WalleBot extends Tank_FourMotorDrive_Connor {
     public DcMotor sidewaysLinearMotor;
     public DcMotor upAndDownLinearMotor;
     public DcMotor lazy_Susan;
-
+    public Servo leftClaw = null;
+    public Servo rightClaw = null;
     //Hardware Mapping Variable used by robot controller
     public HardwareMap hwBot = null;
 
@@ -74,6 +78,13 @@ public class WalleBot extends Tank_FourMotorDrive_Connor {
         sidewaysLinearMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         upAndDownLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         upAndDownLinearMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        //Control Hub Port 0
+        leftClaw = hwBot.get(Servo.class,"leftClaw");
+        leftClaw.setDirection(Servo.Direction.REVERSE);
+
+        rightClaw = hwBot.get(Servo.class, "rightClaw");
+        rightClaw.setDirection(Servo.Direction.REVERSE);
         /** Linear Actuatiors*********    **/
 
 
@@ -91,6 +102,34 @@ public class WalleBot extends Tank_FourMotorDrive_Connor {
         lazy_Susan.setPower(0);
     }
 
+    public void sidewaysLinearMotorForward (double power) {
+        sidewaysLinearMotor.setPower(-Math.abs(power));
+    }
+
+    public void sidewaysLinearMotorBack (double power) {
+        sidewaysLinearMotor.setPower(Math.abs(power));
+    }
+
+    public void sidewaysLinearMotorStop(){
+        sidewaysLinearMotor.setPower(0);
+    }
+
+    public void upAndDownLinearMotorForward(double power){
+        upAndDownLinearMotor.setPower(-Math.abs(power));
+    }
+
+    public void upAndDownLinearMotorBack(double power) {
+        upAndDownLinearMotor.setPower(Math.abs(power));
+    }
+
+    public void upAndDownLinearMotorStop (){
+        upAndDownLinearMotor.setPower(0);
+    }
+
+    public void leftClawOpen() {leftClaw.setPosition(1);}
+    public void leftClawClose() {leftClaw.setPosition(0);}
+    public void rightClawOpen() {rightClaw.setPosition(1);}
+    public void rightClawClose() {rightClaw.setPosition(0);}
 
 
 }
