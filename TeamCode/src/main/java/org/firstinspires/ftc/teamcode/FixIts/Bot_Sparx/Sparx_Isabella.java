@@ -8,10 +8,12 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Sparx_Isabella extends FourMotorDrive_Isabella{
 
-    //Dedlare Robot Variables//
+    //Declare Robot Variables//
     public Servo flag = null;
     public DcMotor launchMotor = null;
     public DcMotor launchMotor2 = null;
+    public Servo discLaunch = null;
+    public Servo catapult = null;
 
     public HardwareMap hwBot = null;
     //Led Variables//
@@ -40,7 +42,7 @@ public class Sparx_Isabella extends FourMotorDrive_Isabella{
         launchMotor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         launchMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
-        //hardware mapping betwee Name on robot and variable name in code//
+        //hardware mapping between Name on robot and variable name in code//
         frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
         frontRightMotor = hwBot.dcMotor.get("front_right_motor");
         rearLeftMotor = hwBot.dcMotor.get("rear_left_motor");

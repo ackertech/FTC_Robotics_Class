@@ -24,6 +24,9 @@ public class Sparx_TeleOp_Isabella extends OpMode {
         servo();
         ledControl();
         launchControl();
+        discControl();
+        catapultControl();
+
     }
     public void speedControl() {
         if (gamepad1.dpad_right == true) {
@@ -83,24 +86,43 @@ public class Sparx_TeleOp_Isabella extends OpMode {
     }
         public void launchControl () {
             if (gamepad2.left_bumper) {
-                Bot.launchMotor.setPower (1.0);
-                Bot.launchMotor2.setPower (1.0);
+                Bot.launchMotor.setPower(1.0);
+                Bot.launchMotor2.setPower(-1.0);
             }
-            if (gamepad2.right_bumper)  {
-                Bot.launchMotor.setPower (0.0);
-                Bot.launchMotor2.setPower (0.0);
+            if (gamepad2.right_bumper) {
+                Bot.launchMotor.setPower(0.0);
+                Bot.launchMotor2.setPower(0.0);
             }
-
-
-
+        }
+        //
+        public void discControl () {
+                if (gamepad2.a) {
+                    Bot.discLaunch.setPosition(0.25);
+                }
+                if (gamepad2.b) {
+                    Bot.discLaunch.setPosition(0.75);
+                }
+        }
+        public void catapultControl () {
+                if (gamepad2.x) {
+                    Bot.catapult.setPosition(0.25);
+                }
+                if (gamepad2.y) {
+                    Bot.catapult.setPosition(0.5);
+                }
         }
 
 
 
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+

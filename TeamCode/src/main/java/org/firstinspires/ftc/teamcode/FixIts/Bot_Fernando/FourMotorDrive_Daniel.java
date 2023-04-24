@@ -59,20 +59,20 @@ public class FourMotorDrive_Daniel {
 
     public void rotateLeft (double power) {
         power = Math.abs(power) ;
-        frontLeftMotor.setPower(-power);
-        frontRightMotor.setPower(power);
-        rearLeftMotor.setPower(-power);
-        rearRightMotor.setPower(power);
-    }
-
-    //Rotate Left
-
-    public void rotateRight (double power) {
-        power = Math.abs(power) ;
         frontLeftMotor.setPower(power);
         frontRightMotor.setPower(-power);
         rearLeftMotor.setPower(power);
         rearRightMotor.setPower(-power);
+    }
+
+    //Rotate Right
+
+    public void rotateRight (double power) {
+        power = Math.abs(power) ;
+        frontLeftMotor.setPower(-power);
+        frontRightMotor.setPower(power);
+        rearLeftMotor.setPower(-power);
+        rearRightMotor.setPower(power);
     }
 
 }
