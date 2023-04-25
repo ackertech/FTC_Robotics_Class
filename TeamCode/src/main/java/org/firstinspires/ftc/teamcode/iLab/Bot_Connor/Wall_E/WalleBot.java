@@ -158,6 +158,28 @@ public class WalleBot extends Tank_FourMotorDrive_Connor {
         stopMotors();
     }
 
+    public void upAndDownLinearMotorForward(double power, double rotations) {
+        double ticks = rotations  * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while ((-Math.abs(upAndDownLinearMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
+            upAndDownLinearMotorForward(power);
+        }
+        stopMotors();
+    }
+
+    public void upAndDownLinearMotorBack(double power, double rotations) {
+        double ticks = rotations  * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while ((Math.abs(upAndDownLinearMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
+            upAndDownLinearMotorBack(power);
+        }
+        stopMotors();
+    }
+
     public void upAndDownLinearMotorForward(double power){
         upAndDownLinearMotor.setPower(-Math.abs(power));
     }
