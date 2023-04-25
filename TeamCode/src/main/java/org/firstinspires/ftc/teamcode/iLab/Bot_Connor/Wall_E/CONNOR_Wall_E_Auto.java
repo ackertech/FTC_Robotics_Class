@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
 @Autonomous (name = "Wall -E Auto_Connor")
-public class CONNOR_Wall_E_Tele_Op extends LinearOpMode {
+public class CONNOR_Wall_E_Auto extends LinearOpMode {
 
 
     WalleBot Wall_E = new WalleBot();
@@ -27,6 +27,9 @@ public class CONNOR_Wall_E_Tele_Op extends LinearOpMode {
                 waitForStart();
 
         while (opModeIsActive()) {
+            Wall_E.driveForward(0.5, 5);
+            sleep(100);
+
 
 
 

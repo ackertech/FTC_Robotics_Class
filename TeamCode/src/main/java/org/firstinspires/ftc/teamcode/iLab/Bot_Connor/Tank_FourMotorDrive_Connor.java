@@ -68,6 +68,40 @@ public class Tank_FourMotorDrive_Connor {
         stopMotors();
     }
 
+    public void driveBackwards (double speed, double rotations) {
+        double ticks = rotations  * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while ((Math.abs(frontLeftMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive() ) ){
+            driveBackwards(speed);
+        }
+        stopMotors();
+    }
+
+    public void rotateRight ( double speed , double rotations) {
+        double ticks = rotations * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while ((Math.abs(frontRightMotor.getCurrentPosition() ) < ticks) && LinearOp.opModeIsActive()) {
+            rotateRight(speed);
+        }
+        stopMotors();
+    }
+
+    public void rotateLeft(double speed, double rotations ) {
+        double ticks = rotations * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while ((Math.abs(frontLeftMotor.getCurrentPosition() ) < ticks ) && LinearOp.opModeIsActive()) {
+            rotateLeft(speed);
+        }
+        stopMotors();
+
+    }
+
     public void rotateLeft (double power) {
 
         double ABSpower = Math.abs(power);

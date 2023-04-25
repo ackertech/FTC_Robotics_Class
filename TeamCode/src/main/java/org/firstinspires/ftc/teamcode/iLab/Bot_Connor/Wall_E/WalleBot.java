@@ -102,6 +102,28 @@ public class WalleBot extends Tank_FourMotorDrive_Connor {
         lazy_Susan.setPower(0);
     }
 
+    public void lazySusanLeft (double power, double rotations) {
+        double ticks = rotations  * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while ((Math.abs(lazy_Susan.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
+            lazySusanLeft(power);
+        }
+        stopMotors();
+    }
+
+    public void lazySusanRight (double power, double rotations) {
+        double ticks = rotations  * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while ((Math.abs(lazy_Susan.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
+            lazySusanRight(power);
+        }
+        stopMotors();
+    }
+
     public void sidewaysLinearMotorForward (double power) {
         sidewaysLinearMotor.setPower(-Math.abs(power));
     }
@@ -112,6 +134,28 @@ public class WalleBot extends Tank_FourMotorDrive_Connor {
 
     public void sidewaysLinearMotorStop(){
         sidewaysLinearMotor.setPower(0);
+    }
+
+    public void sidewaysLinearMotorForward (double power, double rotations) {
+        double ticks = rotations  * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while ((-Math.abs(sidewaysLinearMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
+            sidewaysLinearMotorForward(power);
+        }
+        stopMotors();
+    }
+
+    public void sidewaysLinearMotorBack(double power, double rotations) {
+        double ticks = rotations  * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while ((Math.abs(frontLeftMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
+            sidewaysLinearMotorBack(power);
+        }
+        stopMotors();
     }
 
     public void upAndDownLinearMotorForward(double power){
