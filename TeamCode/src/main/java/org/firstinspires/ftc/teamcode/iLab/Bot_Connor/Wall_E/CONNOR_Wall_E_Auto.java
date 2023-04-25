@@ -29,7 +29,34 @@ public class CONNOR_Wall_E_Auto extends LinearOpMode {
         while (opModeIsActive()) {
             Wall_E.driveForward(0.5, 5);
             sleep(100);
+            Wall_E.rotateLeft(0.5,1);
+            sleep(100);
+            Wall_E.rotateRight(0.5,2);
+            sleep(100);
+            Wall_E.rotateLeft(0.5,1);
+            sleep(100);
+            Wall_E.driveBackwards(0.5,5);
+            sleep(100);
+            Wall_E.lazySusanLeft(0.5,2);
+            sleep(100);
+            Wall_E.lazySusanRight(0.5,2);
+            sleep(100);
+            Wall_E.upAndDownLinearMotorForward(0.5,1);
+            Wall_E.sidewaysLinearMotorForward(0.5,1);
+            sleep(100);
+            Wall_E.upAndDownLinearMotorBack(0.5,0.9);
+            Wall_E.sidewaysLinearMotorBack(0.5,0.9);
+            sleep(100);
+            Wall_E.leftClawOpen();
+            sleep(100);
+            Wall_E.leftClawClose();
+            sleep(100);
+            Wall_E.rightClawOpen();
+            sleep(100);
+            Wall_E.rightClawClose();
+            sleep(100);
 
+            requestOpModeStop();
 
 
 
@@ -39,5 +66,22 @@ public class CONNOR_Wall_E_Auto extends LinearOpMode {
 
         }
         //hi
+        idle();
     }
+    public void telemetryUpdate(String comment) {
+        telemetry.addLine("LONG LIVE TACO");
+        telemetry.addLine(comment);
+        telemetry.addData("Front Lef Motor:", Wall_E.frontLeftMotor.getPower());
+        telemetry.addData("Front Rig Motor:", Wall_E.frontRightMotor.getPower());
+        telemetry.addData("Rear Lef Motor:", Wall_E.rearLeftMotor.getPower());
+        telemetry.addData("Rear Rig Motor:", Wall_E.rearRightMotor.getPower());
+        telemetry.addData("Encoder Count: ", Wall_E.frontLeftMotor.getCurrentPosition());
+        telemetry.update();
+    }
+
+
+
+
+
+
 }
