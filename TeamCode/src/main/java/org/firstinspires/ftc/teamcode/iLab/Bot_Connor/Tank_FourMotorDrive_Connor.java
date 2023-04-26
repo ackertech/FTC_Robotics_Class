@@ -56,47 +56,47 @@ public class Tank_FourMotorDrive_Connor {
 
     }
 
-    public void driveForward (double speed, double rotations) {
+    public void driveForward (double power, double rotations) {
 
         double ticks = rotations  * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while ((Math.abs(frontLeftMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
-            driveForward(speed);
+        while ((Math.abs(rearRightMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive()) ) {
+            driveForward(power);
         }
         stopMotors();
     }
 
-    public void driveBackwards (double speed, double rotations) {
+    public void driveBackwards (double power, double rotations) {
         double ticks = rotations  * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while ((Math.abs(frontLeftMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive() ) ){
-            driveBackwards(speed);
+        while ((Math.abs(rearRightMotor.getCurrentPosition() ) < ticks && LinearOp.opModeIsActive() ) ){
+            driveBackwards(power);
         }
         stopMotors();
     }
 
-    public void rotateRight ( double speed , double rotations) {
+    public void rotateRight ( double power , double rotations) {
         double ticks = rotations * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while ((Math.abs(frontRightMotor.getCurrentPosition() ) < ticks) && LinearOp.opModeIsActive()) {
-            rotateRight(speed);
+        while ((Math.abs(rearRightMotor.getCurrentPosition() ) < ticks) && LinearOp.opModeIsActive()) {
+            rotateRight(power);
         }
         stopMotors();
     }
 
-    public void rotateLeft(double speed, double rotations ) {
+    public void rotateLeft(double power, double rotations ) {
         double ticks = rotations * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while ((Math.abs(frontLeftMotor.getCurrentPosition() ) < ticks ) && LinearOp.opModeIsActive()) {
-            rotateLeft(speed);
+        while ((Math.abs(rearRightMotor.getCurrentPosition() ) < ticks ) && LinearOp.opModeIsActive()) {
+            rotateLeft(power);
         }
         stopMotors();
 

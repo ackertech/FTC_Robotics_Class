@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Wall_E;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -22,6 +23,8 @@ public class WalleBot extends Tank_FourMotorDrive_Connor {
     //Robot Physical Constructor used in TeleOp and Autonomous
     public WalleBot() {
     }
+
+    public void setLinearOp(LinearOpMode LinearOp) {this.LinearOp = LinearOp;}
 
     // Custom Method that will initilize the robot hardware in TeleOp and Autonomous
     public void initRobot(HardwareMap hwMap) {

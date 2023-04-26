@@ -135,7 +135,7 @@ public class Connor_CompetitionTeleop extends OpMode {
         }
 
         if (gamepad2.left_trigger > 0.1) {
-            CompBot.claw.setPosition(.25);
+            CompBot.claw.setPosition(.5);
         }
     }
 
