@@ -22,7 +22,8 @@ public class TELEOP_SixWheel_Connor extends OpMode {
 
     public double leftSidePower;
     public double rightSidePower;
-
+    public enum DrivingMode {ONESTICK, TANK}
+    public DrivingMode drivingMode = DrivingMode.ONESTICK;
 
   public SixWheelBot_Connor sixWheelBot = new SixWheelBot_Connor();
 
@@ -37,10 +38,13 @@ public class TELEOP_SixWheel_Connor extends OpMode {
 
 
     public void loop() {
+        drivingMode();
         drive();
     }
 
   public void drive() {
+
+
 
 
       leftStickYVal = gamepad1.left_stick_y;
@@ -52,5 +56,16 @@ public class TELEOP_SixWheel_Connor extends OpMode {
       leftSidePower = speedMultiply * leftStickYVal * (-1);
       rightSidePower = speedMultiply * rightStickYVal * (-1);
       sixWheelBot.tankDrive(leftSidePower, rightSidePower);
+  }
+
+  public void drivingMode() {
+
+        if (gamepad1.a) {
+            drivingMode = DrivingMode.ONESTICK;
+        }
+
+        else if (gamepad1.b) {
+            drivingMode= DrivingMode.TANK;
+        }
   }
 }
