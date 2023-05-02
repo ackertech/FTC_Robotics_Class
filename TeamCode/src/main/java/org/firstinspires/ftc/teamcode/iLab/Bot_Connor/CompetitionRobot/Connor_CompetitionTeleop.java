@@ -28,17 +28,16 @@ public class Connor_CompetitionTeleop extends OpMode {
     double powerThreshold = 0;
     double speedMultiply = 1;
     public ElapsedTime TeleOpTime = new ElapsedTime();
-    public enum ControlOfLinearSlide {GROUND, LOW, MIDDLE, HIGH}
-    public ControlOfLinearSlide controlOfLinearSlide = ControlOfLinearSlide.GROUND;
+
     public enum ControlOfCompClaw {OPEN, CLOSED}
-    public ControlOfCompClaw controlOfCompClaw = ControlOfCompClaw.OPEN;
+
     public double linearSlideTicks = 350; //537.6
     public double linearSlideMidTicks = 250;
     public double linearSlideLowTicks = 150;
     public double linearSlidePower = 1;
 
     public enum LazySusanEncoder {FORWARD, REVERSE, OFF}
-    public LazySusanEncoder lazySusanEncoder = LazySusanEncoder.OFF;
+
     public double lazySusanTicks = 5000;
     public double lazySusanPower = 0.90;
 
@@ -65,7 +64,6 @@ public class Connor_CompetitionTeleop extends OpMode {
 
     public void loop(){
         clawControl();
-        linearSlideControl();
         mannualLinearSlideControl();
         lazySusanControl();
         drive();
@@ -145,69 +143,9 @@ public class Connor_CompetitionTeleop extends OpMode {
 
 
 
-    public void linearSlideControl() {
-        if (gamepad2.dpad_up)  {
-            controlOfLinearSlide = controlOfLinearSlide.GROUND;
-            CompBot.linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            CompBot.linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        }
-
-        if (gamepad2.dpad_right) {
-            controlOfLinearSlide = controlOfLinearSlide.LOW;
-            CompBot.linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            CompBot.linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        }
-
-        if (gamepad2.dpad_down) {
-            controlOfLinearSlide = controlOfLinearSlide.MIDDLE;
-            CompBot.linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            CompBot.linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        }
-
-        if (gamepad2.dpad_left) {
-            controlOfLinearSlide = controlOfLinearSlide.HIGH;
-            CompBot.linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            CompBot.linearSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        }
-
-        if (controlOfLinearSlide == controlOfLinearSlide.HIGH) {
-            if (Math.abs(CompBot.linearSlide.getCurrentPosition()) < linearSlideTicks) {
-                CompBot.linearSlide.setPower(linearSlidePower);
-            }
-            else{
-                CompBot.linearSlide.setPower(0);
-            }
-
-        }
-
-       else if (controlOfLinearSlide == controlOfLinearSlide.MIDDLE) {
-            if (Math.abs(CompBot.linearSlide.getCurrentPosition()) < linearSlideMidTicks) {
-                CompBot.linearSlide.setPower(linearSlidePower);
-            }
-            else{
-                CompBot.linearSlide.setPower(0);
-            }
-
-        }
-
-       else if (controlOfLinearSlide == controlOfLinearSlide.LOW) {
-            if (Math.abs(CompBot.linearSlide.getCurrentPosition()) < linearSlideLowTicks) {
-                CompBot.linearSlide.setPower(linearSlidePower);
-            }
-            else{
-                CompBot.linearSlide.setPower(0);
-            }
-
-        }
-
-      else  if (controlOfLinearSlide == controlOfLinearSlide.GROUND) {
-                CompBot.linearSlide.setPower(0);
-         }
 
 
-    }
-
-    public void  mannualLinearSlideControl() {
+    public void  mannualLinearSlideControl () {
         leftStickYVal = gamepad2.left_stick_y;
         leftStickYVal = Range.clip(leftStickYVal, -1, 1);
 
@@ -227,35 +165,8 @@ public class Connor_CompetitionTeleop extends OpMode {
 
 
 public void lazySusanControl(){
-    if (gamepad2.left_bumper) {
-        lazySusanEncoder = lazySusanEncoder.FORWARD;
-        CompBot.lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        CompBot.lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-    }
 
-    if (gamepad2.right_bumper) {
-        lazySusanEncoder = lazySusanEncoder.REVERSE;
-        CompBot.lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        CompBot.lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-    }
 
-    if (lazySusanEncoder == lazySusanEncoder.FORWARD) {
-        if (Math.abs(CompBot.lazy_Susan.getCurrentPosition()) < lazySusanTicks ){
-            CompBot.lazy_Susan.setPower(lazySusanPower);
-        }
-        else {
-            CompBot.lazy_Susan.setPower(0);
-        }
-    }
-
-    else if (lazySusanEncoder == lazySusanEncoder.REVERSE) {
-        if (Math.abs(CompBot.lazy_Susan.getCurrentPosition()) < lazySusanTicks ) {
-            CompBot.lazy_Susan.setPower(-lazySusanPower);
-        }
-        else {
-            CompBot.lazy_Susan.setPower(0);
-        }
-    }
 
     if (gamepad2.right_stick_x > 0.1) {
         CompBot.lazySusanLeft(lazySusanPower);
@@ -280,18 +191,7 @@ public void lazySusanControl(){
         telemetry.addData("pwr", "RL mtr: " + rearLeftSpeed);
         telemetry.addData("pwr", "RR mtr: " + rearRightSpeed);
         telemetry.addData("linSLide", "hi",CompBot.linearSlide.getCurrentPosition());
-        if (controlOfLinearSlide == ControlOfLinearSlide.HIGH) {
-            telemetry.addLine("Linear Slide Position - HIGH");
-        }
-       else if (controlOfLinearSlide == ControlOfLinearSlide.MIDDLE) {
-            telemetry.addLine("Linear Slide Position - MIDDLE");
-        }
-       else if (controlOfLinearSlide == ControlOfLinearSlide.LOW) {
-            telemetry.addLine("Linear Slide Position - LOW");
-        }
-       else if (controlOfLinearSlide == ControlOfLinearSlide.GROUND) {
-            telemetry.addLine("Linear Slide Position - GROUND");
-        }
+
         telemetry.update();
     }
 
