@@ -4,6 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class SixWheelDrive_Connor {
+
+
+
     public DcMotor frontLeftMotor;
     public DcMotor frontRightMotor;
     public DcMotor rearLeftMotor;
@@ -117,6 +120,14 @@ public class SixWheelDrive_Connor {
         stopMotors();
 
 
+    }
+
+    public void  tankDrive (double leftPower, double rightPower) {
+        frontLeftMotor.setPower(leftPower);
+        rearLeftMotor.setPower(leftPower);
+
+        frontRightMotor.setPower(rightPower);
+        rearRightMotor.setPower(rightPower);
     }
 
 }
