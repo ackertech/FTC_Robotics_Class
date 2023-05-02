@@ -25,30 +25,32 @@ public class CONNOR_Wall_E_Auto extends LinearOpMode {
 
         while (opModeIsActive()) {
             telemetryUpdate("Testing Wall_E Motors & Encoders");
-            Wall_E.driveForward(0.5, 1);
+            Wall_E.driveForward(0.5, 106);
+            //1 rotation = 9 in
+            //1 intersection = 96in
             sleep(100);
-            Wall_E.rotateLeft(0.5,1);
-            sleep(100);
-            Wall_E.rotateRight(0.5,1.7);
-            sleep(100);
-            Wall_E.rotateLeft(0.5,1);
-            sleep(100);
-            Wall_E.driveBackwards(0.5,1);
-            sleep(100);
-       Wall_E.upAndDownLinearMotor.setPower(-1);
-       sleep(5000);
-       Wall_E.upAndDownLinearMotor.setPower(0);
-       sleep(200);
-            Wall_E.lazySusanLeft(0.5,0.5);
-            sleep(5000);
-            Wall_E.lazySusanRight(0.5,0.1);
-            sleep(5000);
+//            Wall_E.rotateLeft(0.5,1);
+//            sleep(100);
+//            Wall_E.rotateRight(0.5,1.7);
+//            sleep(100);
+//            Wall_E.rotateLeft(0.5,1);
+//            sleep(100);
+//            Wall_E.driveBackwards(0.5,1);
+//            sleep(100);
+//       Wall_E.upAndDownLinearMotor.setPower(-1);
+//       sleep(5000);
+//       Wall_E.upAndDownLinearMotor.setPower(0);
+//       sleep(200);
+//            Wall_E.lazySusanLeft(0.5,0.5);
+//            sleep(5000);
+//            Wall_E.lazySusanRight(0.5,0.1);
+//            sleep(5000);
 
             requestOpModeStop();
 
 
 
-
+//hi
 
 
 
