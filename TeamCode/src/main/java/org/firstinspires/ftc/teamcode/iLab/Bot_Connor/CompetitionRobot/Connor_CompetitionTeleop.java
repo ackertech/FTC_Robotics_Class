@@ -48,21 +48,21 @@ public class Connor_CompetitionTeleop extends OpMode {
     public CompetitionBot CompBot = new CompetitionBot();
 
 
-    @Override
+
     public void init() {
         CompBot.initRobot(hardwareMap);
         CompBot.claw.setPosition(0);
     }
 
 
-    @Override
+
     public void init_loop() {  }
 
-    @Override
+
     public void start() {
 
     }
-    @Override
+
     public void loop(){
         clawControl();
         linearSlideControl();

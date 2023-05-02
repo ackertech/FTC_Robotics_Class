@@ -34,7 +34,7 @@ public class CandyboxTeleop extends OpMode {
     public TankBot_Connor Thomas_The_Tank = new TankBot_Connor();
     public The_Mighty_and_All_Powerful_Hand Hand = new The_Mighty_and_All_Powerful_Hand();
 
-    @Override
+
     public void init() {
         Thomas_The_Tank.initRobot(hardwareMap);
         Hand.initThe_Mighty_and_All_Powerful_Hand(hardwareMap);
