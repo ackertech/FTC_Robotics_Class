@@ -38,11 +38,27 @@ public class TELEOP_SixWheel_Connor extends OpMode {
 
 
     public void loop() {
+        speedControl();
         drivingMode();
         drive();
     }
 
-  public void drive() {
+
+    public void speedControl () {
+        if (gamepad1.dpad_right == true) {
+            speedMultiply = 0.50;}
+        else if (gamepad1.dpad_down == true) {
+            speedMultiply = 0.60;}
+        else if (gamepad1.dpad_left == true) {
+            speedMultiply = 0.75;}
+        else if (gamepad1.dpad_up == true){
+            speedMultiply = 0.25;}
+        else if (gamepad1.a == true){
+            speedMultiply = 1.00;}
+    }
+
+
+    public void drive() {
 
 
 
