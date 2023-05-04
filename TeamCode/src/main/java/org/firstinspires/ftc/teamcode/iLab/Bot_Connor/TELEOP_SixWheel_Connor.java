@@ -42,7 +42,7 @@ public class TELEOP_SixWheel_Connor extends OpMode {
         drivingMode();
         drive();
     }
-
+//hi
 
     public void speedControl () {
         if (gamepad1.dpad_right == true) {
