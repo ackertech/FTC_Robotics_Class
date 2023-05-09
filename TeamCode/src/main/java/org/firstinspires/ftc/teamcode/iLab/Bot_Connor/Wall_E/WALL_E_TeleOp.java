@@ -17,6 +17,14 @@ public class WALL_E_TeleOp extends OpMode {
         ONESTICK, TWOSTICK, TANK
     }
 
+    public enum Person {FIRST, THIRD}
+
+    public enum StickControl {FIRSTSTICK, THIRDSTICK}
+
+    public StickControl stickControl = StickControl.THIRDSTICK;
+
+    public Person personControl = Person.THIRD;
+
     public Style driverStyle = Style.ONESTICK;
 
     public double leftSidePower;
@@ -57,10 +65,9 @@ public class WALL_E_TeleOp extends OpMode {
     public void loop() {
         speedControl();
         drivingStyle();
-        drive();
-        lazySusanControl();
+        personChanger();
+        stickControls();
         clawControl();
-        LinearMotorControl();
         telementryOutput();
 
 
@@ -79,114 +86,147 @@ public class WALL_E_TeleOp extends OpMode {
 
     }
 
-    public void drive() {
-        switch (driverStyle) {
-            case ONESTICK:
+    public void stickControls (){
+        switch (stickControl){
+            case THIRDSTICK:
 
 
-                leftStickYVal = gamepad1.left_stick_y;
-                leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+                switch (driverStyle) {
+                    case ONESTICK:
 
-                leftStickXVal = gamepad1.left_stick_x;
-                leftStickXVal = Range.clip(leftStickXVal, -1, 1);
 
-                if (leftStickYVal < -0.1) {
-                    WALL_E.driveForward(speedMultiply * leftStickYVal);
-                } else if (leftStickYVal > 0.1) {
-                    WALL_E.driveBackwards(speedMultiply * leftStickYVal);
-                } else if (leftStickXVal > 0.1) {
-                    WALL_E.rotateRight(speedMultiply * leftStickXVal);
-                } else if (leftStickXVal < -0.1) {
-                    WALL_E.rotateLeft(speedMultiply * leftStickXVal);
-                } else {
-                    WALL_E.stopMotors();
+                        leftStickYVal = gamepad1.left_stick_y;
+                        leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+
+                        leftStickXVal = gamepad1.left_stick_x;
+                        leftStickXVal = Range.clip(leftStickXVal, -1, 1);
+
+                        if (leftStickYVal < -0.1) {
+                            WALL_E.driveForward(speedMultiply * leftStickYVal);
+                        } else if (leftStickYVal > 0.1) {
+                            WALL_E.driveBackwards(speedMultiply * leftStickYVal);
+                        } else if (leftStickXVal > 0.1) {
+                            WALL_E.rotateRight(speedMultiply * leftStickXVal);
+                        } else if (leftStickXVal < -0.1) {
+                            WALL_E.rotateLeft(speedMultiply * leftStickXVal);
+                        } else {
+                            WALL_E.stopMotors();
+
+                        }
+                        break;
+
+                    case TWOSTICK:
+                        leftStickYVal = gamepad1.left_stick_y;
+                        leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+                        leftStickXVal = gamepad1.left_stick_x;
+                        leftStickXVal = Range.clip(leftStickXVal, -1, 1);
+                        rightStickYVal = gamepad1.right_stick_y;
+                        rightStickYVal = Range.clip(rightStickYVal, -1, 1);
+                        rightStickXVal = gamepad1.right_stick_x;
+                        rightStickXVal = Range.clip(rightStickXVal, -1, 1);
+
+                        if (leftStickYVal < -0.1) {
+                            WALL_E.driveForward(speedMultiply * leftStickYVal);
+                        } else if (leftStickYVal > 0.1) {
+                            WALL_E.driveBackwards(speedMultiply * leftStickYVal);
+                        } else if (rightStickXVal > 0.1) {
+                            WALL_E.rotateRight(speedMultiply * rightStickXVal);
+                        } else if (rightStickXVal < -0.1) {
+                            WALL_E.rotateLeft(speedMultiply * rightStickXVal);
+                        } else {
+                            WALL_E.stopMotors();
+                        }
+                        break;
+
+
+                    case TANK:
+                        leftStickYVal = gamepad1.left_stick_y;
+                        leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+
+                        rightStickYVal = gamepad1.right_stick_y;
+                        rightStickYVal = Range.clip(rightStickYVal, -1, 1);
+
+                        leftSidePower = speedMultiply * leftStickYVal * (-1);
+                        rightSidePower = speedMultiply * rightStickYVal * (-1);
+                        WALL_E.tankDrive(leftSidePower, rightSidePower);
+                        break;
+
 
                 }
-                break;
 
-            case TWOSTICK:
-                leftStickYVal = gamepad1.left_stick_y;
-                leftStickYVal = Range.clip(leftStickYVal, -1, 1);
-                leftStickXVal = gamepad1.left_stick_x;
-                leftStickXVal = Range.clip(leftStickXVal, -1, 1);
-                rightStickYVal = gamepad1.right_stick_y;
-                rightStickYVal = Range.clip(rightStickYVal, -1, 1);
-                rightStickXVal = gamepad1.right_stick_x;
-                rightStickXVal = Range.clip(rightStickXVal, -1, 1);
+            case FIRSTSTICK:
 
-                if (leftStickYVal < -0.1) {
-                    WALL_E.driveForward(speedMultiply * leftStickYVal);
-                } else if (leftStickYVal > 0.1) {
-                    WALL_E.driveBackwards(speedMultiply * leftStickYVal);
-                } else if (rightStickXVal > 0.1) {
-                    WALL_E.rotateRight(speedMultiply * rightStickXVal);
-                } else if (rightStickXVal < -0.1) {
-                    WALL_E.rotateLeft(speedMultiply * rightStickXVal);
+                if (gamepad1.right_stick_y < -0.1) {
+                    WALL_E.sidewaysLinearMotorForward(linearMotorPower);
+                } else if (gamepad1.right_stick_y > 0.1) {
+                    WALL_E.sidewaysLinearMotorBack(linearMotorPower);
                 } else {
-                    WALL_E.stopMotors();
+                    WALL_E.sidewaysLinearMotorStop();
+
                 }
-                break;
+
+                if (gamepad1.left_stick_y < -0.1) {
+                    WALL_E.upAndDownLinearMotorForward(linearMotorPower);
+                } else if (gamepad1.left_stick_y > 0.1) {
+                    WALL_E.upAndDownLinearMotorBack(linearMotorPower);
+                } else {
+                    WALL_E.upAndDownLinearMotorStop(); }
 
 
-            case TANK:
-                leftStickYVal = gamepad1.left_stick_y;
-                leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+                if (gamepad2.right_stick_x < -0.1) {
+                    WALL_E.lazySusanLeft(lazySusanPower);
+                } else if (gamepad2.right_stick_x > 0.1) {
+                    WALL_E.lazySusanRight(lazySusanPower);
+                } else {
+                    WALL_E.lazySusanStop();
+                }
 
-                rightStickYVal = gamepad1.right_stick_y;
-                rightStickYVal = Range.clip(rightStickYVal, -1, 1);
 
-                leftSidePower = speedMultiply * leftStickYVal * (-1);
-                rightSidePower = speedMultiply * rightStickYVal * (-1);
-                WALL_E.tankDrive(leftSidePower, rightSidePower);
-                break;
+
 
 
         }
-    }
-
-
-    public void LinearMotorControl() {
-        if (gamepad2.right_stick_y < -0.1) {
-            WALL_E.sidewaysLinearMotorForward(linearMotorPower);
-        } else if (gamepad2.right_stick_y > 0.1) {
-                WALL_E.sidewaysLinearMotorBack(linearMotorPower);
-            } else {
-                WALL_E.sidewaysLinearMotorStop();
-
-        }
-
-        if (gamepad2.left_stick_y < -0.1) {
-            WALL_E.upAndDownLinearMotorForward(linearMotorPower);
-        } else if (gamepad2.left_stick_y > 0.1) {
-            WALL_E.upAndDownLinearMotorBack(linearMotorPower);
-        } else {
-            WALL_E.upAndDownLinearMotorStop(); }
-
-
-
-
 
     }
+
+
+
 
 
     public void clawControl()  {
 
-      if (gamepad2.left_trigger > 0.1) {
-          WALL_E.leftClawOpen();
-      }
-      else if (gamepad2.left_bumper) {
-          WALL_E.leftClawClose();
-      }
-      else if (gamepad2.right_trigger > 0.1) {
-          WALL_E.rightClawOpen();
-      }
-      else if (gamepad2.right_bumper) {
-          WALL_E.rightClawClose();
-      }
+        switch (personControl) {
+            case THIRD:
+                if (gamepad2.left_trigger > 0.1) {
+                    WALL_E.leftClawOpen();
+                }
+                else if (gamepad2.left_bumper) {
+                    WALL_E.leftClawClose();
+                }
+                else if (gamepad2.right_trigger > 0.1) {
+                    WALL_E.rightClawOpen();
+                }
+                else if (gamepad2.right_bumper) {
+                    WALL_E.rightClawClose();
+                }
+                break;
+            case FIRST:
+
+                if (gamepad1.left_trigger > 0.1) {
+                    WALL_E.leftClawOpen();
+                }
+                else if (gamepad1.left_bumper) {
+                    WALL_E.leftClawClose();
+                }
+                else if (gamepad1.right_trigger > 0.1) {
+                    WALL_E.rightClawOpen();
+                }
+                else if (gamepad1.right_bumper) {
+                    WALL_E.rightClawClose();
+                }
 
 
-
-
+        }
     }
 
 
@@ -197,6 +237,9 @@ public class WALL_E_TeleOp extends OpMode {
             driverStyle = WALL_E_TeleOp.Style.ONESTICK;
 
         }
+        if (gamepad1.x) {
+            driverStyle = WALL_E_TeleOp.Style.TWOSTICK;
+        }
         if (gamepad1.b) {
             driverStyle = WALL_E_TeleOp.Style.TANK;
 
@@ -205,19 +248,24 @@ public class WALL_E_TeleOp extends OpMode {
 
     }
 
+    public void personChanger(){
 
-    public void lazySusanControl() {
-
-
-            if (gamepad2.right_stick_x < -0.1) {
-                WALL_E.lazySusanLeft(lazySusanPower);
-            } else if (gamepad2.right_stick_x > 0.1) {
-                WALL_E.lazySusanRight(lazySusanPower);
-            } else {
-                WALL_E.lazySusanStop();
-            }
-
+        if (gamepad1.dpad_up) {
+            personControl = Person.FIRST;
+        }
+        if (gamepad1.dpad_down) {
+            personControl = Person.THIRD;
+        }
+        if (gamepad1.dpad_left) {
+            stickControl = StickControl.FIRSTSTICK;
+        }
+        if (gamepad1.dpad_right) {
+            stickControl = StickControl.THIRDSTICK;
+        }
     }
+
+
+
 
 
         public void telementryOutput () {
