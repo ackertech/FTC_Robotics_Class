@@ -284,6 +284,20 @@ public class WALL_E_TeleOp extends OpMode {
             } else if (driverStyle == WALL_E_TeleOp.Style.TWOSTICK) {
                 telemetry.addLine(" TwoStick Drive");
             }
+
+            if (personControl == Person.FIRST) {
+                telemetry.addLine("Person - FIRST");
+            }
+            else if (personControl == Person.THIRD) {
+                telemetry.addLine("Person - THIRD");
+            }
+
+            if (stickControl == StickControl.FIRSTSTICK) {
+                telemetry.addLine("Stick Control - FIRST PERSON");
+            }
+            else if (stickControl == StickControl.THIRDSTICK) {
+                telemetry.addLine(" Stick Control - THIRD PERSON");
+            }
         }
 
         //Long Live Taco
