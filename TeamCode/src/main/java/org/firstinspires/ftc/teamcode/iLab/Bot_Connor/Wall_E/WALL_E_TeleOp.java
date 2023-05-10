@@ -63,7 +63,7 @@ public class WALL_E_TeleOp extends OpMode {
     }
 
     public void loop() {
-        speedControl();
+        dpadControl();
         drivingStyle();
         personChanger();
         stickControls();
@@ -73,7 +73,7 @@ public class WALL_E_TeleOp extends OpMode {
 
     }
 
-    public void speedControl() {
+    public void dpadControl() {
 
         switch (personControl) {
             case THIRD:
@@ -91,12 +91,6 @@ public class WALL_E_TeleOp extends OpMode {
             case FIRST:
                 speedMultiply = 0.50;
 
-                if (gamepad1.dpad_up) {
-                    personControl = Person.FIRST;
-                }
-                if (gamepad1.dpad_down) {
-                    personControl = Person.THIRD;
-                }
                 if (gamepad1.dpad_left) {
                     stickControl = StickControl.FIRSTSTICK;
                 }
@@ -284,18 +278,13 @@ public class WALL_E_TeleOp extends OpMode {
 
     public void personChanger(){
 
-        if (gamepad1.dpad_up) {
+        if (gamepad1.back) {
             personControl = Person.FIRST;
         }
-        if (gamepad1.dpad_down) {
+        if (gamepad1.start) {
             personControl = Person.THIRD;
         }
-        if (gamepad1.dpad_left) {
-            stickControl = StickControl.FIRSTSTICK;
-        }
-        if (gamepad1.dpad_right) {
-            stickControl = StickControl.THIRDSTICK;
-        }
+
     }
 
 
