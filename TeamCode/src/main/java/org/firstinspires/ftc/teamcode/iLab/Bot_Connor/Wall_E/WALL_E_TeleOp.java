@@ -109,13 +109,7 @@ public class WALL_E_TeleOp extends OpMode {
             case THIRDSTICK:
 
 
-                if (gamepad1.right_stick_x < -0.1) {
-                    WALL_E.lazySusanLeft(lazySusanPower);
-                } else if (gamepad1.right_stick_x > 0.1) {
-                    WALL_E.lazySusanRight(lazySusanPower);
-                } else {
-                    WALL_E.lazySusanStop();
-                }
+
 
 
                 switch (driverStyle) {
