@@ -74,7 +74,10 @@ public class WALL_E_TeleOp extends OpMode {
     }
 
     public void speedControl() {
-        if (gamepad1.dpad_right == true) {
+
+        switch (personControl) {
+            case THIRD:
+                if (gamepad1.dpad_right == true) {
             speedMultiply = 0.50;
         } else if (gamepad1.dpad_down == true) {
             speedMultiply = 0.75;
@@ -83,12 +86,42 @@ public class WALL_E_TeleOp extends OpMode {
         } else if (gamepad1.dpad_up == true) {
             speedMultiply = 0.25;
         }
+                break;
+
+            case FIRST:
+                speedMultiply = 0.50;
+
+                if (gamepad1.dpad_up) {
+                    personControl = Person.FIRST;
+                }
+                if (gamepad1.dpad_down) {
+                    personControl = Person.THIRD;
+                }
+                if (gamepad1.dpad_left) {
+                    stickControl = StickControl.FIRSTSTICK;
+                }
+                if (gamepad1.dpad_right) {
+                    stickControl = StickControl.THIRDSTICK;
+                }
+
+                break;
+        }
+
 
     }
 
     public void stickControls (){
-        switch (stickControl){
+        switch (stickControl) {
             case THIRDSTICK:
+
+
+                if (gamepad1.right_stick_x < -0.1) {
+                    WALL_E.lazySusanLeft(lazySusanPower);
+                } else if (gamepad1.right_stick_x > 0.1) {
+                    WALL_E.lazySusanRight(lazySusanPower);
+                } else {
+                    WALL_E.lazySusanStop();
+                }
 
 
                 switch (driverStyle) {
@@ -151,8 +184,9 @@ public class WALL_E_TeleOp extends OpMode {
                         WALL_E.tankDrive(leftSidePower, rightSidePower);
                         break;
 
-
                 }
+                break;
+
 
             case FIRSTSTICK:
 
@@ -173,9 +207,9 @@ public class WALL_E_TeleOp extends OpMode {
                     WALL_E.upAndDownLinearMotorStop(); }
 
 
-                if (gamepad2.right_stick_x < -0.1) {
+                if (gamepad1.right_stick_x < -0.1) {
                     WALL_E.lazySusanLeft(lazySusanPower);
-                } else if (gamepad2.right_stick_x > 0.1) {
+                } else if (gamepad1.right_stick_x > 0.1) {
                     WALL_E.lazySusanRight(lazySusanPower);
                 } else {
                     WALL_E.lazySusanStop();
