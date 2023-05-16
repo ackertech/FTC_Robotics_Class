@@ -313,7 +313,7 @@ public class WALL_E_TeleOp extends OpMode {
                 telemetry.addLine("Stick Control - FIRST PERSON");
             }
             else if (stickControl == StickControl.THIRDSTICK) {
-                telemetry.addLine(" Stick Control - THIRD PERSON");
+                telemetry.addLine(" Stick Control - THIRD PERSON (DRIVE CONTROL)");
             }
         }
 
