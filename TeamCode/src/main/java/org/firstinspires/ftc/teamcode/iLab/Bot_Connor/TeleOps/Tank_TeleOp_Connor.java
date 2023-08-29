@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.iLab.Bot_Connor;
+package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.TeleOps;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -6,7 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-import java.util.concurrent.TimeUnit;
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Robots.TankBot_Connor;
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Robots.The_Mighty_and_All_Powerful_Hand;
 
 //@Disabled
 @TeleOp(name = "Thomas_The_TankBot_Drive_Basic_Connor_Beethoven's_Wig")

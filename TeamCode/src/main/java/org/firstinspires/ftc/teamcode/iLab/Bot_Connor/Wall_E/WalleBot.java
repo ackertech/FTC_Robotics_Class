@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Tank_FourMotorDrive_Connor;
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Drivetrains.Tank_FourMotorDrive_Connor;
 
 
 public class WalleBot extends Tank_FourMotorDrive_Connor {

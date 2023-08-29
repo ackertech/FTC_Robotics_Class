@@ -1,7 +1,9 @@
-package org.firstinspires.ftc.teamcode.iLab.Bot_Connor;
+package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Robots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Drivetrains.SixWheelDrive_Connor;
 
 public class SixWheelBot_Connor extends SixWheelDrive_Connor {
 

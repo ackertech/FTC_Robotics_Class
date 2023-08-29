@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CompetitionRobot;
+package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CompetitionRobot.Robots;
 
 
 import static org.firstinspires.ftc.teamcode.SLAM.drive.DriveConstants.MAX_ACCEL;

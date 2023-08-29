@@ -1,9 +1,12 @@
-package org.firstinspires.ftc.teamcode.iLab.Bot_Connor;
+package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.TeleOps;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Robots.SixWheelBot_Connor;
+
 @TeleOp (name = "SixWheelTeleOp_Connor")
 public class TELEOP_SixWheel_Connor extends OpMode {
 

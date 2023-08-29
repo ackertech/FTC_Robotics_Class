@@ -1,11 +1,12 @@
-package org.firstinspires.ftc.teamcode.iLab.Bot_Connor;
+package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Robots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
-public class TankBot_Connor extends Tank_FourMotorDrive_Connor{
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Drivetrains.Tank_FourMotorDrive_Connor;
+
+public class TankBot_Connor extends Tank_FourMotorDrive_Connor {
     //define Mechinism Varibles
     //Set Lazy Susan movement values
 

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CandyLaunchingBot;
+package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.TeleOps;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -8,10 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-import org.checkerframework.checker.units.qual.C;
-import org.firstinspires.ftc.teamcode.Base.Robot.AckerBot;
-import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Tank_TeleOp_Connor;
-import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.The_Mighty_and_All_Powerful_Hand;
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Robots.CandyLaunchingBot_Connor;
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Robots.The_Mighty_and_All_Powerful_Hand;
 
 @Disabled
 @TeleOp(name = "CandyLaunchingBotJohnCena_Connor")

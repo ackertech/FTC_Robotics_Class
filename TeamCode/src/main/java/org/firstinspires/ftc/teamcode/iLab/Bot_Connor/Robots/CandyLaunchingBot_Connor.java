@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CandyLaunchingBot;
+package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Robots;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.MecanumDrive_Connor;
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Drivetrains.MecanumDrive_Connor;
 
 public class CandyLaunchingBot_Connor extends MecanumDrive_Connor {
 

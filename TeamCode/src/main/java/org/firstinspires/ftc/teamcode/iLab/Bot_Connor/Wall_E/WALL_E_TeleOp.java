@@ -4,8 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Tank_TeleOp_Connor;
-import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.The_Mighty_and_All_Powerful_Hand;
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.TeleOps.Tank_TeleOp_Connor;
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Robots.The_Mighty_and_All_Powerful_Hand;
 
 //@Disabled
 @TeleOp(name = "WALL-E_TeleOp_Connor")

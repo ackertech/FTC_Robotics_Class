@@ -1,8 +1,10 @@
-package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CompetitionRobot;
+package org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CompetitionRobot.Autonomous;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CompetitionRobot.Robots.CompetitionBot;
 
 @Autonomous (name = "Connor_MechBotAuto")
 
