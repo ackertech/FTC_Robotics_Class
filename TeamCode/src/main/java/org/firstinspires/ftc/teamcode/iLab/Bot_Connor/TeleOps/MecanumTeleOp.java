@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.CompetitionRobot.Robots.CompetitionBot;
+import org.firstinspires.ftc.teamcode.iLab.Bot_Connor.Robots.ProgramingBot;
 
 
 @TeleOp (name = "MecanumTeleOp_Connor")
@@ -25,7 +25,7 @@ public class MecanumTeleOp extends OpMode {
 
 
 
-    public CompetitionBot MecanumBot = new CompetitionBot();
+    public ProgramingBot MecanumBot = new ProgramingBot();
 
     public void init () {
         MecanumBot.initRobot(hardwareMap);
